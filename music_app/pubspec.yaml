@@ -24,3 +24,6 @@ flutter:
   - family: poppins
     fonts:
       - asset: fonts/Poppins-Regular.ttf
+  - family: inter
+    fonts:
+      - asset: fonts/Inter-Regular.ttf
