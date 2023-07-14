@@ -34,7 +34,7 @@ class _BaseButtonState extends State<BaseButton> with TickerProviderStateMixin {
 
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 900),
+      duration: const Duration(milliseconds: 900),
     );
 
     _animation =
@@ -54,12 +54,12 @@ class _BaseButtonState extends State<BaseButton> with TickerProviderStateMixin {
       onTapUp: (details) => _animationController.reverse(),
       onTapCancel: () => _animationController.reverse(),
       child: AnimatedContainer(
-        duration: Duration(milliseconds: 900),
+        duration: const Duration(milliseconds: 900),
         transform:
             Matrix4.diagonal3Values(_animation.value, _animation.value, 1),
         child: ElevatedButton(
           style: TextButton.styleFrom(
-            padding: EdgeInsets.all(Dimen.padding0),
+            padding: const EdgeInsets.all(Dimen.padding0),
             backgroundColor: ColorConst.colorButton,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(widget.borderRadius),

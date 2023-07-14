@@ -17,7 +17,7 @@ class BaseTextFormField extends StatelessWidget {
     return Container(
       height: height,
       width: width,
-      padding: EdgeInsets.all(Dimen.padding0),
+      padding: const EdgeInsets.all(Dimen.padding0),
       child: TextFormField(
         decoration: InputDecoration(
           hintText: text,

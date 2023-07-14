@@ -19,7 +19,10 @@ class BaseImage extends StatelessWidget {
       height: height,
       width: width,
       decoration: BoxDecoration(
-        image: DecorationImage(image: AssetImage(assetImage)),
+        image: DecorationImage(
+          image: AssetImage(assetImage),
+          fit: BoxFit.contain,
+        ),
         borderRadius: BorderRadius.circular(Dimen.borderRadiusImage),
       ),
     );
