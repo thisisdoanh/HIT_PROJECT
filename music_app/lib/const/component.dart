@@ -29,20 +29,22 @@ class Component {
     fontFamily: 'monserrat',
     fontSize: 28,
     fontWeight: FontWeight.w900,
-    
   );
 
   static const TextStyle textStyleText = TextStyle(
     color: ColorConst.colorText,
     fontFamily: 'inter',
-    fontSize: 20,
-   
+    fontSize: 14,
   );
-
+  static const TextStyle textStyleTextButtonSmall = TextStyle(
+    color: ColorConst.colorText,
+    fontFamily: 'inter',
+    fontSize: 18,
+  );
   PageRouteBuilder<dynamic> navigate(Widget screen) {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) => screen,
-      transitionDuration: const Duration(milliseconds: 500),
+      transitionDuration: const Duration(milliseconds: 700),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         const begin = Offset(1.0, 0);
         const end = Offset.zero;
@@ -58,4 +60,5 @@ class Component {
       },
     );
   }
+
 }

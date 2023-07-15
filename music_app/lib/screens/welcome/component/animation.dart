@@ -68,7 +68,11 @@ class _AnimationWelcomeState extends State<AnimationWelcome>
                   width: Dimen.appIconSize,
                   height: Dimen.appIconSize,
                   decoration: const BoxDecoration(
-                    image: DecorationImage(image: AssetImage(StringConst.assetImgAppIcon)),
+                    image: DecorationImage(
+                      image: AssetImage(
+                        StringConst.assetImgAppIcon,
+                      ),
+                    ),
                     shape: BoxShape.circle,
                   ),
                 ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:music_app/screens/welcome/controller/animation.dart';
+import 'package:music_app/const/string.dart';
+import 'package:music_app/screens/welcome/component/animation.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -10,7 +11,7 @@ class WelcomeScreen extends StatelessWidget {
         body: Stack(
           children: [
             Image.asset(
-              'assets/images/welcome_screen.png',
+              StringConst.assetImgWelcome,
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
               fit: BoxFit.fill,

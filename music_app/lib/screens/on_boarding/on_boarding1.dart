@@ -5,7 +5,7 @@ import 'package:music_app/const/component.dart';
 import 'package:music_app/const/dimen.dart';
 import 'package:music_app/const/routes_screen.dart';
 import 'package:music_app/const/string.dart';
-import 'package:music_app/screens/on_boarding/controller/animation.dart';
+import 'package:music_app/screens/on_boarding/component/animation.dart';
 
 class OnBoarding1Screen extends StatelessWidget {
   const OnBoarding1Screen({super.key});

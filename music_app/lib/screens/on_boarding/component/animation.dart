@@ -25,7 +25,7 @@ class _AnimationOnboardingState extends State<AnimationOnboarding>
     super.initState();
 
     _controller = AnimationController(
-      duration: const Duration(seconds: 1),
+      duration: const Duration(milliseconds: 1300),
       vsync: this,
     );
 
