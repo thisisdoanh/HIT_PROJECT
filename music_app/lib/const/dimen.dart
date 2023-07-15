@@ -1,7 +1,8 @@
 class Dimen {
   static const double borderRadiusFullScreen = 24;
-  static const double widthFullScreen = 335;
-  static const double heightButtonLarge = 60;
+  static const double borderRadiusButtonSmall = 14;
+  static const double widthButtonSmall = 120;
+  static const double heightButtonLarge = 50;
   static const double fontSizeButtonLarge = 27;
   static const double fontSizeLabelTextFormField = 12;
   static const double borderRadiusTextFormField = 18;
@@ -14,4 +15,6 @@ class Dimen {
   static const double sizedBoxMedium = 16;
   static const double appIconSize = 100;
   static const double padding = 32;
+  static const double paddingHorizontal = 16;
+  static const double paddingVertical = 16;
 }

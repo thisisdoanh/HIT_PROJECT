@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:music_app/base_widget/button.dart';
 import 'package:music_app/base_widget/text.dart';
@@ -6,7 +5,7 @@ import 'package:music_app/const/component.dart';
 import 'package:music_app/const/dimen.dart';
 import 'package:music_app/const/routes_screen.dart';
 import 'package:music_app/const/string.dart';
-import 'package:music_app/screens/on_boarding/controller/animation.dart';
+import 'package:music_app/screens/on_boarding/component/animation.dart';
 
 class OnBoarding3Screen extends StatelessWidget {
   const OnBoarding3Screen({super.key});
@@ -19,7 +18,9 @@ class OnBoarding3Screen extends StatelessWidget {
           Container(
             height: MediaQuery.of(context).size.height * 0.1,
           ),
-          const AnimationOnboarding(assetImage: StringConst.assetImgOnboarding3,),
+          const AnimationOnboarding(
+            assetImage: StringConst.assetImgOnboarding3,
+          ),
           Container(
             height: MediaQuery.of(context).size.height * 0.1,
           ),
@@ -34,7 +35,8 @@ class OnBoarding3Screen extends StatelessWidget {
           Center(
             child: BaseButton(
               text: StringConst.next,
-              function: () => Navigator.pushReplacementNamed(context, RoutesScreen.routesOnboarding3),
+              function: () =>
+                  Navigator.pushNamed(context, RoutesScreen.routesSignUp1),
               height: Dimen.heightButtonLarge,
               width: MediaQuery.of(context).size.width * 0.95,
               textStyle: Component.textStyleButtonLarge,
