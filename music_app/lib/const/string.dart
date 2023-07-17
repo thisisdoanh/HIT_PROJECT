@@ -23,4 +23,5 @@ class StringConst {
   static const textNickname = 'Nickname';
   static const textDateOfBirth = 'Date of birth';
   static const textGender = 'Your gender';
+  static const textSearch = 'Search a song, singer or albums';
 }

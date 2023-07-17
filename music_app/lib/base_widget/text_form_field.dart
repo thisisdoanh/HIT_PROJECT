@@ -8,10 +8,10 @@ class BaseTextFormField extends StatelessWidget {
       {super.key,
       required this.text,
       required this.width,
-      required this.validator,
+      this.validator,
       required this.controller});
   final String text;
-  final FormFieldValidator validator;
+  final FormFieldValidator? validator;
   final double width;
   final TextEditingController controller;
 
