@@ -16,12 +16,12 @@ class StringConst {
   static const textOnboarding3 =
       'Download songs and listen offline anywhere and anytime';
   static const textSignUp = 'Music experience with the best app';
-  static const textHello = 'Hello, Sign Up To Continue';
-  static const textYourName = 'Your Name';
-  static const textYourEmail = 'Your Email';
-  static const textPass = 'Password';
-  static const textNickname = 'Nickname';
-  static const textDateOfBirth = 'Date of birth';
-  static const textGender = 'Your gender';
-  static const textSearch = 'Search a song, singer or albums';
+  static const textHello = 'Xin chào! Vui lòng đăng kí để tiếp tục';
+  static const textYourFirstName = 'Nhập họ';
+  static const textYourLastName = 'Nhập tên';
+  static const textYourEmail = 'Nhập email';
+  static const textPass = 'Nhập mật khẩu';
+  static const textUsername = 'Tên đăng nhập';
+  static const textDateOfBirth = 'Ngày sinh';
+  static const textGender = 'Giới tính';
 }
