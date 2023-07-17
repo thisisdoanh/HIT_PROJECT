@@ -8,9 +8,21 @@ import 'package:music_app/screens/sign_up/sign_up2.dart';
 import 'package:music_app/screens/welcome/welcome_screen.dart';
 import 'package:music_app/const/component.dart';
 import 'package:music_app/test.dart';
+import 'package:provider/provider.dart';
+import 'package:music_app/controller.dart';
+
 
 void main() {
-  runApp(const MainApp());
+  runApp(
+    /// Providers are above [MyApp] instead of inside it, so that tests
+    /// can use [MyApp] while mocking the providers
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => Controller()),
+      ],
+      child: const MainApp(),
+    ),
+  );
 }
 
 class MainApp extends StatelessWidget {
@@ -20,7 +32,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark(),
-      initialRoute: RoutesScreen.routesWelcome,
+      initialRoute: RoutesScreen.routesSignUp2,
       onGenerateRoute: (settings) {
         switch (settings.name) {
           case RoutesScreen.routesWelcome:

@@ -14,6 +14,7 @@ Playlist _$PlaylistFromJson(Map<String, dynamic> json) => Playlist(
           .toList(),
       createdBy: User.fromJson(json['createdBy'] as Map<String, dynamic>),
       createAt: DateTime.parse(json['createAt'] as String),
+      image: json['image'] as String,
     );
 
 Map<String, dynamic> _$PlaylistToJson(Playlist instance) => <String, dynamic>{
@@ -22,4 +23,5 @@ Map<String, dynamic> _$PlaylistToJson(Playlist instance) => <String, dynamic>{
       'songs': instance.songs,
       'createdBy': instance.createdBy,
       'createAt': instance.createAt.toIso8601String(),
+      'image': instance.image,
     };

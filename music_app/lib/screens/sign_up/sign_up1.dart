@@ -13,7 +13,8 @@ class SignUp1Screen extends StatelessWidget {
   SignUp1Screen({super.key});
 
   final GlobalKey<FormState> keyForm = GlobalKey<FormState>();
-  final TextEditingController controllerName = TextEditingController();
+  final TextEditingController controllerFirstName = TextEditingController();
+  final TextEditingController controllerLastName = TextEditingController();
   final TextEditingController controllerEmail = TextEditingController();
   final TextEditingController controllerPass = TextEditingController();
   final TextEditingController controllerPassAgin = TextEditingController();
@@ -66,35 +67,61 @@ class SignUp1Screen extends StatelessWidget {
                 const SizedBox(
                   height: Dimen.sizedBoxSmall,
                 ),
-                BaseTextFormField(
-                  controller: controllerName,
-                  text: StringConst.textYourName,
-                  width: MediaQuery.of(context).size.width * 0.95,
-                  validator: (value) {
-                    if (value == '') {
-                      return 'Name not entered yet';
-                    }
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    BaseTextFormField(
+                      controller: controllerFirstName,
+                      text: StringConst.textYourFirstName,
+                      width: MediaQuery.of(context).size.width * 0.9 / 2,
+                      validator: (value) {
+                        if (value == '') {
+                          return StringConst.notiErrorFirstName[0];
+                        }
 
-                    if (RegExp(r'[^\w\s]').hasMatch(value)) {
-                      return 'Name cannot contain numbers and special characters';
-                    }
-                    return null;
-                  },
+                        if (RegExp(r'\d').hasMatch(value)) {
+                          return StringConst.notiErrorFirstName[1];
+                        }
+                        return null;
+                      },
+                      textInputType: TextInputType.text,
+                      isHide: false,
+                    ),
+                    BaseTextFormField(
+                      textInputType: TextInputType.text,
+                      isHide: false,
+                      controller: controllerLastName,
+                      text: StringConst.textYourLastName,
+                      width: MediaQuery.of(context).size.width * 0.9 / 2,
+                      validator: (value) {
+                        if (value == '') {
+                          return StringConst.notiErrorLastName[0];
+                        }
+
+                        if (RegExp(r'\d').hasMatch(value)) {
+                          return StringConst.notiErrorLastName[1];
+                        }
+                        return null;
+                      },
+                    ),
+                  ],
                 ),
                 const SizedBox(
                   height: Dimen.sizedBoxSmall,
                 ),
                 BaseTextFormField(
+                  textInputType: TextInputType.emailAddress,
+                  isHide: false,
                   controller: controllerEmail,
                   text: StringConst.textYourEmail,
                   width: MediaQuery.of(context).size.width * 0.95,
                   validator: (value) {
                     if (value == '') {
-                      return 'Email not entered yet';
+                      return StringConst.notiErrorEmail[0];
                     }
 
                     if (!value.toString().contains('@gmail.com')) {
-                      return 'Email must to be abc@gmail.com';
+                      return StringConst.notiErrorEmail[1];
                     }
                     return null;
                   },
@@ -103,24 +130,26 @@ class SignUp1Screen extends StatelessWidget {
                   height: Dimen.sizedBoxSmall,
                 ),
                 BaseTextFormField(
+                  textInputType: TextInputType.text,
+                  isHide: true,
                   controller: controllerPass,
                   text: StringConst.textPass,
                   width: MediaQuery.of(context).size.width * 0.95,
                   validator: (value) {
                     if (value == '') {
-                      return 'Password not entered yet';
+                      return StringConst.notiErrorPassword[0];
                     }
 
                     if (!RegExp(r'[^\w\s]').hasMatch(value)) {
-                      return 'Password must contain numbers and special characters';
+                      return StringConst.notiErrorPassword[1];
                     }
 
                     if (value.toString().length < 8) {
-                      return 'Password must be at least 8 characters long';
+                      return StringConst.notiErrorPassword[2];
                     }
 
                     if (controllerPass.text != controllerPassAgin.text) {
-                      return 'Password does not match';
+                      return StringConst.notiErrorPassword[3];
                     }
 
                     return null;
@@ -135,22 +164,24 @@ class SignUp1Screen extends StatelessWidget {
                   width: MediaQuery.of(context).size.width * 0.95,
                   validator: (value) {
                     if (value == '') {
-                      return 'Password not entered yet';
+                      return StringConst.notiErrorPassword[0];
                     }
 
                     if (!RegExp(r'[^\w\s]').hasMatch(value)) {
-                      return 'Password must contain numbers and special characters';
+                      return StringConst.notiErrorPassword[1];
                     }
 
                     if (value.toString().length < 8) {
-                      return 'Password must be at least 8 characters long';
+                      return StringConst.notiErrorPassword[2];
                     }
 
                     if (controllerPass.text != controllerPassAgin.text) {
-                      return 'Password does not match';
+                      return StringConst.notiErrorPassword[3];
                     }
                     return null;
                   },
+                  isHide: true,
+                  textInputType: TextInputType.text,
                 ),
                 const SizedBox(
                   height: Dimen.sizedBoxMedium * 2,
