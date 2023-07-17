@@ -1,6 +1,6 @@
 class StringConst {
   static const next = "NEXT";
-  static const signup = "Sign up";
+  static const signup = "Đăng ký";
   static const appName = "MY MUSIC";
   static const assetIconGmail = "assets/icons/ic_gmail.svg";
   static const assetImgOnboarding1 = 'assets/images/img_onboarding1.png';

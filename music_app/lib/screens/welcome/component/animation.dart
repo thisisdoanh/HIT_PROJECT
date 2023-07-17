@@ -41,7 +41,7 @@ class _AnimationWelcomeState extends State<AnimationWelcome>
       const Duration(seconds: 3),
     );
     // ignore: use_build_context_synchronously
-    Navigator.pushReplacementNamed(context, RoutesScreen.routesOnboarding1);
+    // Navigator.pushReplacementNamed(context, RoutesScreen.routesOnboarding1);
   }
 
   @override

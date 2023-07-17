@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:music_app/base_widget/button.dart';
 import 'package:music_app/base_widget/image.dart';
 import 'package:music_app/base_widget/text.dart';
 import 'package:music_app/base_widget/text_form_field.dart';
 import 'package:music_app/base_widget/text_tittle.dart';
+import 'package:music_app/const/color.dart';
 import 'package:music_app/const/component.dart';
 import 'package:music_app/const/dimen.dart';
 import 'package:music_app/const/routes_screen.dart';
 import 'package:music_app/const/string.dart';
-
-part 'component/function.dart';
 
 class SignUp2Screen extends StatefulWidget {
   const SignUp2Screen({super.key});
@@ -24,6 +24,8 @@ class _SignUp2ScreenState extends State<SignUp2Screen> {
   final TextEditingController controllerNickname = TextEditingController();
 
   final TextEditingController controllerDate = TextEditingController();
+  final TextEditingController controllerGender = TextEditingController();
+  String selectedValue = 'nam';
 
   @override
   Widget build(BuildContext context) {
@@ -75,11 +77,47 @@ class _SignUp2ScreenState extends State<SignUp2Screen> {
                 ),
                 BaseTextFormField(
                   controller: controllerNickname,
-                  text: StringConst.textNickname,
+                  text: StringConst.textUsername,
                   width: MediaQuery.of(context).size.width * 0.95,
                   validator: (value) {
                     if (value == '') {
-                      return 'Nickname not entered yet';
+                      return StringConst.notiErrorUsername[0];
+                    }
+                    if (value.toString().length <= 6) {
+                      return StringConst.notiErrorUsername[1];
+                    }
+                    return null;
+                  },
+                  textInputType: TextInputType.text,
+                  isHide: false,
+                ),
+                const SizedBox(
+                  height: Dimen.sizedBoxSmall,
+                ),
+                TextFormField(
+                  controller: controllerDate,
+                  decoration: InputDecoration(
+                    hintText: StringConst.textDateOfBirth,
+                    fillColor: ColorConst.primaryColorTextFormField,
+                    hintStyle: Component.textStyleTextFormField,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(
+                          Dimen.borderRadiusTextFormField),
+                    ),
+                    suffixIcon: Icon(Icons.calendar_month),
+                  ),
+                  onTap: () => selectDate(context).then(
+                    (value) {
+                      value ??= DateTime.now();
+                      controllerDate.text =
+                          DateFormat('dd/MM/yyyy').format(value);
+                      setState(() {});
+                    },
+                  ),
+                  readOnly: true,
+                  validator: (value) {
+                    if (value == '' || value == null) {
+                      return StringConst.notiErrorDateOfBirth[0];
                     }
                     return null;
                   },
@@ -87,24 +125,28 @@ class _SignUp2ScreenState extends State<SignUp2Screen> {
                 const SizedBox(
                   height: Dimen.sizedBoxSmall,
                 ),
-                // TextFormField(
-                //   controller: controllerDate,
-                //   decoration: InputDecoration(
-                //     labelText: 'Date of birth',
-                //     suffixIcon: IconButton(
-                //       icon: Icon(Icons.calendar_today),
-                //       onPressed: () => _selectDate(context),
-                //     ),
-                //   ),
-                //   readOnly: true,
-                //   onTap: () => _selectDate(context),
-                //   validator: (value) {
-                //     if (value == '') {
-                //       return 'Date of birth not entered yet';
-                //     }
-                //     return null;
-                //   },
-                // ),
+                DropdownButtonFormField<String>(
+                  value: selectedValue,
+                  decoration: InputDecoration(
+                    hintText: StringConst.textGender,
+                    fillColor: ColorConst.primaryColorTextFormField,
+                    hintStyle: Component.textStyleTextFormField,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(
+                          Dimen.borderRadiusTextFormField),
+                    ),
+                  ),
+                  items: const [
+                    DropdownMenuItem(value: 'nam', child: Text('Nam')),
+                    DropdownMenuItem(value: 'nữ', child: Text('Nữ')),
+                    DropdownMenuItem(value: 'khác', child: Text('Khác')),
+                  ],
+                  onChanged: (value) {
+                    setState(() {
+                      selectedValue = value!;
+                    });
+                  },
+                ),
                 const SizedBox(
                   height: Dimen.sizedBoxMedium * 2,
                 ),
@@ -130,6 +172,15 @@ class _SignUp2ScreenState extends State<SignUp2Screen> {
           ),
         ),
       ),
+    );
+  }
+
+  Future<DateTime?> selectDate(BuildContext context) {
+    return showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime(2024),
     );
   }
 }
