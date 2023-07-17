@@ -24,4 +24,30 @@ class StringConst {
   static const textUsername = 'Tên đăng nhập';
   static const textDateOfBirth = 'Ngày sinh';
   static const textGender = 'Giới tính';
+  static List<String> notiErrorEmail = [
+    'Chưa nhập email',
+    'Email phải có dạng abc@gmail.com',
+  ];
+  static List<String> notiErrorFirstName = [
+    'Chưa nhập họ',
+    'Họ không được chứa số',
+  ];
+  static List<String> notiErrorLastName = [
+    'Chưa nhập tên',
+    'Tên không được chứa số',
+  ];
+  static List<String> notiErrorUsername = [
+    'Chưa nhập username',
+    'Username phải lớn hơn 6 kí tự',
+  ];
+  static List<String> notiErrorPassword = [
+    'Chưa nhập mật khẩu',
+    'Mật khẩu phải chứa ít nhất 1 kí tự đặc biệt',
+    'Mật khẩu phải lớn hơn 8 kí tự',
+    'Mật khẩu không khớp',
+  ];
+  static List<String> notiErrorDateOfBirth = [
+    'Chưa nhập ngày sinh',
+    'Ngày không được vượt quá ngày hiện tại',
+  ];
 }
