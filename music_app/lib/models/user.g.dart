@@ -19,6 +19,7 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
       favoriteSongs: (json['favoriteSongs'] as List<dynamic>)
           .map((e) => Song.fromJson(e as Map<String, dynamic>))
           .toList(),
+      image: json['image'] as String,
     );
 
 Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
@@ -32,4 +33,5 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'isEmailVerified': instance.isEmailVerified,
       'role': instance.role,
       'favoriteSongs': instance.favoriteSongs,
+      'image': instance.image,
     };

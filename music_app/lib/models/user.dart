@@ -16,6 +16,7 @@ class User {
   bool isEmailVerified;
   String role;
   List<Song> favoriteSongs;
+  String image;
 
   User({
     required this.username,
@@ -28,6 +29,7 @@ class User {
     required this.isEmailVerified,
     required this.role,
     required this.favoriteSongs,
+    required this.image,
   });
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);

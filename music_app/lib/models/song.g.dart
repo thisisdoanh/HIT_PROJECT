@@ -18,6 +18,7 @@ Song _$SongFromJson(Map<String, dynamic> json) => Song(
       countListen: json['countListen'] as int,
       likeNumber: json['likeNumber'] as int,
       dislikeNumber: json['dislikeNumber'] as int,
+      image: json['image'] as String,
     );
 
 Map<String, dynamic> _$SongToJson(Song instance) => <String, dynamic>{
@@ -30,4 +31,5 @@ Map<String, dynamic> _$SongToJson(Song instance) => <String, dynamic>{
       'countListen': instance.countListen,
       'likeNumber': instance.likeNumber,
       'dislikeNumber': instance.dislikeNumber,
+      'image': instance.image,
     };

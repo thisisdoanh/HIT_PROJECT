@@ -12,6 +12,7 @@ class Playlist {
   List<Song> songs;
   User createdBy;
   DateTime createAt;
+  String image;
 
   Playlist({
     required this.name,
@@ -19,6 +20,7 @@ class Playlist {
     required this.songs,
     required this.createdBy,
     required this.createAt,
+    required this.image,
   });
 
   factory Playlist.fromJson(Map<String, dynamic> json) =>

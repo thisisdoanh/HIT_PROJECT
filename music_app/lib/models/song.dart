@@ -15,6 +15,7 @@ class Song {
   int countListen;
   int likeNumber;
   int dislikeNumber;
+  String image;
   Song({
     required this.tittle,
     required this.singer,
@@ -25,6 +26,7 @@ class Song {
     required this.countListen,
     required this.likeNumber,
     required this.dislikeNumber,
+    required this.image,
   });
 
   factory Song.fromJson(Map<String, dynamic> json) => _$SongFromJson(json);

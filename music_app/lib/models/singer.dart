@@ -8,11 +8,13 @@ class Singer {
   String name;
   String detail;
   String country;
+  String image;
 
   Singer({
     required this.name,
     required this.detail,
     required this.country,
+    required this.image,
   });
 
   factory Singer.fromJson(Map<String, dynamic> json) => _$SingerFromJson(json);
