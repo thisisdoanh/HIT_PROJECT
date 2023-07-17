@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:music_app/const/routes_screen.dart';
+import 'package:music_app/screens/home/home.dart';
 import 'package:music_app/screens/on_boarding/on_boarding1.dart';
 import 'package:music_app/screens/on_boarding/on_boarding2.dart';
 import 'package:music_app/screens/on_boarding/on_boarding3.dart';
@@ -47,6 +48,8 @@ class MainApp extends StatelessWidget {
             return Component().navigate(SignUp1Screen());
           case RoutesScreen.routesSignUp2:
             return Component().navigate(const SignUp2Screen());
+          case RoutesScreen.routesHome:
+            return Component().navigate(HomeScreen());
           case '/test':
             return Component().navigate(const Test());
           default:
