@@ -3,6 +3,8 @@ class StringConst {
   static const signup = "Đăng ký";
   static const appName = "MY MUSIC";
   static const assetIconGmail = "assets/icons/ic_gmail.svg";
+  static const assetIconFacebook = "assets/icons/ic_facebook.svg";
+  static const assetIconTwitter = "assets/icons/ic_twitter.svg";
   static const assetImgOnboarding1 = 'assets/images/img_onboarding1.png';
   static const assetImgWelcome = 'assets/images/img_welcome.png';
   static const assetImgSignup = 'assets/images/img_signup.png';
@@ -50,4 +52,5 @@ class StringConst {
     'Chưa nhập ngày sinh',
     'Ngày không được vượt quá ngày hiện tại',
   ];
+  static const String textSearch = '...';
 }

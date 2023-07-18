@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:music_app/base_widget/image.dart';
-import 'package:music_app/const/dimen.dart';
 
 class AnimationOnboarding extends StatefulWidget {
   const AnimationOnboarding({

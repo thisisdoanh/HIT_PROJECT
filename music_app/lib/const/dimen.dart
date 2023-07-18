@@ -17,4 +17,6 @@ class Dimen {
   static const double padding = 32;
   static const double paddingHorizontal = 16;
   static const double paddingVertical = 16;
+  static const double widthIconSignUp = 25;
+  static const double heightIconSignUp = 32;
 }

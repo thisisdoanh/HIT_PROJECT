@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:json_annotation/json_annotation.dart';
 import 'package:music_app/models/singer.dart';
 import 'package:music_app/models/song.dart';
@@ -10,6 +10,7 @@ class Album {
   String tittle;
   String image;
   List<Song> songs;
+  // ignore: non_constant_identifier_names
   int release_year;
   List<Singer> singer;
 
@@ -17,6 +18,7 @@ class Album {
     required this.tittle,
     required this.image,
     required this.songs,
+    // ignore: non_constant_identifier_names
     required this.release_year,
     required this.singer,
   });
