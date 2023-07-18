@@ -12,7 +12,6 @@ import 'package:music_app/test.dart';
 import 'package:provider/provider.dart';
 import 'package:music_app/controller.dart';
 
-
 void main() {
   runApp(
     /// Providers are above [MyApp] instead of inside it, so that tests
@@ -33,7 +32,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark(),
-      initialRoute: RoutesScreen.routesSignUp2,
+      initialRoute: RoutesScreen.routesSignUp1,
       onGenerateRoute: (settings) {
         switch (settings.name) {
           case RoutesScreen.routesWelcome:

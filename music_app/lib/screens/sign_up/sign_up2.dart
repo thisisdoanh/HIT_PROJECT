@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:music_app/base_widget/button.dart';
+import 'package:music_app/base_widget/icon.dart';
 import 'package:music_app/base_widget/image.dart';
 import 'package:music_app/base_widget/text.dart';
 import 'package:music_app/base_widget/text_form_field.dart';
@@ -113,7 +114,7 @@ class _SignUp2ScreenState extends State<SignUp2Screen> {
                     return null;
                   },
                   isReadOnly: true,
-                  surfixIcon: Icon(Icons.calendar_month),
+                  surfixIcon: const Icon(Icons.calendar_month),
                 ),
                 const SizedBox(
                   height: Dimen.sizedBoxSmall,
@@ -144,6 +145,8 @@ class _SignUp2ScreenState extends State<SignUp2Screen> {
                   height: Dimen.sizedBoxMedium * 2,
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     BaseButton(
                       text: StringConst.signup,
@@ -157,6 +160,29 @@ class _SignUp2ScreenState extends State<SignUp2Screen> {
                       width: Dimen.widthButtonSmall,
                       textStyle: Component.textStyleTextButtonSmall,
                       borderRadius: Dimen.borderRadiusButtonSmall,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        BaseIcon(
+                          assetName: StringConst.assetIconGmail,
+                          height: Dimen.heightIconSignUp,
+                          width: Dimen.widthIconSignUp,
+                          function: () {},
+                        ),
+                        BaseIcon(
+                          assetName: StringConst.assetIconFacebook,
+                          height: Dimen.widthIconSignUp,
+                          width: Dimen.widthIconSignUp,
+                          function: () {},
+                        ),
+                        BaseIcon(
+                          assetName: StringConst.assetIconTwitter,
+                          height: Dimen.widthIconSignUp,
+                          width: Dimen.widthIconSignUp,
+                          function: () {},
+                        ),
+                      ],
                     ),
                   ],
                 ),
