@@ -4,6 +4,7 @@ import 'package:music_app/base_widget/button.dart';
 import 'package:music_app/base_widget/image.dart';
 import 'package:music_app/base_widget/text.dart';
 import 'package:music_app/base_widget/text_form_field.dart';
+import 'package:music_app/base_widget/text_form_field_surfix_icon.dart';
 import 'package:music_app/base_widget/text_tittle.dart';
 import 'package:music_app/const/color.dart';
 import 'package:music_app/const/component.dart';
@@ -94,19 +95,10 @@ class _SignUp2ScreenState extends State<SignUp2Screen> {
                 const SizedBox(
                   height: Dimen.sizedBoxSmall,
                 ),
-                TextFormField(
+                BaseTextformFieldSurfixIcon(
                   controller: controllerDate,
-                  decoration: InputDecoration(
-                    hintText: StringConst.textDateOfBirth,
-                    fillColor: ColorConst.primaryColorTextFormField,
-                    hintStyle: Component.textStyleTextFormField,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(
-                          Dimen.borderRadiusTextFormField),
-                    ),
-                    suffixIcon: Icon(Icons.calendar_month),
-                  ),
-                  onTap: () => selectDate(context).then(
+                  text: StringConst.textDateOfBirth,
+                  function: () => selectDate(context).then(
                     (value) {
                       value ??= DateTime.now();
                       controllerDate.text =
@@ -114,13 +106,14 @@ class _SignUp2ScreenState extends State<SignUp2Screen> {
                       setState(() {});
                     },
                   ),
-                  readOnly: true,
                   validator: (value) {
                     if (value == '' || value == null) {
                       return StringConst.notiErrorDateOfBirth[0];
                     }
                     return null;
                   },
+                  isReadOnly: true,
+                  surfixIcon: Icon(Icons.calendar_month),
                 ),
                 const SizedBox(
                   height: Dimen.sizedBoxSmall,
