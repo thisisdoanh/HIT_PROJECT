@@ -5,5 +5,7 @@ class RoutesScreen {
   static const String routesOnboarding3 = '/onboarding3';
   static const String routesSignUp1 = '/signup1';
   static const String routesSignUp2 = '/signup2';
+  static const String routesSignIn = '/signin';
   static const String routesHome = '/home';
+  static const String routesProfile = '/profile';
 }

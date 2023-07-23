@@ -1,35 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:music_app/base_widget/button.dart';
 import 'package:music_app/base_widget/icon.dart';
 import 'package:music_app/base_widget/image.dart';
 import 'package:music_app/base_widget/text.dart';
 import 'package:music_app/base_widget/text_form_field.dart';
-import 'package:music_app/base_widget/text_form_field_surfix_icon.dart';
 import 'package:music_app/base_widget/text_tittle.dart';
-import 'package:music_app/const/color.dart';
 import 'package:music_app/const/component.dart';
 import 'package:music_app/const/dimen.dart';
 import 'package:music_app/const/routes_screen.dart';
 import 'package:music_app/const/string.dart';
+import 'package:music_app/models/user.dart';
+import 'package:music_app/screens/sign_in/component/api_login.dart';
+import 'package:http/http.dart' as http;
 
-class SignUp2Screen extends StatefulWidget {
-  const SignUp2Screen({super.key});
+import 'dart:convert';
 
-  @override
-  State<SignUp2Screen> createState() => _SignUp2ScreenState();
-}
-
-class _SignUp2ScreenState extends State<SignUp2Screen> {
+class SignInScreen extends StatelessWidget {
+  SignInScreen({super.key});
   final GlobalKey<FormState> keyForm = GlobalKey<FormState>();
-
-  final TextEditingController controllerNickname = TextEditingController();
-
-  final TextEditingController controllerDate = TextEditingController();
-  final TextEditingController controllerGender = TextEditingController();
-  String selectedValue = 'nam';
-
+  final TextEditingController controllerUsername = TextEditingController();
+  final TextEditingController controllerPassword = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -57,7 +48,8 @@ class _SignUp2ScreenState extends State<SignUp2Screen> {
                 const BaseImage(
                   height: Dimen.appIconSize,
                   width: Dimen.appIconSize,
-                  assetImage: StringConst.assetImgAppIcon, borderRadius: Dimen.borderRadiusImage,
+                  assetImage: StringConst.assetImgAppIcon,
+                  borderRadius: Dimen.borderRadiusImage,
                 ),
                 const SizedBox(
                   height: Dimen.sizedBoxSmall,
@@ -71,7 +63,7 @@ class _SignUp2ScreenState extends State<SignUp2Screen> {
                   height: Dimen.sizedBoxSmall,
                 ),
                 const BaseText(
-                  text: StringConst.textHello,
+                  text: StringConst.textHelloSignIn,
                   padding: Dimen.padding0,
                   textStyle: Component.textStyleText,
                 ),
@@ -79,82 +71,53 @@ class _SignUp2ScreenState extends State<SignUp2Screen> {
                   height: Dimen.sizedBoxSmall,
                 ),
                 BaseTextFormField(
-                  controller: controllerNickname,
                   text: StringConst.textUsername,
                   width: MediaQuery.of(context).size.width * 0.95,
-                  validator: (value) {
-                    if (value == '') {
-                      return StringConst.notiErrorUsername[0];
-                    }
-                    if (value.toString().length <= 6) {
-                      return StringConst.notiErrorUsername[1];
-                    }
-                    return null;
-                  },
+                  validator: (value) {},
+                  controller: controllerUsername,
                   textInputType: TextInputType.text,
                   isHide: false,
                 ),
                 const SizedBox(
                   height: Dimen.sizedBoxSmall,
                 ),
-                BaseTextformFieldSurfixIcon(
-                  controller: controllerDate,
-                  text: StringConst.textDateOfBirth,
-                  function: () => selectDate(context).then(
-                    (value) {
-                      value ??= DateTime.now();
-                      controllerDate.text =
-                          DateFormat('dd/MM/yyyy').format(value);
-                      setState(() {});
-                    },
-                  ),
-                  validator: (value) {
-                    if (value == '' || value == null) {
-                      return StringConst.notiErrorDateOfBirth[0];
-                    }
-                    return null;
-                  },
-                  isReadOnly: true,
-                  surfixIcon: const Icon(Icons.calendar_month),
+                BaseTextFormField(
+                  text: StringConst.textPass,
+                  width: MediaQuery.of(context).size.width * 0.95,
+                  validator: (value) {},
+                  controller: controllerPassword,
+                  textInputType: TextInputType.text,
+                  isHide: false,
                 ),
                 const SizedBox(
                   height: Dimen.sizedBoxSmall,
                 ),
-                DropdownButtonFormField<String>(
-                  value: selectedValue,
-                  decoration: InputDecoration(
-                    hintText: StringConst.textGender,
-                    fillColor: ColorConst.primaryColorTextFormField,
-                    hintStyle: Component.textStyleTextFormField,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(
-                          Dimen.borderRadiusTextFormField),
-                    ),
+                CupertinoButton(
+                  padding: const EdgeInsets.all(Dimen.padding0),
+                  child: const Text(
+                    StringConst.textForgotPassword,
+                    style: Component.textStyleText,
                   ),
-                  items: const [
-                    DropdownMenuItem(value: 'nam', child: Text('Nam')),
-                    DropdownMenuItem(value: 'nữ', child: Text('Nữ')),
-                    DropdownMenuItem(value: 'khác', child: Text('Khác')),
-                  ],
-                  onChanged: (value) {
-                    setState(() {
-                      selectedValue = value!;
-                    });
-                  },
-                ),
-                const SizedBox(
-                  height: Dimen.sizedBoxMedium * 2,
+                  onPressed: () {},
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     BaseButton(
-                      text: StringConst.signup,
+                      text: StringConst.signIn,
                       function: () {
+                        print("helo1");
+                        var response = ApiLogin().getAccount(
+                          controllerUsername.text,
+                          controllerPassword.text,
+                        );
+
+                        print(response);
+                        print("/n test");
+                        print("helo2");
                         if (keyForm.currentState!.validate()) {
-                          Navigator.pushNamed(
-                              context, RoutesScreen.routesSignUp2);
+                          Navigator.pushNamed(context, RoutesScreen.routesHome);
                         }
                       },
                       height: Dimen.heightButtonLarge,
@@ -187,39 +150,11 @@ class _SignUp2ScreenState extends State<SignUp2Screen> {
                     ),
                   ],
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      StringConst.textGoToSignIn,
-                      style: Component.textStyleText,
-                    ),
-                    CupertinoButton(
-                      padding: const EdgeInsets.all(Dimen.padding0),
-                      child: const Text(
-                        StringConst.signIn,
-                      ),
-                      onPressed: () {
-                        Navigator.pushNamed(context, RoutesScreen.routesSignIn);
-                      },
-                    ),
-                  ],
-                ),
               ],
-
             ),
           ),
         ),
       ),
-    );
-  }
-
-  Future<DateTime?> selectDate(BuildContext context) {
-    return showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(1900),
-      lastDate: DateTime.now(),
     );
   }
 }

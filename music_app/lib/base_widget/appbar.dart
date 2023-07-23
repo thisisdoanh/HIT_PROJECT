@@ -49,9 +49,10 @@ class _BaseAppbarState extends State<BaseAppbar> {
           widget.functionLeading!();
         },
       ),
+      centerTitle: true,
       title: Text(
         widget.title,
-        style: Component.textStyleText,
+        style: Component.textStyleTittle,
       ),
       actions: [
         IconButton(

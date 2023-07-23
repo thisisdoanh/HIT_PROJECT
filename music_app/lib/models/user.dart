@@ -8,21 +8,21 @@ part 'user.g.dart';
 class User {
   String username;
   String email;
-  String password;
-  String name;
+  String firstName;
+  String lastName;
   String avatar;
   String gender;
   DateTime dateOfBirth;
   bool isEmailVerified;
   String role;
-  List<Song> favoriteSongs;
-  String image;
+  List<String> favoriteSongs;
+  String? image;
 
   User({
     required this.username,
     required this.email,
-    required this.password,
-    required this.name,
+    required this.firstName,
+    required this.lastName,
     required this.avatar,
     required this.gender,
     required this.dateOfBirth,
