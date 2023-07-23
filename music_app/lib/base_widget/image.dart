@@ -7,11 +7,13 @@ class BaseImage extends StatelessWidget {
     required this.height,
     required this.width,
     required this.assetImage,
+    required this.borderRadius,
   });
 
   final double height;
   final double width;
   final String assetImage;
+  final double borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +23,9 @@ class BaseImage extends StatelessWidget {
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage(assetImage),
-          fit: BoxFit.contain,
+          fit: BoxFit.fill,
         ),
-        borderRadius: BorderRadius.circular(Dimen.borderRadiusImage),
+        borderRadius: BorderRadius.circular(borderRadius),
       ),
     );
   }
