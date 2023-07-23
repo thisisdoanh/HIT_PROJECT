@@ -106,14 +106,13 @@ class SignInScreen extends StatelessWidget {
                   children: [
                     BaseButton(
                       text: StringConst.signIn,
-                      function: () {
+                      function: () async {
                         print("helo1");
-                        var response = ApiLogin().getAccount(
-                          controllerUsername.text,
-                          controllerPassword.text,
+                        var response = await ApiLogin().getAccount(
+                          "admin",
+                          "superadmin123",
                         );
 
-                        print(response);
                         print("/n test");
                         print("helo2");
                         if (keyForm.currentState!.validate()) {
