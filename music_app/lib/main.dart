@@ -32,29 +32,30 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark(),
-      initialRoute: RoutesScreen.routesSignUp1,
-      onGenerateRoute: (settings) {
-        switch (settings.name) {
-          case RoutesScreen.routesWelcome:
-            return Component().navigate(const WelcomeScreen());
-          case RoutesScreen.routesOnboarding1:
-            return Component().navigate(const OnBoarding1Screen());
-          case RoutesScreen.routesOnboarding2:
-            return Component().navigate(const OnBoarding2Screen());
-          case RoutesScreen.routesOnboarding3:
-            return Component().navigate(const OnBoarding3Screen());
-          case RoutesScreen.routesSignUp1:
-            return Component().navigate(SignUp1Screen());
-          case RoutesScreen.routesSignUp2:
-            return Component().navigate(const SignUp2Screen());
-          case RoutesScreen.routesHome:
-            return Component().navigate(HomeScreen());
-          case '/test':
-            return Component().navigate(const Test());
-          default:
-            return null;
-        }
-      },
+      // initialRoute: RoutesScreen.routesSignUp1,
+      // onGenerateRoute: (settings) {
+      //   switch (settings.name) {
+      //     case RoutesScreen.routesWelcome:
+      //       return Component().navigate(const WelcomeScreen());
+      //     case RoutesScreen.routesOnboarding1:
+      //       return Component().navigate(const OnBoarding1Screen());
+      //     case RoutesScreen.routesOnboarding2:
+      //       return Component().navigate(const OnBoarding2Screen());
+      //     case RoutesScreen.routesOnboarding3:
+      //       return Component().navigate(const OnBoarding3Screen());
+      //     case RoutesScreen.routesSignUp1:
+      //       return Component().navigate(SignUp1Screen());
+      //     case RoutesScreen.routesSignUp2:
+      //       return Component().navigate(const SignUp2Screen());
+      //     case RoutesScreen.routesHome:
+      //       return Component().navigate(HomeScreen());
+      //     case '/test':
+      //       return Component().navigate(const Test());
+      //     default:
+      //       return null;
+      //   }
+      // },
+      home: HomeScreen(),
     );
   }
 }

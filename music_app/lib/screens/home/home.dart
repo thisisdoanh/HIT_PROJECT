@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:music_app/screens/home/component/popular_music.dart';
 
 import 'component/appbar_home.dart';
 
@@ -15,7 +16,9 @@ class _HomeScreenState extends State<HomeScreen> {
     return const Scaffold(
       appBar: AppBarHome(),
       body: Column(
-        children: [],
+        children: [
+          PopularMusic(),
+        ],
       ),
     );
   }
