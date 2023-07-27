@@ -186,7 +186,6 @@ class SignUp1Screen extends StatelessWidget {
                   isHide: true,
                   textInputType: TextInputType.text,
                 ),
-                
                 const SizedBox(
                   height: Dimen.sizedBoxSmall,
                 ),
@@ -199,7 +198,13 @@ class SignUp1Screen extends StatelessWidget {
                       function: () {
                         if (keyForm.currentState!.validate()) {
                           Navigator.pushNamed(
-                              context, RoutesScreen.routesSignUp2);
+                              context, RoutesScreen.routesSignUp2,
+                              arguments: ({
+                                'firstName': controllerFirstName.text,
+                                'lastName': controllerLastName.text,
+                                'email': controllerEmail.text,
+                                'password': controllerPass.text,
+                              }));
                         }
                       },
                       height: Dimen.heightButtonLarge,
