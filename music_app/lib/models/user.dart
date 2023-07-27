@@ -1,6 +1,5 @@
 // ignore: depend_on_referenced_packages
 import 'package:json_annotation/json_annotation.dart';
-import 'package:music_app/models/song.dart';
 
 part 'user.g.dart';
 

@@ -7,11 +7,10 @@ import 'package:http/http.dart' as http;
 class BaseApiClient {
   static const int TIME_OUT_DURATION = 20;
   var headers = {
-      'Content-Type': 'application/json',
-    };
+    'Content-Type': 'application/json',
+  };
   //GET API Call
-  Future<dynamic> get(
-      String baseUrl, String api) async {
+  Future<dynamic> get(String baseUrl, String api) async {
     var uri = Uri.parse(baseUrl + api);
 
     try {
@@ -27,8 +26,7 @@ class BaseApiClient {
     }
   }
 
-  Future<dynamic> post(String baseUrl, String api, 
-      dynamic payloadObj) async {
+  Future<dynamic> post(String baseUrl, String api, dynamic payloadObj) async {
     var uri = Uri.parse(baseUrl + api);
     var payload = json.encode(payloadObj);
 
@@ -36,7 +34,7 @@ class BaseApiClient {
       var response = await http
           .post(uri, headers: headers, body: payload)
           .timeout(const Duration(seconds: TIME_OUT_DURATION));
-      return  _processResponse(response);
+      return _processResponse(response);
     } on SocketException {
       throw FetchDataException('No internet connection', uri.toString());
     } on TimeoutException {
@@ -45,8 +43,7 @@ class BaseApiClient {
     }
   }
 
-  Future<dynamic> put(String baseUrl, String api, 
-      dynamic payloadObj) async {
+  Future<dynamic> put(String baseUrl, String api, dynamic payloadObj) async {
     var uri = Uri.parse(baseUrl + api);
     var payload = json.encode(payloadObj);
 
@@ -63,8 +60,7 @@ class BaseApiClient {
     }
   }
 
-  Future<dynamic> delete(String baseUrl, String api,
-       dynamic payloadObj) async {
+  Future<dynamic> delete(String baseUrl, String api, dynamic payloadObj) async {
     var uri = Uri.parse(baseUrl + api);
     var payload = json.encode(payloadObj);
 
@@ -90,12 +86,16 @@ class BaseApiClient {
         var responseJson = jsonDecode(response.body);
         return responseJson as Map;
       case 400:
-        throw BadRequestException(
-            jsonDecode(response.body), response.request!.url.toString());
+        var responseJson = jsonDecode(response.body);
+        print(responseJson["message"]);
+        throw BadRequestException(jsonDecode(responseJson["message"]),
+            response.request!.url.toString());
       case 401:
       case 403:
-        throw UnauthorizedException(
-            jsonDecode(response.body), response.request!.url.toString());
+        var responseJson = jsonDecode(response.body);
+
+        throw UnauthorizedException(jsonDecode(responseJson["message"]),
+            response.request!.url.toString());
       case 404:
         throw NotFoundException(
             'Page not found with status code : ${response.statusCode}',

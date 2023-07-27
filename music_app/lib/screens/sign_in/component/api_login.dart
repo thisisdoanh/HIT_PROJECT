@@ -7,13 +7,20 @@ import 'package:music_app/models/user.dart';
 import 'package:music_app/screens/sign_in/sign_in.dart';
 
 class ApiLogin {
-  Future<void> getAccount(String username, String password) async {
-    var response = await BaseApiClient().post(
-      UrlApi.base_url,
-      UrlApi.login,
-      {"username": username, "password": password},
-    );
-    print(response);
-    print(response["user"]["username"]);
+  Future<dynamic> getAccount(String username, String password) async {
+    try {
+      Map response = await BaseApiClient().post(
+        UrlApi.baseUrl,
+        UrlApi.login,
+        {
+          "password": password,
+          "username": username,
+        },
+      );
+      User user = User.fromJson(response["user"]);
+      return user;
+    } catch (e) {
+      return null;
+    }
   }
 }

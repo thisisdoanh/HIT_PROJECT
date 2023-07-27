@@ -46,6 +46,7 @@ class StringConst {
   static List<String> notiErrorUsername = [
     'Chưa nhập username',
     'Username phải lớn hơn 6 kí tự',
+    'Username hoặc password không đúng',
   ];
   static List<String> notiErrorPassword = [
     'Chưa nhập mật khẩu',
