@@ -11,6 +11,7 @@ Singer _$SingerFromJson(Map<String, dynamic> json) => Singer(
       detail: json['detail'] as String,
       country: json['country'] as String,
       image: json['image'] as String,
+      id: json['id'] as String,
     );
 
 Map<String, dynamic> _$SingerToJson(Singer instance) => <String, dynamic>{
@@ -18,4 +19,5 @@ Map<String, dynamic> _$SingerToJson(Singer instance) => <String, dynamic>{
       'detail': instance.detail,
       'country': instance.country,
       'image': instance.image,
+      'id': instance.id,
     };

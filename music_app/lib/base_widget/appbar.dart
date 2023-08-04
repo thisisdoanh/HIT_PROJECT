@@ -69,4 +69,3 @@ class _BaseAppbarState extends State<BaseAppbar> {
   }
 }
 
-class Compomemt {}

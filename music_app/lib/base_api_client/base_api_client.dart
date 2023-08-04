@@ -1,6 +1,10 @@
+// ignore_for_file: constant_identifier_names
+
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'package:music_app/data_api/data_api.dart';
+
 import 'api_exceptions.dart';
 import 'package:http/http.dart' as http;
 
@@ -8,6 +12,9 @@ class BaseApiClient {
   static const int TIME_OUT_DURATION = 20;
   var headers = {
     'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'Authorization':
+        'Bearer ${DataApi.accessToken}',
   };
   //GET API Call
   Future<dynamic> get(String baseUrl, String api) async {
@@ -87,15 +94,13 @@ class BaseApiClient {
         return responseJson as Map;
       case 400:
         var responseJson = jsonDecode(response.body);
-        print(responseJson["message"]);
-        throw BadRequestException(jsonDecode(responseJson["message"]),
-            response.request!.url.toString());
+        String message = responseJson["message"];
+        throw BadRequestException(message, response.request!.url.toString());
       case 401:
       case 403:
         var responseJson = jsonDecode(response.body);
-
-        throw UnauthorizedException(jsonDecode(responseJson["message"]),
-            response.request!.url.toString());
+        String message = responseJson["message"];
+        throw UnauthorizedException(message, response.request!.url.toString());
       case 404:
         throw NotFoundException(
             'Page not found with status code : ${response.statusCode}',

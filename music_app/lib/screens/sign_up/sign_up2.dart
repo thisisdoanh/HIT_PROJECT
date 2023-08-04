@@ -33,6 +33,7 @@ class _SignUp2ScreenState extends State<SignUp2Screen> {
 
   @override
   Widget build(BuildContext context) {
+    print(ModalRoute.of(context)!.settings.arguments);
     return Form(
       key: keyForm,
       child: Scaffold(
@@ -154,28 +155,26 @@ class _SignUp2ScreenState extends State<SignUp2Screen> {
                     BaseButton(
                       text: StringConst.signup,
                       function: () async {
-                        // Map<String, dynamic> dataSignUp1 =
-                        //     ModalRoute.of(context)!.settings
-                        //         as Map<String, dynamic>;
+                        print(ModalRoute.of(context)!.settings.arguments);
+                        Map<String, String> dataSignUp1 =
+                            ModalRoute.of(context)!.settings.arguments
+                                as Map<String, String>;
                         if (keyForm.currentState!.validate()) {}
                         ApiSignUp().regisAccount(
-
-                            // dataSignUp1["firstName"],
-                            // dataSignUp1["lastName"],
-                            // dataSignUp1["email"],
-                            // dataSignUp1["password"],
-                            "ffffff",
-                            "ffffff",
-                            "ffffff@gmail.",
-                            "ffffffff",
+                            dataSignUp1["firstName"]!,
+                            dataSignUp1["lastName"]!,
+                            dataSignUp1["email"]!,
+                            dataSignUp1["password"]!,
                             controllerNickname.text,
-                            DateFormat("dd/MM/yyyy").parse("23/3/2003"),
+                            DateFormat("dd/MM/yyyy").parse(controllerDate.text),
                             controllerGender.text,
                             context);
 
                         if (keyForm.currentState!.validate()) {
                           Navigator.pushNamed(
-                              context, RoutesScreen.routesSignUp2);
+                            context,
+                            RoutesScreen.routesHome,
+                          );
                         }
                       },
                       height: Dimen.heightButtonLarge,
