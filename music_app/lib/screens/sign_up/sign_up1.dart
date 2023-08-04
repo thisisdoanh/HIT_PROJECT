@@ -160,9 +160,8 @@ class SignUp1Screen extends StatelessWidget {
                   isHide: true,
                   textInputType: TextInputType.text,
                 ),
-                
                 const SizedBox(
-                  height: Dimen.sizedBoxSmall,
+                  height: Dimen.sizedBoxSmall * 2,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
