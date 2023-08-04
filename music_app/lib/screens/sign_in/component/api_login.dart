@@ -16,7 +16,6 @@ class ApiLogin {
       );
       User user = User.fromJson(response["user"]);
       DataApi.accessToken = response["tokens"]["access"]["token"];
-      print(DataApi.accessToken);
       return user;
     } catch (e) {
       print(e.toString());

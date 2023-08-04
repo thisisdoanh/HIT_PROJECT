@@ -14,19 +14,15 @@ import 'package:music_app/const/string.dart';
 import 'package:music_app/models/user.dart';
 
 import 'package:music_app/data_api/data_api.dart';
-import 'package:music_app/models/song.dart';
 import 'package:music_app/screens/playing/component/api_playing.dart';
-
 import 'package:music_app/screens/sign_in/component/api_login.dart';
-import 'package:http/http.dart' as http;
-
-import 'dart:convert';
 
 class SignInScreen extends StatelessWidget {
   SignInScreen({super.key});
   final GlobalKey<FormState> keyForm = GlobalKey<FormState>();
   final TextEditingController controllerUsername = TextEditingController();
   final TextEditingController controllerPassword = TextEditingController();
+  dynamic check;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -120,7 +116,7 @@ class SignInScreen extends StatelessWidget {
                         );
 
                         check == null ? check = false : DataApi.user = check;
-                        DataApi.song =  await ApiPlaying().getSong(); 
+                        DataApi.song = await ApiPlaying().getSong();
 
                         if (keyForm.currentState!.validate()) {
                           Navigator.pushNamed(context, '/test');

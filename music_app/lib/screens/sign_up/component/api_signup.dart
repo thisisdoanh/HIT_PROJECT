@@ -1,3 +1,5 @@
+// ignore_for_file: unused_result
+
 import 'package:flutter/material.dart';
 import 'package:music_app/base_api_client/api_exceptions.dart';
 import 'package:music_app/base_api_client/base_api_client.dart';
@@ -6,7 +8,6 @@ import 'package:music_app/const/url_api.dart';
 import 'package:music_app/models/exception.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-
 
 class ApiSignUp {
   Future<dynamic> regisAccount(
@@ -28,53 +29,8 @@ class ApiSignUp {
         "dateOfBirth": dateOfBirth,
         "gender": gender,
       });
-      //  print(response["message"]);
     } on UnauthorizedException catch (e) {
       String message = e.message ?? "";
-
-      // showAlertDialog(
-      //   context: context,
-      //   builder: (context, child) {
-      //     return AlertDialog(
-      //       title: Text('Chú ý'),
-      //       content: Text('Bạn có chắc muốn xoá dữ liệu không?'),
-      //       actions: <Widget>[
-      //         ElevatedButton(
-      //           child: Text('Huỷ'),
-      //           onPressed: () {
-      //             Navigator.of(context).pop();
-      //           },
-      //         ),
-      //         ElevatedButton(
-      //           child: Text('Xoá'),
-      //           onPressed: () {
-      //             // Xoá dữ liệu và đóng hộp thoại cảnh báo
-      //             Navigator.of(context).pop();
-      //           },
-      //         ),
-      //       ],
-      //     );
-      //   },
-      // );
-      print("/n/n");
-      print(message);
-      //  print(e);
-
-      return null;
-    } on BadRequestException catch (e) {
-      String message = e.message ?? "";
-      // showAlertDialog(
-      //   context: context,
-      //   builder: (context, child) {
-      //     return AlertDialog(
-      //       title: Text(message),
-      //     );
-      //   },
-      // );
-      print("/n/n");
-      print(message);
-
-      // ignore: unused_result
       showAlertDialog(
         context: context,
         builder: (context, child) {
@@ -95,7 +51,6 @@ class ApiSignUp {
       return null;
     } on BadRequestException catch (e) {
       String message = e.message ?? "";
-      // ignore: unused_result
       showAlertDialog(
         context: context,
         builder: (context, child) {
@@ -115,7 +70,6 @@ class ApiSignUp {
       );
       return null;
     } catch (e) {
-      // ignore: unused_result
       showAlertDialog(
         context: context,
         builder: (context, child) {
@@ -133,7 +87,6 @@ class ApiSignUp {
           );
         },
       );
-
       return null;
     }
   }

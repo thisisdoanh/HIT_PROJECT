@@ -39,7 +39,6 @@ class MainApp extends StatefulWidget {
 class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
-
     return SafeArea(
       child: MaterialApp(
         theme: ThemeData.dark(),
@@ -49,8 +48,7 @@ class _MainAppState extends State<MainApp> {
         onGenerateRoute: (settings) {
           switch (settings.name) {
             case RoutesScreen.routesWelcome:
-              return Component().navigate(
-                  const WelcomeScreen()); // :)))))) làm thế này thì tịu tôi
+              return Component().navigate(const WelcomeScreen());
             case RoutesScreen.routesOnboarding1:
               return Component().navigate(const OnBoarding1Screen());
             case RoutesScreen.routesOnboarding2:
@@ -72,7 +70,7 @@ class _MainAppState extends State<MainApp> {
               );
             case '/test':
               return Component()
-                  .navigate(PlayMusicScreen( song: DataApi.song!,), settings.arguments);
+                  .navigate(PlayMusicScreen(), settings.arguments);
             default:
               return null;
           }
