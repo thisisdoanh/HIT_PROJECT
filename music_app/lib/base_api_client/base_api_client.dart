@@ -10,11 +10,14 @@ import 'package:http/http.dart' as http;
 
 class BaseApiClient {
   static const int TIME_OUT_DURATION = 20;
+  static const token =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NGMwMGU4NmRhYTc5OWU4ZDI2NTUxOTUiLCJpYXQiOjE2OTEwNjE2MTAsImV4cCI6MTY5MTA2NzYxMCwidHlwZSI6ImFjY2VzcyJ9.W5n2Wb9NNdhpof4hBYqlAgn3-C0OSymp12N2xZE2b3Y';
   var headers = {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
     'Authorization':
         'Bearer ${DataApi.accessToken}',
+
   };
   //GET API Call
   Future<dynamic> get(String baseUrl, String api) async {
@@ -93,6 +96,7 @@ class BaseApiClient {
         var responseJson = jsonDecode(response.body);
         return responseJson as Map;
       case 400:
+
         var responseJson = jsonDecode(response.body);
         String message = responseJson["message"];
         throw BadRequestException(message, response.request!.url.toString());

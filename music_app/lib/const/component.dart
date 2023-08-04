@@ -29,6 +29,14 @@ class Component {
     fontWeight: FontWeight.w700,
     fontSize: Dimen.fontSizeTextTittle,
   );
+
+static const TextStyle textStyleHomeTitle = TextStyle(
+    color: ColorConst.colorText,
+    fontFamily: 'inter',
+    fontWeight: FontWeight.w100,
+    fontSize: Dimen.fontSizeTextTittle,
+  );
+
   static const TextStyle textStyleMusicName = TextStyle(
     color: ColorConst.colorText,
     fontFamily: 'inter',

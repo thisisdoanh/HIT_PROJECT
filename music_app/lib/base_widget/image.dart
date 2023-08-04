@@ -29,6 +29,7 @@ class BaseImage extends StatelessWidget {
     );
   }
 }
+
 class BaseImageNetwork extends StatelessWidget {
   const BaseImageNetwork({
     super.key,

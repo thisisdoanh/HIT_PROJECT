@@ -21,13 +21,9 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
       appBar: const AppBarSetting(),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(
-          horizontal: Dimen.paddingHorizontal,
-          vertical: Dimen.paddingVertical,
-        ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+
             Center(
               child: Column(children: [
                 const SizedBox(
@@ -47,9 +43,17 @@ class _ProfileState extends State<Profile> {
                   style: Component.textStyleTextTittle,
                 ),
               ]),
+
             ),
             const SizedBox(
-              height: Dimen.sizedBoxMedium,
+              height: Dimen.sizedBoxSmall,
+            ),
+            const Text(
+              'aa',
+              style: Component.textStyleText,
+            ),
+            const SizedBox(
+              height: Dimen.sizedBoxSmall,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -64,7 +68,7 @@ class _ProfileState extends State<Profile> {
                   borderRadius: Dimen.borderRadiusButtonSmall,
                 ),
                 BaseButton(
-                  text: 'Đổi ảnh',
+                  text: 'Đổi thông tin',
                   function: () {},
                   height: Dimen.heightIconSignUp,
                   width: MediaQuery.of(context).size.width * 0.4,
@@ -73,6 +77,7 @@ class _ProfileState extends State<Profile> {
                 ),
               ],
             ),
+
             const SizedBox(
               height: Dimen.sizedBoxMedium,
             ),
@@ -139,6 +144,7 @@ class _ProfileState extends State<Profile> {
                 ),
               ],
             ),
+
           ],
         ),
       ),

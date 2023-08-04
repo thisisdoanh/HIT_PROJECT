@@ -7,7 +7,7 @@ part 'album.g.dart';
 
 @JsonSerializable()
 class Album {
-  String tittle;
+  String title;
   String image;
   List<Song> songs;
   // ignore: non_constant_identifier_names
@@ -15,7 +15,7 @@ class Album {
   List<Singer> singer;
 
   Album({
-    required this.tittle,
+    required this.title,
     required this.image,
     required this.songs,
     // ignore: non_constant_identifier_names

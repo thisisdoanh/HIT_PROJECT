@@ -10,22 +10,23 @@ import 'package:music_app/const/component.dart';
 import 'package:music_app/const/dimen.dart';
 import 'package:music_app/const/routes_screen.dart';
 import 'package:music_app/const/string.dart';
+
+import 'package:music_app/models/user.dart';
+
 import 'package:music_app/data_api/data_api.dart';
 import 'package:music_app/models/song.dart';
 import 'package:music_app/screens/playing/component/api_playing.dart';
+
 import 'package:music_app/screens/sign_in/component/api_login.dart';
+import 'package:http/http.dart' as http;
+
+import 'dart:convert';
 
 class SignInScreen extends StatelessWidget {
   SignInScreen({super.key});
-
   final GlobalKey<FormState> keyForm = GlobalKey<FormState>();
-
   final TextEditingController controllerUsername = TextEditingController();
-
   final TextEditingController controllerPassword = TextEditingController();
-
-  dynamic check;
-
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -78,18 +79,7 @@ class SignInScreen extends StatelessWidget {
                 BaseTextFormField(
                   text: StringConst.textUsername,
                   width: MediaQuery.of(context).size.width * 0.95,
-                  validator: (value) {
-                    if (value == '') {
-                      return StringConst.notiErrorUsername[0];
-                    }
-                    if (value.toString().length <= 6 && value != "admin") {
-                      return StringConst.notiErrorUsername[1];
-                    }
-                    if (check == false) {
-                      return StringConst.notiErrorUsername[2];
-                    }
-                    return null;
-                  },
+                  validator: (value) {},
                   controller: controllerUsername,
                   textInputType: TextInputType.text,
                   isHide: false,
@@ -100,19 +90,7 @@ class SignInScreen extends StatelessWidget {
                 BaseTextFormField(
                   text: StringConst.textPass,
                   width: MediaQuery.of(context).size.width * 0.95,
-                  validator: (value) {
-                    if (value == '') {
-                      return StringConst.notiErrorPassword[0];
-                    }
-
-                    if (value.toString().length < 8) {
-                      return StringConst.notiErrorPassword[2];
-                    }
-                    if (check == false) {
-                      return StringConst.notiErrorUsername[2];
-                    }
-                    return null;
-                  },
+                  validator: (value) {},
                   controller: controllerPassword,
                   textInputType: TextInputType.text,
                   isHide: false,
@@ -135,12 +113,15 @@ class SignInScreen extends StatelessWidget {
                     BaseButton(
                       text: StringConst.signIn,
                       function: () async {
-                        check = await ApiLogin().getAccount(
-                          controllerUsername.text,
-                          controllerPassword.text,
+                        print("helo1");
+                        var response = await ApiLogin().getAccount(
+                          "admin",
+                          "superadmin123",
                         );
+
                         check == null ? check = false : DataApi.user = check;
                         DataApi.song =  await ApiPlaying().getSong(); 
+
                         if (keyForm.currentState!.validate()) {
                           Navigator.pushNamed(context, '/test');
                         }
