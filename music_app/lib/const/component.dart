@@ -9,6 +9,12 @@ class Component {
     fontSize: Dimen.fontSizeButtonLarge,
     fontWeight: FontWeight.bold,
   );
+  static const TextStyle textStyleTittle = TextStyle(
+    color: ColorConst.colorTextButton,
+    fontFamily: 'poppins',
+    fontSize: Dimen.fontSizeTittle,
+    fontWeight: FontWeight.w500,
+  );
 
   static const TextStyle textStyleTextFormField = TextStyle(
     color: ColorConst.colorText,
@@ -22,6 +28,20 @@ class Component {
     fontFamily: 'inter',
     fontWeight: FontWeight.w700,
     fontSize: Dimen.fontSizeTextTittle,
+  );
+
+static const TextStyle textStyleHomeTitle = TextStyle(
+    color: ColorConst.colorText,
+    fontFamily: 'inter',
+    fontWeight: FontWeight.w100,
+    fontSize: Dimen.fontSizeTextTittle,
+  );
+
+  static const TextStyle textStyleMusicName = TextStyle(
+    color: ColorConst.colorText,
+    fontFamily: 'inter',
+    fontWeight: FontWeight.w900,
+    fontSize: Dimen.fontSizeTextTittle + 5,
   );
 
   static const TextStyle textStyleAppName = TextStyle(
@@ -41,8 +61,17 @@ class Component {
     fontFamily: 'inter',
     fontSize: 18,
   );
-  PageRouteBuilder<dynamic> navigate(Widget screen) {
+  static ButtonStyle buttonPlaySkipPrevious = ElevatedButton.styleFrom(
+    backgroundColor: ColorConst.colorButton,
+    padding: const EdgeInsets.all(0),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(20),
+    ),
+  );
+
+  PageRouteBuilder<dynamic> navigate(Widget screen, [arguments]) {
     return PageRouteBuilder(
+      settings: RouteSettings(arguments: arguments),
       pageBuilder: (context, animation, secondaryAnimation) => screen,
       transitionDuration: const Duration(milliseconds: 700),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
@@ -60,5 +89,4 @@ class Component {
       },
     );
   }
-
 }

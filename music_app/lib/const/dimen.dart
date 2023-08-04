@@ -9,6 +9,7 @@ class Dimen {
   static const double padding0 = 0;
   static const double borderRadiusImage = 36;
   static const double fontSizeTextTittle = 21;
+  static const double fontSizeTittle = 18;
   static const double widthTextTittlt = 242;
   static const double widthTextAppName = 200;
   static const double sizedBoxSmall = 8;
@@ -17,4 +18,9 @@ class Dimen {
   static const double padding = 32;
   static const double paddingHorizontal = 16;
   static const double paddingVertical = 16;
+  static const double widthIconSignUp = 25;
+  static const double heightIconSignUp = 32;
+  static const double widthIconAction = 15;
+  static const double heightIconAction = 9;
+  static const double sizeImageUser = 85;
 }

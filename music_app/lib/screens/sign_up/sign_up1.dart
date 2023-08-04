@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:music_app/base_widget/button.dart';
+import 'package:music_app/base_widget/icon.dart';
 import 'package:music_app/base_widget/image.dart';
 import 'package:music_app/base_widget/text.dart';
 import 'package:music_app/base_widget/text_form_field.dart';
@@ -8,6 +9,7 @@ import 'package:music_app/const/component.dart';
 import 'package:music_app/const/dimen.dart';
 import 'package:music_app/const/routes_screen.dart';
 import 'package:music_app/const/string.dart';
+import 'package:flutter/cupertino.dart';
 
 class SignUp1Screen extends StatelessWidget {
   SignUp1Screen({super.key});
@@ -47,6 +49,7 @@ class SignUp1Screen extends StatelessWidget {
                   height: Dimen.appIconSize,
                   width: Dimen.appIconSize,
                   assetImage: StringConst.assetImgAppIcon,
+                  borderRadius: Dimen.borderRadiusImage,
                 ),
                 const SizedBox(
                   height: Dimen.sizedBoxSmall,
@@ -79,9 +82,6 @@ class SignUp1Screen extends StatelessWidget {
                           return StringConst.notiErrorFirstName[0];
                         }
 
-                        if (RegExp(r'\d').hasMatch(value)) {
-                          return StringConst.notiErrorFirstName[1];
-                        }
                         return null;
                       },
                       textInputType: TextInputType.text,
@@ -98,9 +98,6 @@ class SignUp1Screen extends StatelessWidget {
                           return StringConst.notiErrorLastName[0];
                         }
 
-                        if (RegExp(r'\d').hasMatch(value)) {
-                          return StringConst.notiErrorLastName[1];
-                        }
                         return null;
                       },
                     ),
@@ -119,10 +116,6 @@ class SignUp1Screen extends StatelessWidget {
                     if (value == '') {
                       return StringConst.notiErrorEmail[0];
                     }
-
-                    if (!value.toString().contains('@gmail.com')) {
-                      return StringConst.notiErrorEmail[1];
-                    }
                     return null;
                   },
                 ),
@@ -138,14 +131,6 @@ class SignUp1Screen extends StatelessWidget {
                   validator: (value) {
                     if (value == '') {
                       return StringConst.notiErrorPassword[0];
-                    }
-
-                    if (!RegExp(r'[^\w\s]').hasMatch(value)) {
-                      return StringConst.notiErrorPassword[1];
-                    }
-
-                    if (value.toString().length < 8) {
-                      return StringConst.notiErrorPassword[2];
                     }
 
                     if (controllerPass.text != controllerPassAgin.text) {
@@ -167,14 +152,6 @@ class SignUp1Screen extends StatelessWidget {
                       return StringConst.notiErrorPassword[0];
                     }
 
-                    if (!RegExp(r'[^\w\s]').hasMatch(value)) {
-                      return StringConst.notiErrorPassword[1];
-                    }
-
-                    if (value.toString().length < 8) {
-                      return StringConst.notiErrorPassword[2];
-                    }
-
                     if (controllerPass.text != controllerPassAgin.text) {
                       return StringConst.notiErrorPassword[3];
                     }
@@ -184,22 +161,77 @@ class SignUp1Screen extends StatelessWidget {
                   textInputType: TextInputType.text,
                 ),
                 const SizedBox(
-                  height: Dimen.sizedBoxMedium * 2,
+                  height: Dimen.sizedBoxSmall * 2,
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     BaseButton(
                       text: StringConst.signup,
                       function: () {
                         if (keyForm.currentState!.validate()) {
+                          Map<String, String> dataSignUp1 = {
+                            'firstName': controllerFirstName.text,
+                            'lastName': controllerLastName.text,
+                            'email': controllerEmail.text,
+                            'password': controllerPass.text,
+                          };
                           Navigator.pushNamed(
-                              context, RoutesScreen.routesSignUp2);
+                            context,
+                            RoutesScreen.routesSignUp2,
+                            arguments: dataSignUp1,
+                          );
                         }
                       },
                       height: Dimen.heightButtonLarge,
                       width: Dimen.widthButtonSmall,
                       textStyle: Component.textStyleTextButtonSmall,
                       borderRadius: Dimen.borderRadiusButtonSmall,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        BaseIcon(
+                          assetName: StringConst.assetIconGmail,
+                          height: Dimen.heightIconSignUp,
+                          width: Dimen.widthIconSignUp,
+                          function: () {},
+                        ),
+                        BaseIcon(
+                          assetName: StringConst.assetIconFacebook,
+                          height: Dimen.widthIconSignUp,
+                          width: Dimen.widthIconSignUp,
+                          function: () {},
+                        ),
+                        BaseIcon(
+                          assetName: StringConst.assetIconTwitter,
+                          height: Dimen.widthIconSignUp,
+                          width: Dimen.widthIconSignUp,
+                          function: () {},
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: Dimen.sizedBoxMedium,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      StringConst.textGoToSignIn,
+                      style: Component.textStyleText,
+                    ),
+                    CupertinoButton(
+                      padding: const EdgeInsets.all(Dimen.padding0),
+                      child: const Text(
+                        StringConst.signIn,
+                      ),
+                      onPressed: () {
+                        Navigator.pushNamed(context, RoutesScreen.routesSignIn);
+                      },
                     ),
                   ],
                 ),

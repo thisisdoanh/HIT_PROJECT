@@ -59,7 +59,7 @@ class _AnimationOnboardingState extends State<AnimationOnboarding>
                 BaseImage(
                   height: MediaQuery.of(context).size.width ,
                   width: MediaQuery.of(context).size.width *0.9 ,
-                  assetImage: widget.assetImage,
+                  assetImage: widget.assetImage, borderRadius: Dimen.borderRadiusImage,
                 ),
               ],
             ),

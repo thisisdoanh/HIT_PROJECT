@@ -12,6 +12,11 @@ class TextFormFieldHome extends StatelessWidget {
       text: StringConst.textSearch,
       width: MediaQuery.of(context).size.width * 0.95,
       controller: controllerSearch,
+      isHide: false,
+      textInputType: TextInputType.text,
+      validator: (value) {
+        return null;
+      },
     );
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:music_app/const/component.dart';
 import 'package:music_app/const/dimen.dart';
-import 'package:music_app/const/routes_screen.dart';
 import 'package:music_app/const/string.dart';
 
 class AnimationWelcome extends StatefulWidget {
@@ -33,7 +32,7 @@ class _AnimationWelcomeState extends State<AnimationWelcome>
 
     _controller.forward();
 
-    waitSplashScreen();
+    // waitSplashScreen();
   }
 
   void waitSplashScreen() async {

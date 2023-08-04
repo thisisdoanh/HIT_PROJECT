@@ -3,6 +3,9 @@ class StringConst {
   static const signup = "Đăng ký";
   static const appName = "MY MUSIC";
   static const assetIconGmail = "assets/icons/ic_gmail.svg";
+  static const assetIconFacebook = "assets/icons/ic_facebook.svg";
+  static const assetIconTwitter = "assets/icons/ic_twitter.svg";
+  static const assetIconMenu = "assets/icons/ic_menu.svg";
   static const assetImgOnboarding1 = 'assets/images/img_onboarding1.png';
   static const assetImgWelcome = 'assets/images/img_welcome.png';
   static const assetImgSignup = 'assets/images/img_signup.png';
@@ -16,8 +19,12 @@ class StringConst {
   static const textOnboarding3 =
       'Download songs and listen offline anywhere and anytime';
   static const textSignUp = 'Music experience with the best app';
+  static const textGoToSignIn = 'Hoặc đăng nhập tại đây ';
+  static const signIn = 'Đăng nhập';
   static const textHello = 'Xin chào! Vui lòng đăng kí để tiếp tục';
+  static const textHelloSignIn = 'Xin chào! Vui lòng đăng nhập để tiếp tục';
   static const textYourFirstName = 'Nhập họ';
+  static const textForgotPassword = 'Quên mật khẩu';
   static const textYourLastName = 'Nhập tên';
   static const textYourEmail = 'Nhập email';
   static const textPass = 'Nhập mật khẩu';
@@ -39,6 +46,7 @@ class StringConst {
   static List<String> notiErrorUsername = [
     'Chưa nhập username',
     'Username phải lớn hơn 6 kí tự',
+    'Username hoặc password không đúng',
   ];
   static List<String> notiErrorPassword = [
     'Chưa nhập mật khẩu',
@@ -50,4 +58,6 @@ class StringConst {
     'Chưa nhập ngày sinh',
     'Ngày không được vượt quá ngày hiện tại',
   ];
+  static const String textSearch = '...';
+  static const String textModeLightDark = "Chế độ hiển thị";
 }

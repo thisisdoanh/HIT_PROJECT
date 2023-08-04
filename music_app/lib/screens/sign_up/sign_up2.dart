@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:music_app/base_widget/button.dart';
+import 'package:music_app/base_widget/icon.dart';
 import 'package:music_app/base_widget/image.dart';
 import 'package:music_app/base_widget/text.dart';
 import 'package:music_app/base_widget/text_form_field.dart';
@@ -11,6 +13,7 @@ import 'package:music_app/const/component.dart';
 import 'package:music_app/const/dimen.dart';
 import 'package:music_app/const/routes_screen.dart';
 import 'package:music_app/const/string.dart';
+import 'package:music_app/screens/sign_up/component/api_signup.dart';
 
 class SignUp2Screen extends StatefulWidget {
   const SignUp2Screen({super.key});
@@ -30,6 +33,7 @@ class _SignUp2ScreenState extends State<SignUp2Screen> {
 
   @override
   Widget build(BuildContext context) {
+    print(ModalRoute.of(context)!.settings.arguments);
     return Form(
       key: keyForm,
       child: Scaffold(
@@ -56,6 +60,7 @@ class _SignUp2ScreenState extends State<SignUp2Screen> {
                   height: Dimen.appIconSize,
                   width: Dimen.appIconSize,
                   assetImage: StringConst.assetImgAppIcon,
+                  borderRadius: Dimen.borderRadiusImage,
                 ),
                 const SizedBox(
                   height: Dimen.sizedBoxSmall,
@@ -113,7 +118,7 @@ class _SignUp2ScreenState extends State<SignUp2Screen> {
                     return null;
                   },
                   isReadOnly: true,
-                  surfixIcon: Icon(Icons.calendar_month),
+                  surfixIcon: const Icon(Icons.calendar_month),
                 ),
                 const SizedBox(
                   height: Dimen.sizedBoxSmall,
@@ -144,19 +149,79 @@ class _SignUp2ScreenState extends State<SignUp2Screen> {
                   height: Dimen.sizedBoxMedium * 2,
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     BaseButton(
                       text: StringConst.signup,
-                      function: () {
+                      function: () async {
+                        print(ModalRoute.of(context)!.settings.arguments);
+                        Map<String, String> dataSignUp1 =
+                            ModalRoute.of(context)!.settings.arguments
+                                as Map<String, String>;
+                        if (keyForm.currentState!.validate()) {}
+                        ApiSignUp().regisAccount(
+                            dataSignUp1["firstName"]!,
+                            dataSignUp1["lastName"]!,
+                            dataSignUp1["email"]!,
+                            dataSignUp1["password"]!,
+                            controllerNickname.text,
+                            DateFormat("dd/MM/yyyy").parse(controllerDate.text),
+                            controllerGender.text,
+                            context);
+
                         if (keyForm.currentState!.validate()) {
                           Navigator.pushNamed(
-                              context, RoutesScreen.routesSignUp2);
+                            context,
+                            RoutesScreen.routesHome,
+                          );
                         }
                       },
                       height: Dimen.heightButtonLarge,
                       width: Dimen.widthButtonSmall,
                       textStyle: Component.textStyleTextButtonSmall,
                       borderRadius: Dimen.borderRadiusButtonSmall,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        BaseIcon(
+                          assetName: StringConst.assetIconGmail,
+                          height: Dimen.heightIconSignUp,
+                          width: Dimen.widthIconSignUp,
+                          function: () {},
+                        ),
+                        BaseIcon(
+                          assetName: StringConst.assetIconFacebook,
+                          height: Dimen.widthIconSignUp,
+                          width: Dimen.widthIconSignUp,
+                          function: () {},
+                        ),
+                        BaseIcon(
+                          assetName: StringConst.assetIconTwitter,
+                          height: Dimen.widthIconSignUp,
+                          width: Dimen.widthIconSignUp,
+                          function: () {},
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      StringConst.textGoToSignIn,
+                      style: Component.textStyleText,
+                    ),
+                    CupertinoButton(
+                      padding: const EdgeInsets.all(Dimen.padding0),
+                      child: const Text(
+                        StringConst.signIn,
+                      ),
+                      onPressed: () {
+                        Navigator.pushNamed(context, RoutesScreen.routesSignIn);
+                      },
                     ),
                   ],
                 ),
@@ -173,7 +238,7 @@ class _SignUp2ScreenState extends State<SignUp2Screen> {
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(1900),
-      lastDate: DateTime(2024),
+      lastDate: DateTime.now(),
     );
   }
 }

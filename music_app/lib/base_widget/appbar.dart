@@ -1,21 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:music_app/const/component.dart';
 
-// final ThemeData appbarThemeData = ThemeData(
-//   appBarTheme: const AppBarTheme(
-//     color: Colors.white,
-//     iconTheme: IconThemeData(color: Colors.black),
-//   ),
-//   textTheme: const TextTheme(
-//     headlineSmall: TextStyle(
-//       fontFamily: 'Poppins',
-//       fontSize: 15,
-//       fontWeight: FontWeight.w500,
-//       color: Colors.black,
-//     ),
-//   ),
-// );
-
 class BaseAppbar extends StatefulWidget {
   const BaseAppbar({
     super.key,
@@ -49,9 +34,10 @@ class _BaseAppbarState extends State<BaseAppbar> {
           widget.functionLeading!();
         },
       ),
+      centerTitle: true,
       title: Text(
         widget.title,
-        style: Component.textStyleText,
+        style: Component.textStyleTittle,
       ),
       actions: [
         IconButton(
@@ -68,4 +54,3 @@ class _BaseAppbarState extends State<BaseAppbar> {
   }
 }
 
-class Compomemt {}

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:json_annotation/json_annotation.dart';
 
 part 'singer.g.dart';
@@ -9,12 +9,14 @@ class Singer {
   String detail;
   String country;
   String image;
+  String id;
 
   Singer({
     required this.name,
     required this.detail,
     required this.country,
     required this.image,
+    required this.id,
   });
 
   factory Singer.fromJson(Map<String, dynamic> json) => _$SingerFromJson(json);
