@@ -82,9 +82,6 @@ class SignUp1Screen extends StatelessWidget {
                           return StringConst.notiErrorFirstName[0];
                         }
 
-                        if (RegExp(r'\d').hasMatch(value)) {
-                          return StringConst.notiErrorFirstName[1];
-                        }
                         return null;
                       },
                       textInputType: TextInputType.text,
@@ -101,9 +98,6 @@ class SignUp1Screen extends StatelessWidget {
                           return StringConst.notiErrorLastName[0];
                         }
 
-                        if (RegExp(r'\d').hasMatch(value)) {
-                          return StringConst.notiErrorLastName[1];
-                        }
                         return null;
                       },
                     ),
@@ -122,10 +116,6 @@ class SignUp1Screen extends StatelessWidget {
                     if (value == '') {
                       return StringConst.notiErrorEmail[0];
                     }
-
-                    if (!value.toString().contains('@gmail.com')) {
-                      return StringConst.notiErrorEmail[1];
-                    }
                     return null;
                   },
                 ),
@@ -141,14 +131,6 @@ class SignUp1Screen extends StatelessWidget {
                   validator: (value) {
                     if (value == '') {
                       return StringConst.notiErrorPassword[0];
-                    }
-
-                    if (!RegExp(r'[^\w\s]').hasMatch(value)) {
-                      return StringConst.notiErrorPassword[1];
-                    }
-
-                    if (value.toString().length < 8) {
-                      return StringConst.notiErrorPassword[2];
                     }
 
                     if (controllerPass.text != controllerPassAgin.text) {
@@ -170,14 +152,6 @@ class SignUp1Screen extends StatelessWidget {
                       return StringConst.notiErrorPassword[0];
                     }
 
-                    if (!RegExp(r'[^\w\s]').hasMatch(value)) {
-                      return StringConst.notiErrorPassword[1];
-                    }
-
-                    if (value.toString().length < 8) {
-                      return StringConst.notiErrorPassword[2];
-                    }
-
                     if (controllerPass.text != controllerPassAgin.text) {
                       return StringConst.notiErrorPassword[3];
                     }
@@ -197,14 +171,17 @@ class SignUp1Screen extends StatelessWidget {
                       text: StringConst.signup,
                       function: () {
                         if (keyForm.currentState!.validate()) {
+                          Map<String, String> dataSignUp1 = {
+                            'firstName': controllerFirstName.text,
+                            'lastName': controllerLastName.text,
+                            'email': controllerEmail.text,
+                            'password': controllerPass.text,
+                          };
                           Navigator.pushNamed(
-                              context, RoutesScreen.routesSignUp2,
-                              arguments: ({
-                                'firstName': controllerFirstName.text,
-                                'lastName': controllerLastName.text,
-                                'email': controllerEmail.text,
-                                'password': controllerPass.text,
-                              }));
+                            context,
+                            RoutesScreen.routesSignUp2,
+                            arguments: dataSignUp1,
+                          );
                         }
                       },
                       height: Dimen.heightButtonLarge,

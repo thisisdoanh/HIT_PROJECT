@@ -9,12 +9,14 @@ class Singer {
   String detail;
   String country;
   String image;
+  String id;
 
   Singer({
     required this.name,
     required this.detail,
     required this.country,
     required this.image,
+    required this.id,
   });
 
   factory Singer.fromJson(Map<String, dynamic> json) => _$SingerFromJson(json);

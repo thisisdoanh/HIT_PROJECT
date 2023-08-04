@@ -10,8 +10,9 @@ import 'package:music_app/const/component.dart';
 import 'package:music_app/const/dimen.dart';
 import 'package:music_app/const/routes_screen.dart';
 import 'package:music_app/const/string.dart';
-import 'package:music_app/data_api/data_user.dart';
-import 'package:music_app/models/user.dart';
+import 'package:music_app/data_api/data_api.dart';
+import 'package:music_app/models/song.dart';
+import 'package:music_app/screens/playing/component/api_playing.dart';
 import 'package:music_app/screens/sign_in/component/api_login.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -138,10 +139,10 @@ class SignInScreen extends StatelessWidget {
                           controllerUsername.text,
                           controllerPassword.text,
                         );
-                        check == null ? check = false : DataUser.user = check;
-
+                        check == null ? check = false : DataApi.user = check;
+                        DataApi.song =  await ApiPlaying().getSong(); 
                         if (keyForm.currentState!.validate()) {
-                          Navigator.pushNamed(context, RoutesScreen.routesHome);
+                          Navigator.pushNamed(context, '/test');
                         }
                       },
                       height: Dimen.heightButtonLarge,

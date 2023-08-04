@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:music_app/const/color.dart';
 import 'package:music_app/const/dimen.dart';
 import 'package:music_app/const/component.dart';
