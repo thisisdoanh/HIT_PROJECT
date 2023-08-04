@@ -53,3 +53,4 @@ class _BaseAppbarState extends State<BaseAppbar> {
     );
   }
 }
+

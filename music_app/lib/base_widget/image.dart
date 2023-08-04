@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:music_app/const/dimen.dart';
 
 class BaseImage extends StatelessWidget {
   const BaseImage({

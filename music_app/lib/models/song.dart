@@ -7,7 +7,7 @@ part 'song.g.dart';
 @JsonSerializable()
 class Song {
   String title;
-  List<String> singers;
+  List<Singer> singers;
   int duration;
   String genre;
   // ignore: non_constant_identifier_names
@@ -17,6 +17,7 @@ class Song {
   int likeNumber;
   int dislikeNumber;
   String image;
+  String id;
   Song({
     required this.title,
     required this.singers,
@@ -29,6 +30,7 @@ class Song {
     required this.likeNumber,
     required this.dislikeNumber,
     required this.image,
+    required this.id,
   });
 
   factory Song.fromJson(Map<String, dynamic> json) => _$SongFromJson(json);

@@ -5,4 +5,6 @@ class UrlApi {
   static const song = '/songs';
   static const singer = '/singers';
   static const album = '/albums';
+  static const playing = '/auth/register';
+  static const tokenAccess = '';
 }

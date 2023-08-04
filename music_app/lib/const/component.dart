@@ -29,12 +29,21 @@ class Component {
     fontWeight: FontWeight.w700,
     fontSize: Dimen.fontSizeTextTittle,
   );
+
 static const TextStyle textStyleHomeTitle = TextStyle(
     color: ColorConst.colorText,
     fontFamily: 'inter',
     fontWeight: FontWeight.w100,
     fontSize: Dimen.fontSizeTextTittle,
   );
+
+  static const TextStyle textStyleMusicName = TextStyle(
+    color: ColorConst.colorText,
+    fontFamily: 'inter',
+    fontWeight: FontWeight.w900,
+    fontSize: Dimen.fontSizeTextTittle + 5,
+  );
+
   static const TextStyle textStyleAppName = TextStyle(
     color: ColorConst.colorText,
     fontFamily: 'monserrat',
@@ -52,8 +61,17 @@ static const TextStyle textStyleHomeTitle = TextStyle(
     fontFamily: 'inter',
     fontSize: 18,
   );
-  PageRouteBuilder<dynamic> navigate(Widget screen) {
+  static ButtonStyle buttonPlaySkipPrevious = ElevatedButton.styleFrom(
+    backgroundColor: ColorConst.colorButton,
+    padding: const EdgeInsets.all(0),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(20),
+    ),
+  );
+
+  PageRouteBuilder<dynamic> navigate(Widget screen, [arguments]) {
     return PageRouteBuilder(
+      settings: RouteSettings(arguments: arguments),
       pageBuilder: (context, animation, secondaryAnimation) => screen,
       transitionDuration: const Duration(milliseconds: 700),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
@@ -71,5 +89,4 @@ static const TextStyle textStyleHomeTitle = TextStyle(
       },
     );
   }
-
 }

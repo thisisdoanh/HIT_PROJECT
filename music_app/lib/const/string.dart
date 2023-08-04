@@ -59,4 +59,5 @@ class StringConst {
     'Ngày không được vượt quá ngày hiện tại',
   ];
   static const String textSearch = '...';
+  static const String textModeLightDark = "Chế độ hiển thị";
 }
