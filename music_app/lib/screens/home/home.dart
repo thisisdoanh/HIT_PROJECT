@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:music_app/screens/home/component/discover.dart';
 import 'package:music_app/screens/home/component/popular_music.dart';
 
 import 'component/appbar_home.dart';
@@ -13,11 +14,13 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       appBar: AppBarHome(),
       body: Column(
         children: [
+          Discover(),
           PopularMusic(),
+          
         ],
       ),
     );

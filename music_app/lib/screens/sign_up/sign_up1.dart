@@ -9,6 +9,7 @@ import 'package:music_app/const/component.dart';
 import 'package:music_app/const/dimen.dart';
 import 'package:music_app/const/routes_screen.dart';
 import 'package:music_app/const/string.dart';
+import 'package:flutter/cupertino.dart';
 
 class SignUp1Screen extends StatelessWidget {
   SignUp1Screen({super.key});
@@ -48,6 +49,7 @@ class SignUp1Screen extends StatelessWidget {
                   height: Dimen.appIconSize,
                   width: Dimen.appIconSize,
                   assetImage: StringConst.assetImgAppIcon,
+                  borderRadius: Dimen.borderRadiusImage,
                 ),
                 const SizedBox(
                   height: Dimen.sizedBoxSmall,
@@ -184,8 +186,9 @@ class SignUp1Screen extends StatelessWidget {
                   isHide: true,
                   textInputType: TextInputType.text,
                 ),
+                
                 const SizedBox(
-                  height: Dimen.sizedBoxMedium * 2,
+                  height: Dimen.sizedBoxSmall,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -196,7 +199,13 @@ class SignUp1Screen extends StatelessWidget {
                       function: () {
                         if (keyForm.currentState!.validate()) {
                           Navigator.pushNamed(
-                              context, RoutesScreen.routesSignUp2);
+                              context, RoutesScreen.routesSignUp2,
+                              arguments: ({
+                                'firstName': controllerFirstName.text,
+                                'lastName': controllerLastName.text,
+                                'email': controllerEmail.text,
+                                'password': controllerPass.text,
+                              }));
                         }
                       },
                       height: Dimen.heightButtonLarge,
@@ -226,6 +235,27 @@ class SignUp1Screen extends StatelessWidget {
                           function: () {},
                         ),
                       ],
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: Dimen.sizedBoxMedium,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      StringConst.textGoToSignIn,
+                      style: Component.textStyleText,
+                    ),
+                    CupertinoButton(
+                      padding: const EdgeInsets.all(Dimen.padding0),
+                      child: const Text(
+                        StringConst.signIn,
+                      ),
+                      onPressed: () {
+                        Navigator.pushNamed(context, RoutesScreen.routesSignIn);
+                      },
                     ),
                   ],
                 ),

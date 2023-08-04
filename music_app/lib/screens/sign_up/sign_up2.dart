@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:music_app/base_widget/button.dart';
@@ -12,6 +13,7 @@ import 'package:music_app/const/component.dart';
 import 'package:music_app/const/dimen.dart';
 import 'package:music_app/const/routes_screen.dart';
 import 'package:music_app/const/string.dart';
+import 'package:music_app/screens/sign_up/component/api_signup.dart';
 
 class SignUp2Screen extends StatefulWidget {
   const SignUp2Screen({super.key});
@@ -57,6 +59,7 @@ class _SignUp2ScreenState extends State<SignUp2Screen> {
                   height: Dimen.appIconSize,
                   width: Dimen.appIconSize,
                   assetImage: StringConst.assetImgAppIcon,
+                  borderRadius: Dimen.borderRadiusImage,
                 ),
                 const SizedBox(
                   height: Dimen.sizedBoxSmall,
@@ -150,7 +153,26 @@ class _SignUp2ScreenState extends State<SignUp2Screen> {
                   children: [
                     BaseButton(
                       text: StringConst.signup,
-                      function: () {
+                      function: () async {
+                        // Map<String, dynamic> dataSignUp1 =
+                        //     ModalRoute.of(context)!.settings
+                        //         as Map<String, dynamic>;
+                        if (keyForm.currentState!.validate()) {}
+                        ApiSignUp().regisAccount(
+
+                            // dataSignUp1["firstName"],
+                            // dataSignUp1["lastName"],
+                            // dataSignUp1["email"],
+                            // dataSignUp1["password"],
+                            "ffffff",
+                            "ffffff",
+                            "ffffff@gmail.",
+                            "ffffffff",
+                            controllerNickname.text,
+                            DateFormat("dd/MM/yyyy").parse("23/3/2003"),
+                            controllerGender.text,
+                            context);
+
                         if (keyForm.currentState!.validate()) {
                           Navigator.pushNamed(
                               context, RoutesScreen.routesSignUp2);
@@ -186,6 +208,24 @@ class _SignUp2ScreenState extends State<SignUp2Screen> {
                     ),
                   ],
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      StringConst.textGoToSignIn,
+                      style: Component.textStyleText,
+                    ),
+                    CupertinoButton(
+                      padding: const EdgeInsets.all(Dimen.padding0),
+                      child: const Text(
+                        StringConst.signIn,
+                      ),
+                      onPressed: () {
+                        Navigator.pushNamed(context, RoutesScreen.routesSignIn);
+                      },
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
@@ -199,7 +239,7 @@ class _SignUp2ScreenState extends State<SignUp2Screen> {
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(1900),
-      lastDate: DateTime(2024),
+      lastDate: DateTime.now(),
     );
   }
 }

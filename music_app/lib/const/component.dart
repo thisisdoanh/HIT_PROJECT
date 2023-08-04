@@ -9,6 +9,12 @@ class Component {
     fontSize: Dimen.fontSizeButtonLarge,
     fontWeight: FontWeight.bold,
   );
+  static const TextStyle textStyleTittle = TextStyle(
+    color: ColorConst.colorTextButton,
+    fontFamily: 'poppins',
+    fontSize: Dimen.fontSizeTittle,
+    fontWeight: FontWeight.w500,
+  );
 
   static const TextStyle textStyleTextFormField = TextStyle(
     color: ColorConst.colorText,
@@ -23,7 +29,12 @@ class Component {
     fontWeight: FontWeight.w700,
     fontSize: Dimen.fontSizeTextTittle,
   );
-
+static const TextStyle textStyleHomeTitle = TextStyle(
+    color: ColorConst.colorText,
+    fontFamily: 'inter',
+    fontWeight: FontWeight.w100,
+    fontSize: Dimen.fontSizeTextTittle,
+  );
   static const TextStyle textStyleAppName = TextStyle(
     color: ColorConst.colorText,
     fontFamily: 'monserrat',

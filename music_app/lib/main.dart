@@ -4,6 +4,8 @@ import 'package:music_app/screens/home/home.dart';
 import 'package:music_app/screens/on_boarding/on_boarding1.dart';
 import 'package:music_app/screens/on_boarding/on_boarding2.dart';
 import 'package:music_app/screens/on_boarding/on_boarding3.dart';
+import 'package:music_app/screens/setting/setting.dart';
+import 'package:music_app/screens/sign_in/sign_in.dart';
 import 'package:music_app/screens/sign_up/sign_up1.dart';
 import 'package:music_app/screens/sign_up/sign_up2.dart';
 import 'package:music_app/screens/welcome/welcome_screen.dart';
@@ -32,30 +34,35 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark(),
-      // initialRoute: RoutesScreen.routesSignUp1,
-      // onGenerateRoute: (settings) {
-      //   switch (settings.name) {
-      //     case RoutesScreen.routesWelcome:
-      //       return Component().navigate(const WelcomeScreen());
-      //     case RoutesScreen.routesOnboarding1:
-      //       return Component().navigate(const OnBoarding1Screen());
-      //     case RoutesScreen.routesOnboarding2:
-      //       return Component().navigate(const OnBoarding2Screen());
-      //     case RoutesScreen.routesOnboarding3:
-      //       return Component().navigate(const OnBoarding3Screen());
-      //     case RoutesScreen.routesSignUp1:
-      //       return Component().navigate(SignUp1Screen());
-      //     case RoutesScreen.routesSignUp2:
-      //       return Component().navigate(const SignUp2Screen());
-      //     case RoutesScreen.routesHome:
-      //       return Component().navigate(HomeScreen());
-      //     case '/test':
-      //       return Component().navigate(const Test());
-      //     default:
-      //       return null;
-      //   }
-      // },
-      home: HomeScreen(),
+      initialRoute: RoutesScreen.routesHome,
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case RoutesScreen.routesWelcome:
+            return Component().navigate(const WelcomeScreen());
+          case RoutesScreen.routesOnboarding1:
+            return Component().navigate(const OnBoarding1Screen());
+          case RoutesScreen.routesOnboarding2:
+            return Component().navigate(const OnBoarding2Screen());
+          case RoutesScreen.routesOnboarding3:
+            return Component().navigate(const OnBoarding3Screen());
+          case RoutesScreen.routesSignUp1:
+            return Component().navigate(SignUp1Screen());
+          case RoutesScreen.routesSignUp2:
+            return Component().navigate(const SignUp2Screen());
+          case RoutesScreen.routesHome:
+            return Component().navigate(const HomeScreen());
+          case RoutesScreen.routesSignIn:
+            return Component().navigate(SignInScreen());
+          case RoutesScreen.routesProfile:
+            return MaterialPageRoute(
+              builder: (context) => Profile(),
+            );
+          case '/test':
+            return Component().navigate(const Test());
+          default:
+            return null;
+        }
+      },
     );
   }
 }

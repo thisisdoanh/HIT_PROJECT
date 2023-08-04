@@ -7,7 +7,7 @@ part of 'album.dart';
 // **************************************************************************
 
 Album _$AlbumFromJson(Map<String, dynamic> json) => Album(
-      tittle: json['tittle'] as String,
+      title: json['title'] as String,
       image: json['image'] as String,
       songs: (json['songs'] as List<dynamic>)
           .map((e) => Song.fromJson(e as Map<String, dynamic>))
@@ -19,7 +19,7 @@ Album _$AlbumFromJson(Map<String, dynamic> json) => Album(
     );
 
 Map<String, dynamic> _$AlbumToJson(Album instance) => <String, dynamic>{
-      'tittle': instance.tittle,
+      'tittle': instance.title,
       'image': instance.image,
       'songs': instance.songs,
       'release_year': instance.release_year,

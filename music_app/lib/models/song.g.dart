@@ -7,14 +7,13 @@ part of 'song.dart';
 // **************************************************************************
 
 Song _$SongFromJson(Map<String, dynamic> json) => Song(
-      tittle: json['tittle'] as String,
-      singer: (json['singer'] as List<dynamic>)
-          .map((e) => Singer.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      title: json['title'] as String,
+      singers:
+          (json['singers'] as List<dynamic>).map((e) => e as String).toList(),
       duration: json['duration'] as int,
       genre: json['genre'] as String,
-      file_path: json['file_path'] as String,
-      lyris: json['lyris'] as String,
+      filePath: json['filePath'] as String,
+      lyrics: json['lyrics'] as String,
       countListen: json['countListen'] as int,
       likeNumber: json['likeNumber'] as int,
       dislikeNumber: json['dislikeNumber'] as int,
@@ -22,12 +21,12 @@ Song _$SongFromJson(Map<String, dynamic> json) => Song(
     );
 
 Map<String, dynamic> _$SongToJson(Song instance) => <String, dynamic>{
-      'tittle': instance.tittle,
-      'singer': instance.singer,
+      'title': instance.title,
+      'singers': instance.singers,
       'duration': instance.duration,
       'genre': instance.genre,
-      'file_path': instance.file_path,
-      'lyris': instance.lyris,
+      'filePath': instance.filePath,
+      'lyrics': instance.lyrics,
       'countListen': instance.countListen,
       'likeNumber': instance.likeNumber,
       'dislikeNumber': instance.dislikeNumber,
