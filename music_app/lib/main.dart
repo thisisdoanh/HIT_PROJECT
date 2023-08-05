@@ -49,7 +49,8 @@ class _MainAppState extends State<MainApp> {
       child: MaterialApp(
         theme: ThemeData.dark(),
         debugShowCheckedModeBanner: false,
-        initialRoute: RoutesScreen.routesWelcome,
+        initialRoute: RoutesScreen.routesHome,
+
         // initialRoute: '/test',
         onGenerateRoute: (settings) {
           switch (settings.name) {
@@ -75,8 +76,7 @@ class _MainAppState extends State<MainApp> {
                 builder: (context) => const Profile(),
               );
             case '/test':
-              return Component()
-                  .navigate(PlayMusicScreen(), settings.arguments);
+              return Component().navigate(Test());
             default:
               return null;
           }

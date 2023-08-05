@@ -23,6 +23,8 @@ class BaseImage extends StatelessWidget {
         image: DecorationImage(
           image: AssetImage(assetImage),
           fit: BoxFit.fill,
+          
+          
         ),
         borderRadius: BorderRadius.circular(borderRadius),
       ),

@@ -7,13 +7,19 @@ import '../models/song.dart';
 class ApiSong {
   Future<List<Song>> getSongs() async {
     try {
-
       Map response = await BaseApiClient().get(UrlApi.baseUrl, UrlApi.song);
 
-      List<dynamic> data = response["songs"]["results"];
+      // List<Song> dataSongs = Song.fromJson(response["songs"]["results"]).to
 
-      List<Song> songs = data.map((a) => Song.fromJson(a)).toList();
+      List<dynamic> data = response["songs"]["results"];
+      List<Song> songs = [];
+      // duyetList(songs, data);
+
+      songs =
+          data.map((e) => Song.fromJson(e as Map<String, dynamic>)).toList();
       songs = songs.take(10).toList();
+
+      print(songs[0]);
       // print(data);
       return songs;
     } catch (e) {

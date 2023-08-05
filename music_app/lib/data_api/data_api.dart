@@ -5,5 +5,5 @@ class DataApi {
   static User? user;
   static Song? song;
   static String accessToken =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NGMwMGU4NmRhYTc5OWU4ZDI2NTUxOTUiLCJpYXQiOjE2OTExOTQyNTIsImV4cCI6MTY5MTIwMDI1MiwidHlwZSI6ImFjY2VzcyJ9.P6S-_T4jtzOlbbUfljnzMyY906RcPDbqBH7fJaA-RxM";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NGJkNzVjMTkxMWNiNjZhYmZlMDM1ZDQiLCJpYXQiOjE2OTA5MDc2ODgsImV4cCI6MTY5MTc3MTY4OCwidHlwZSI6InJlZnJlc2gifQ.nKlaBvKKoxnluxoEy96I788SziwRjhDhWhUxxOZtk-A";
 }
