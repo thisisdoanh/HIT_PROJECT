@@ -36,7 +36,7 @@ class _PopularMusicState extends State<PopularMusic> {
     fetch();
   }
 
-  static Future<void> fetch() async {
+  Future<void> fetch() async {
     songs = await ApiSong().getSongs();
     print(songs.length);
     // singers = await ApiSinger().getSingers();
@@ -127,6 +127,7 @@ class _PopularMusicState extends State<PopularMusic> {
               ),
               Expanded(
                 child: ListView.separated(
+                  shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
                       return listSong(songs[index]);
@@ -139,7 +140,7 @@ class _PopularMusicState extends State<PopularMusic> {
                         width: 10,
                       );
                     },
-                    itemCount: 10),
+                    itemCount: songs.length),
               ),
             ],
           ),
@@ -152,6 +153,7 @@ class _PopularMusicState extends State<PopularMusic> {
     return InkWell(
         onTap: () {},
         child: Container(
+
           height: 178,
           width: 135,
           child: Column(
