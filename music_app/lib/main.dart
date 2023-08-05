@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 import 'package:music_app/const/routes_screen.dart';
 import 'package:music_app/data_api/data_api.dart';
 import 'package:music_app/screens/home/home.dart';
@@ -16,7 +17,12 @@ import 'package:provider/provider.dart';
 import 'package:music_app/controller.dart';
 import 'test.dart';
 
-void main() {
+Future<void> main() async {
+  await JustAudioBackground.init(
+    androidNotificationChannelId: 'com.ryanheise.bg_demo.channel.audio',
+    androidNotificationChannelName: 'Audio playback',
+    androidNotificationOngoing: true,
+  );
   runApp(
     /// Providers are above [MyApp] instead of inside it, so that tests
     /// can use [MyApp] while mocking the providers
@@ -43,7 +49,7 @@ class _MainAppState extends State<MainApp> {
       child: MaterialApp(
         theme: ThemeData.dark(),
         debugShowCheckedModeBanner: false,
-        initialRoute: RoutesScreen.routesSignIn,
+        initialRoute: RoutesScreen.routesWelcome,
         // initialRoute: '/test',
         onGenerateRoute: (settings) {
           switch (settings.name) {

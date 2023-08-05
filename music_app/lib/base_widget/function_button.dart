@@ -18,15 +18,28 @@ class BaseFunctionButton extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        FunctionButton(
-          style: Component.buttonPlaySkipPrevious,
-          function: () => audioPlayer.seekToPrevious,
-          width: 40,
-          height: 40,
-          size: 30,
-          icon: Icons.skip_previous_rounded,
-          borderRadius: Dimen.borderRadiusButtonSmall,
+        StreamBuilder<SequenceState?>(
+          stream: audioPlayer.sequenceStateStream,
+          builder: (context, snapshot) => FunctionButton(
+            style: Component.buttonPlaySkipPrevious,
+            function: () =>
+                audioPlayer.hasPrevious ? audioPlayer.seekToPrevious : null,
+            icon: Icons.skip_previous_rounded,
+            width: 40,
+            height: 40,
+            borderRadius: Dimen.borderRadiusButtonSmall,
+            size: 30,
+          ),
         ),
+        // FunctionButton(
+        //   style: Component.buttonPlaySkipPrevious,
+        //   function: () => audioPlayer.seekToPrevious,
+        //   width: 40,
+        //   height: 40,
+        //   size: 30,
+        //   icon: Icons.skip_previous_rounded,
+        //   borderRadius: Dimen.borderRadiusButtonSmall,
+        // ),
         StreamBuilder<PlayerState>(
           stream: audioPlayer.playerStateStream,
           builder: (context, snapshot) {
@@ -65,15 +78,27 @@ class BaseFunctionButton extends StatelessWidget {
             );
           },
         ),
-        FunctionButton(
-          style: Component.buttonPlaySkipPrevious,
-          function: () => audioPlayer.seekToNext,
-          width: 40,
-          height: 40,
-          size: 30,
-          icon: Icons.skip_next_rounded,
-          borderRadius: Dimen.borderRadiusButtonSmall,
+        StreamBuilder<SequenceState?>(
+          stream: audioPlayer.sequenceStateStream,
+          builder: (context, snapshot) => FunctionButton(
+            style: Component.buttonPlaySkipPrevious,
+            function: () => audioPlayer.hasNext ? audioPlayer.seekToNext : null,
+            icon: Icons.skip_next_rounded,
+            width: 40,
+            height: 40,
+            borderRadius: Dimen.borderRadiusButtonSmall,
+            size: 30,
+          ),
         ),
+        // FunctionButton(
+        //   style: Component.buttonPlaySkipPrevious,
+        //   function: () => audioPlayer.seekToNext,
+        //   width: 40,
+        //   height: 40,
+        //   size: 30,
+        //   icon: Icons.skip_next_rounded,
+        //   borderRadius: Dimen.borderRadiusButtonSmall,
+        // ),
       ],
     );
   }

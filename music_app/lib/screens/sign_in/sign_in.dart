@@ -11,7 +11,7 @@ import 'package:music_app/const/dimen.dart';
 import 'package:music_app/const/routes_screen.dart';
 import 'package:music_app/const/string.dart';
 
-import 'package:music_app/models/user.dart';
+// import 'package:music_app/models/user.dart';
 
 import 'package:music_app/data_api/data_api.dart';
 import 'package:music_app/screens/playing/component/api_playing.dart';
@@ -109,17 +109,20 @@ class SignInScreen extends StatelessWidget {
                     BaseButton(
                       text: StringConst.signIn,
                       function: () async {
-                        print("helo1");
                         var response = await ApiLogin().getAccount(
-                          "admin",
-                          "superadmin123",
+                          controllerUsername.text,
+                          controllerPassword.text,
                         );
 
-                        check == null ? check = false : DataApi.user = check;
+                        response != null
+                            ? {DataApi.user = response, check = true}
+                            : check = false;
+                        check ??= false;
                         DataApi.song = await ApiPlaying().getSong();
 
-                        if (keyForm.currentState!.validate()) {
-                          Navigator.pushNamed(context, '/test');
+                        if (keyForm.currentState!.validate() &&
+                            check != false) {
+                          Navigator.pushNamed(context, RoutesScreen.routesHome);
                         }
                       },
                       height: Dimen.heightButtonLarge,
