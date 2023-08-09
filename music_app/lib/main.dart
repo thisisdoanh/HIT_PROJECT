@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:music_app/const/routes_screen.dart';
-import 'package:music_app/data_api/data_api.dart';
+import 'package:music_app/screens/album/album.dart';
 import 'package:music_app/screens/home/home.dart';
 import 'package:music_app/screens/on_boarding/on_boarding1.dart';
 import 'package:music_app/screens/on_boarding/on_boarding2.dart';
 import 'package:music_app/screens/on_boarding/on_boarding3.dart';
-import 'package:music_app/screens/playing/playing.dart';
 import 'package:music_app/screens/setting/setting.dart';
 import 'package:music_app/screens/sign_in/sign_in.dart';
 import 'package:music_app/screens/sign_up/sign_up1.dart';
@@ -43,7 +42,7 @@ class _MainAppState extends State<MainApp> {
       child: MaterialApp(
         theme: ThemeData.dark(),
         debugShowCheckedModeBanner: false,
-        initialRoute: RoutesScreen.routesHome,
+        initialRoute: RoutesScreen.routesAlbum,
         // initialRoute: '/test',
         onGenerateRoute: (settings) {
           switch (settings.name) {
@@ -68,6 +67,8 @@ class _MainAppState extends State<MainApp> {
               return MaterialPageRoute(
                 builder: (context) => const Profile(),
               );
+            case RoutesScreen.routesAlbum:
+              return Component().navigate(AlbumScreen());
             case '/test':
               return Component().navigate(Test());
             default:
