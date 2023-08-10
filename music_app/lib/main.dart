@@ -3,6 +3,7 @@ import 'package:just_audio_background/just_audio_background.dart';
 import 'package:music_app/const/routes_screen.dart';
 import 'package:music_app/screens/forget_password/forget_password.dart';
 import 'package:music_app/screens/forget_password/reset_password.dart';
+import 'package:music_app/screens/album/album.dart';
 import 'package:music_app/screens/home/home.dart';
 import 'package:music_app/screens/on_boarding/on_boarding1.dart';
 import 'package:music_app/screens/on_boarding/on_boarding2.dart';
@@ -62,53 +63,44 @@ class MainApp extends StatefulWidget {
 class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => GoogleSignInProvider(),
-      child: SafeArea(
-        maintainBottomViewPadding: true,
-        child: MaterialApp(
-          theme: ThemeData.dark(),
-          debugShowCheckedModeBanner: false,
-          initialRoute: RoutesScreen.routesHome,
 
-          // initialRoute: '/test',
-          // initialRoute: RoutesScreen.routesForgotPass,
-          onGenerateRoute: (settings) {
-            switch (settings.name) {
-              case RoutesScreen.routesWelcome:
-                return Component().navigate(const WelcomeScreen());
-              case RoutesScreen.routesOnboarding1:
-                return Component().navigate(const OnBoarding1Screen());
-              case RoutesScreen.routesOnboarding2:
-                return Component().navigate(const OnBoarding2Screen());
-              case RoutesScreen.routesOnboarding3:
-                return Component().navigate(const OnBoarding3Screen());
-              case RoutesScreen.routesSignUp1:
-                return Component().navigate(SignUp1Screen());
-              case RoutesScreen.routesSignUp2:
-                return Component()
-                    .navigate(const SignUp2Screen(), settings.arguments);
-              case RoutesScreen.routesHome:
-                return Component().navigate(const HomeScreen());
-              case RoutesScreen.routesSignIn:
-                return Component().navigate(SignInScreen());
-              case RoutesScreen.routesForgotPass:
-                return Component().navigate(ForgetPasswordScreen());
-              case RoutesScreen.routesResetPassword:
-                return Component()
-                    .navigate(ResetPasswordScreen(), settings.arguments);
-              case RoutesScreen.routesProfile:
-                return MaterialPageRoute(
-                  builder: (context) => const Profile(),
-                );
-              case '/test':
-                return Component()
-                    .navigate(const PlayMusicScreen(), settings.arguments);
-              default:
-                return null;
-            }
-          },
-        ),
+    return SafeArea(
+      child: MaterialApp(
+        theme: ThemeData.dark(),
+        debugShowCheckedModeBanner: false,
+        initialRoute: RoutesScreen.routesAlbum,
+        // initialRoute: '/test',
+        onGenerateRoute: (settings) {
+          switch (settings.name) {
+            case RoutesScreen.routesWelcome:
+              return Component().navigate(const WelcomeScreen());
+            case RoutesScreen.routesOnboarding1:
+              return Component().navigate(const OnBoarding1Screen());
+            case RoutesScreen.routesOnboarding2:
+              return Component().navigate(const OnBoarding2Screen());
+            case RoutesScreen.routesOnboarding3:
+              return Component().navigate(const OnBoarding3Screen());
+            case RoutesScreen.routesSignUp1:
+              return Component().navigate(SignUp1Screen());
+            case RoutesScreen.routesSignUp2:
+              return Component()
+                  .navigate(const SignUp2Screen(), settings.arguments);
+            case RoutesScreen.routesHome:
+              return Component().navigate(const HomeScreen());
+            case RoutesScreen.routesSignIn:
+              return Component().navigate(SignInScreen());
+            case RoutesScreen.routesProfile:
+              return MaterialPageRoute(
+                builder: (context) => const Profile(),
+              );
+            case RoutesScreen.routesAlbum:
+              return Component().navigate(AlbumScreen());
+            case '/test':
+              return Component().navigate(Test());
+            default:
+              return null;
+          }
+        },
       ),
     );
   }
