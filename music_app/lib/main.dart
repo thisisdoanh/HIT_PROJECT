@@ -63,12 +63,11 @@ class MainApp extends StatefulWidget {
 class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
-
     return SafeArea(
       child: MaterialApp(
         theme: ThemeData.dark(),
         debugShowCheckedModeBanner: false,
-        initialRoute: RoutesScreen.routesAlbum,
+        initialRoute: RoutesScreen.routesWelcome,
         // initialRoute: '/test',
         onGenerateRoute: (settings) {
           switch (settings.name) {
@@ -94,9 +93,17 @@ class _MainAppState extends State<MainApp> {
                 builder: (context) => const Profile(),
               );
             case RoutesScreen.routesAlbum:
-              return Component().navigate(AlbumScreen());
-            case '/test':
-              return Component().navigate(Test());
+              return Component().navigate(const AlbumScreen());
+            case RoutesScreen.routesPlaying:
+              return Component()
+                  .navigate(const PlayMusicScreen(), settings.arguments);
+            case RoutesScreen.routesForgotPass:
+              return Component().navigate(ForgetPasswordScreen());
+            case RoutesScreen.routesResetPassword:
+              return Component()
+                  .navigate(ResetPasswordScreen(), settings.arguments);
+            // case '/test':
+            //   return Component().navigate(Test());
             default:
               return null;
           }

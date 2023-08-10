@@ -29,6 +29,8 @@ class ApiSignUp {
         "gender": gender,
       });
       DataApi.user = User.fromJson(response["user"]);
+      DataApi.accessToken = response["tokens"]["access"];
+      return true;
     } on UnauthorizedException catch (e) {
       String message = e.message ?? "";
       showAlertDialog(
@@ -48,7 +50,7 @@ class ApiSignUp {
           );
         },
       );
-      return null;
+      return false;
     } on BadRequestException catch (e) {
       String message = e.message ?? "";
       showAlertDialog(
@@ -68,7 +70,7 @@ class ApiSignUp {
           );
         },
       );
-      return null;
+      return false;
     } catch (e) {
       showAlertDialog(
         context: context,
@@ -87,7 +89,7 @@ class ApiSignUp {
           );
         },
       );
-      return null;
+      return false;
     }
   }
 }
