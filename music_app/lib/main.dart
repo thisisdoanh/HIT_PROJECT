@@ -95,8 +95,8 @@ class _MainAppState extends State<MainApp> {
               );
             case RoutesScreen.routesAlbum:
               return Component().navigate(AlbumScreen());
-            case '/test':
-              return Component().navigate(Test());
+       //     case '/test':
+        //      return Component().navigate(Test());
             default:
               return null;
           }
