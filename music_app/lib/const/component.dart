@@ -29,8 +29,14 @@ class Component {
     fontWeight: FontWeight.w700,
     fontSize: Dimen.fontSizeTextTittle,
   );
-
-static const TextStyle textStyleHomeTitle = TextStyle(
+  
+  static const TextStyle albumTitle = TextStyle(
+    color: ColorConst.colorText,
+    fontFamily: 'inter',
+    fontWeight: FontWeight.w700,
+    fontSize: 24,
+  );
+  static const TextStyle textStyleHomeTitle = TextStyle(
     color: ColorConst.colorText,
     fontFamily: 'inter',
     fontWeight: FontWeight.w100,
@@ -68,7 +74,12 @@ static const TextStyle textStyleHomeTitle = TextStyle(
       borderRadius: BorderRadius.circular(20),
     ),
   );
-
+  static const TextStyle singerName = TextStyle(
+    color: ColorConst.colorTextButton,
+    fontFamily: 'inter',
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+  );
   PageRouteBuilder<dynamic> navigate(Widget screen, [arguments]) {
     return PageRouteBuilder(
       settings: RouteSettings(arguments: arguments),

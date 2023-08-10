@@ -127,7 +127,7 @@ class _PopularMusicState extends State<PopularMusic> {
               ),
               Expanded(
                 child: ListView.separated(
-                  shrinkWrap: true,
+                    shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
                       return listSong(songs[index]);
@@ -153,7 +153,6 @@ class _PopularMusicState extends State<PopularMusic> {
     return InkWell(
         onTap: () {},
         child: Container(
-
           height: 178,
           width: 135,
           child: Column(
