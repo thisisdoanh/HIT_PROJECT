@@ -6,12 +6,12 @@ import 'package:music_app/const/dimen.dart';
 import 'package:music_app/const/routes_screen.dart';
 import 'package:music_app/const/string.dart';
 import 'package:music_app/screens/on_boarding/component/animation.dart';
-
 class OnBoarding1Screen extends StatelessWidget {
   const OnBoarding1Screen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       body: Column(
         children: [

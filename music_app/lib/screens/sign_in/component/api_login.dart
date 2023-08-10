@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:music_app/base_api_client/base_api_client.dart';
 import 'package:music_app/const/url_api.dart';
 import 'package:music_app/data_api/data_api.dart';
@@ -10,7 +12,7 @@ class ApiLogin {
         UrlApi.baseUrl,
         UrlApi.login,
         {
-          "username": username,
+          "usernameOrEmail": username,
           "password": password,
         },
       );

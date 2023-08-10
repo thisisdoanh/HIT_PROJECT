@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:music_app/base_widget/button_nocolor.dart';
 import 'package:music_app/base_widget/image.dart';
 import 'package:music_app/call_api/api_album.dart';
+import 'package:music_app/call_api/api_singer.dart';
 import 'package:music_app/const/color.dart';
 import 'package:music_app/const/component.dart';
+import 'package:music_app/controller.dart';
 import 'package:music_app/models/album.dart';
-
-import '../../../call_api/api_singer.dart';
+import 'package:provider/provider.dart';
 import '../../../models/singer.dart';
 import '../../../models/song.dart';
 import 'package:music_app/call_api/api_song.dart';
@@ -32,15 +33,25 @@ class _PopularMusicState extends State<PopularMusic> {
 
   @override
   void initState() {
-    super.initState();
     fetch();
+    super.initState();
   }
 
   Future<void> fetch() async {
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   context.read<Controller>().startAudioPlayer();
+    //   // song = ModalRoute.of(context)?.settings.arguments as Song?;
+    // });
+    // Future.delayed(
+    //   Duration.zero,
+    //   () async {
+
+    //   },
+    // );
     songs = await ApiSong().getSongs();
-    print(songs.length);
-    // singers = await ApiSinger().getSingers();
-    // albums = await ApiAlbum().getAlbums();
+    singers = await ApiSinger().getSingers();
+    albums = await ApiAlbum().getAlbums();
+    setState(() {});
   }
 
   @override
@@ -58,6 +69,7 @@ class _PopularMusicState extends State<PopularMusic> {
             BaseButton1(
               text: 'Song',
               function: () {
+                print("object");
                 pressButton = 1;
                 colorButton = [
                   ColorConst.colorButton,
@@ -118,7 +130,7 @@ class _PopularMusicState extends State<PopularMusic> {
         const SizedBox(
           height: 32,
         ),
-        Container(
+        SizedBox(
           height: 178,
           child: Row(
             children: [
@@ -126,22 +138,30 @@ class _PopularMusicState extends State<PopularMusic> {
                 width: 20,
               ),
               Expanded(
-                child: ListView.separated(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (BuildContext context, int index) {
-                      return listSong(songs[index]);
-                      // return pressButton == 1
-                      //     ? listSong(songs[index])
-                      //     : listSinger(singers[index]);
-                    },
-                    separatorBuilder: (BuildContext context, int index) {
-                      return const SizedBox(
-                        width: 10,
-                      );
-                    },
-                    itemCount: songs.length),
-              ),
+                  child: ListView.separated(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (BuildContext context, int index) {
+                        // return listSong(songs[index]);
+                        return pressButton == 1
+                            ? listSong(songs[index])
+                            : (pressButton == 2
+                                ? listSinger(singers[index])
+                                : listAlbum(
+                                    albums[index],
+                                  ));
+                      },
+                      separatorBuilder: (BuildContext context, int index) {
+                        return const SizedBox(
+                          width: 10,
+                        );
+                      },
+                      itemCount: pressButton == 1
+                          ? songs.length
+                          : (pressButton == 2
+                              ? singers.length
+                              : albums.length))),
+
             ],
           ),
         ),
@@ -151,8 +171,14 @@ class _PopularMusicState extends State<PopularMusic> {
 
   InkWell listSong(Song song) {
     return InkWell(
-        onTap: () {},
-        child: Container(
+        onTap: () {
+          // context.read<Controller>().startAudioPlayer();
+          // await Future.delayed(
+          //   Duration(seconds: 2),
+          // );
+          Navigator.pushNamed(context, '/test', arguments: song);
+        },
+        child: SizedBox(
           height: 178,
           width: 135,
           child: Column(
@@ -175,55 +201,55 @@ class _PopularMusicState extends State<PopularMusic> {
         ));
   }
 
-  // InkWell listSinger(Singer singer) {
-  //   return InkWell(
-  //       onTap: () {},
-  //       child: Container(
-  //         height: 178,
-  //         width: 135,
-  //         child: Column(
-  //           children: [
-  //             BaseImageNetwork(
-  //                 height: 135,
-  //                 width: 135,
-  //                 linkImage: singer.image,
-  //                 borderRadius: 30),
-  //             const SizedBox(
-  //               height: 10,
-  //             ),
-  //             Text(
-  //               singer.name,
-  //               style: Component.textStyleText,
-  //               overflow: TextOverflow.ellipsis,
-  //             )
-  //           ],
-  //         ),
-  //       ));
-  // }
+  InkWell listSinger(Singer singer) {
+    return InkWell(
+        onTap: () {},
+        child: SizedBox(
+          height: 178,
+          width: 135,
+          child: Column(
+            children: [
+              BaseImageNetwork(
+                  height: 135,
+                  width: 135,
+                  linkImage: singer.image,
+                  borderRadius: 30),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                singer.name,
+                style: Component.textStyleText,
+                overflow: TextOverflow.ellipsis,
+              )
+            ],
+          ),
+        ));
+  }
 
-  // InkWell listAlbum(Album album) {
-  //   return InkWell(
-  //       onTap: () {},
-  //       child: Container(
-  //         height: 178,
-  //         width: 135,
-  //         child: Column(
-  //           children: [
-  //             BaseImageNetwork(
-  //                 height: 135,
-  //                 width: 135,
-  //                 linkImage: album.image,
-  //                 borderRadius: 30),
-  //             const SizedBox(
-  //               height: 10,
-  //             ),
-  //             Text(
-  //               album.title,
-  //               style: Component.textStyleText,
-  //               overflow: TextOverflow.ellipsis,
-  //             )
-  //           ],
-  //         ),
-  //       ));
-  // }
+  InkWell listAlbum(Album album) {
+    return InkWell(
+        onTap: () {},
+        child: SizedBox(
+          height: 178,
+          width: 135,
+          child: Column(
+            children: [
+              BaseImageNetwork(
+                  height: 135,
+                  width: 135,
+                  linkImage: album.image,
+                  borderRadius: 30),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                album.title,
+                style: Component.textStyleText,
+                overflow: TextOverflow.ellipsis,
+              )
+            ],
+          ),
+        ));
+  }
 }

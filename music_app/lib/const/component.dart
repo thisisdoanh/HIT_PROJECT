@@ -47,7 +47,7 @@ class Component {
     color: ColorConst.colorText,
     fontFamily: 'inter',
     fontWeight: FontWeight.w900,
-    fontSize: Dimen.fontSizeTextTittle + 5,
+    fontSize: Dimen.fontSizeTextTittle ,
   );
 
   static const TextStyle textStyleAppName = TextStyle(

@@ -7,7 +7,8 @@ class SongInfo extends StatelessWidget {
     super.key,
     required this.imageUrl,
     required this.tittle,
-    required this.artist, required this.lyrics,
+    required this.artist,
+    required this.lyrics,
   });
   final String imageUrl;
   final String tittle;
@@ -50,19 +51,20 @@ class SongInfo extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           ),
           child: BaseImageNetwork(
-            height: 300,
-            width: 300,
+            height: 250,
+            width: 250,
             linkImage: imageUrl,
             borderRadius: 95,
           ),
         ),
         const SizedBox(
-          height: 20,
+          height: 16,
         ),
         Text(
           tittle,
           style: Component.textStyleMusicName,
-          maxLines: 3,
+          maxLines: 2,
+          textAlign: TextAlign.center,
         ),
         const SizedBox(
           height: 8,
@@ -71,7 +73,7 @@ class SongInfo extends StatelessWidget {
           artist,
           style: Component.textStyleText,
           textAlign: TextAlign.center,
-          maxLines: 3,
+          maxLines: 2,
         ),
       ],
     );

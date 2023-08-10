@@ -1,63 +1,72 @@
 import 'package:flutter/material.dart';
-import 'package:music_app/const/string.dart';
+import 'package:just_audio/just_audio.dart';
+import 'package:music_app/base_widget/seekbar.dart';
+import 'package:rxdart/rxdart.dart';
 
-import 'base_api_client/api_exceptions.dart';
-import 'base_api_client/base_api_client.dart';
-import 'const/url_api.dart';
-import 'models/song.dart';
-
-class Test extends StatelessWidget {
-  const Test({super.key});
-
-  void duyetList(List<Song> songs, List<dynamic> data) {
-    data.forEach((element) {
-      songs.add(Song.fromJson(element));
-    });
-  }
-
-  Future<void> get() async {
-    try {
-      Map response = await BaseApiClient().get(UrlApi.baseUrl, UrlApi.song);
-      // print(response);
-      List<dynamic> data = response["songs"]["results"];
-      List<Song> songs = [];
-      // duyetList(songs, data);
-
-      songs =
-          data.map((e) => Song.fromJson(e as Map<String, dynamic>)).toList();
-      print(songs[0]);
-
-      // print(data[0]);
-      // List<Song> songs = data.map((a) => Song.fromJson(a)).toList();
-
-      // print(song.image);
-      songs = songs.take(10).toList();
-      // print(songs[1].title);
-
-      // return songs;
-    } catch (e) {
-      if (e is ApiExceptions) {
-        print(e.prefix);
-      } else {
-        print('Caught an unknown exception: $e');
-      }
-
-      // return [];
-    }
-  }
+class FloatinngWidget extends StatefulWidget {
+  const FloatinngWidget({Key? key, required this.audioPlayer})
+      : super(key: key);
+  final AudioPlayer audioPlayer;
 
   @override
+  State<FloatinngWidget> createState() => _FloatinngWidgetState();
+}
+
+class _FloatinngWidgetState extends State<FloatinngWidget> {
+  @override
   Widget build(BuildContext context) {
-    get();
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(
-            StringConst.assetImgOnboarding1,
-          ),
-        ),
-      ),
+    return StreamBuilder<Duration>(
+      stream: widget.audioPlayer.positionStream,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          final position = snapshot.data!;
+          final totalDuration = widget.audioPlayer.duration ?? Duration.zero;
+          final progress = position.inMilliseconds.toDouble();
+          final total = totalDuration.inMilliseconds.toDouble();
+
+          return LinearProgressIndicator(
+            value: progress / total ?? 0,
+            minHeight: 5.0,
+            backgroundColor: Colors.grey,
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+          );
+        } else {
+          return LinearProgressIndicator(
+            value: 0.0,
+            minHeight: 5.0,
+            backgroundColor: Colors.grey,
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+          );
+        }
+      },
+    );
+  }
+}
+
+class SongProgressBar extends StatefulWidget {
+  final Duration duration;
+  final double progress;
+  final ValueChanged<double> onProgressChanged;
+  final AudioPlayer audioPlayer;
+
+  SongProgressBar({
+    required this.duration,
+    required this.progress,
+    required this.onProgressChanged,
+    required this.audioPlayer,
+  });
+
+  @override
+  _SongProgressBarState createState() => _SongProgressBarState();
+}
+
+class _SongProgressBarState extends State<SongProgressBar> {
+  @override
+  Widget build(BuildContext context) {
+    return LinearProgressIndicator(
+      value: widget.progress,
+      minHeight: 10,
+      valueColor: AlwaysStoppedAnimation<Color>(Colors.white10),
     );
   }
 }

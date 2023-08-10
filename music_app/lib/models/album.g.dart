@@ -19,7 +19,7 @@ Album _$AlbumFromJson(Map<String, dynamic> json) => Album(
     );
 
 Map<String, dynamic> _$AlbumToJson(Album instance) => <String, dynamic>{
-      'tittle': instance.title,
+      'title': instance.title,
       'image': instance.image,
       'songs': instance.songs,
       'releaseYear': instance.releaseYear,

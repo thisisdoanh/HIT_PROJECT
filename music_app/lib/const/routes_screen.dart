@@ -8,5 +8,7 @@ class RoutesScreen {
   static const String routesSignIn = '/signin';
   static const String routesHome = '/home';
   static const String routesProfile = '/profile';
+  static const String routesForgotPass = '/forgotPass';
+  static const String routesResetPassword = '/resetPassword';
   static const String routesAlbum = '/album';
 }

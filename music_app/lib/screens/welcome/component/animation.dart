@@ -1,7 +1,11 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:music_app/const/component.dart';
 import 'package:music_app/const/dimen.dart';
+import 'package:music_app/const/routes_screen.dart';
 import 'package:music_app/const/string.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AnimationWelcome extends StatefulWidget {
   const AnimationWelcome({Key? key}) : super(key: key);
@@ -39,8 +43,12 @@ class _AnimationWelcomeState extends State<AnimationWelcome>
     await Future.delayed(
       const Duration(seconds: 3),
     );
-    // ignore: use_build_context_synchronously
-    // Navigator.pushReplacementNamed(context, RoutesScreen.routesOnboarding1);
+
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    bool isFirstOpen = preferences.getBool('isFirstOpen') ?? true;
+
+    isFirstOpen ? Navigator.pushReplacementNamed(context, RoutesScreen.routesOnboarding1) : Navigator.pushReplacementNamed(context, RoutesScreen.routesSignIn); 
+    
   }
 
   @override
