@@ -93,6 +93,7 @@ class _MainAppState extends State<MainApp> {
                 builder: (context) => const Profile(),
               );
             case RoutesScreen.routesAlbum:
+
               return Component().navigate(const AlbumScreen());
             case RoutesScreen.routesPlaying:
               return Component()
