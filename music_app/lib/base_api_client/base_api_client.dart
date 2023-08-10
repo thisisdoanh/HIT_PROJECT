@@ -101,12 +101,16 @@ class BaseApiClient {
         String message = responseJson["message"];
         throw UnauthorizedException(message, response.request!.url.toString());
       case 404:
+      var responseJson = jsonDecode(response.body);
+        String message = responseJson["message"];
         throw NotFoundException(
-            'Page not found with status code : ${response.statusCode}',
+            message,
             response.request!.url.toString());
       case 500:
+      var responseJson = jsonDecode(response.body);
+        String message = responseJson["message"];
         throw FetchDataException(
-            'Error occured with status code : ${response.statusCode}',
+            message,
             response.request!.url.toString());
       default:
     }

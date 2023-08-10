@@ -13,7 +13,9 @@ import 'package:music_app/const/component.dart';
 import 'package:music_app/const/dimen.dart';
 import 'package:music_app/const/routes_screen.dart';
 import 'package:music_app/const/string.dart';
+import 'package:music_app/controller.dart';
 import 'package:music_app/screens/sign_up/component/api_signup.dart';
+import 'package:provider/provider.dart';
 
 class SignUp2Screen extends StatefulWidget {
   const SignUp2Screen({super.key});
@@ -29,11 +31,11 @@ class _SignUp2ScreenState extends State<SignUp2Screen> {
 
   final TextEditingController controllerDate = TextEditingController();
   final TextEditingController controllerGender = TextEditingController();
-  String selectedValue = 'nam';
+  String selectedValue = 'Nam';
 
   @override
   Widget build(BuildContext context) {
-    print(ModalRoute.of(context)!.settings.arguments);
+    // print(ModalRoute.of(context)!.settings.arguments);
     return Form(
       key: keyForm,
       child: Scaffold(
@@ -135,9 +137,9 @@ class _SignUp2ScreenState extends State<SignUp2Screen> {
                     ),
                   ),
                   items: const [
-                    DropdownMenuItem(value: 'nam', child: Text('Nam')),
-                    DropdownMenuItem(value: 'nữ', child: Text('Nữ')),
-                    DropdownMenuItem(value: 'khác', child: Text('Khác')),
+                    DropdownMenuItem(value: 'Nam', child: Text('Nam')),
+                    DropdownMenuItem(value: 'Nữ', child: Text('Nữ')),
+                    DropdownMenuItem(value: 'Khác', child: Text('Khác')),
                   ],
                   onChanged: (value) {
                     setState(() {
@@ -155,22 +157,27 @@ class _SignUp2ScreenState extends State<SignUp2Screen> {
                     BaseButton(
                       text: StringConst.signup,
                       function: () async {
-                        print(ModalRoute.of(context)!.settings.arguments);
                         Map<String, String> dataSignUp1 =
                             ModalRoute.of(context)!.settings.arguments
                                 as Map<String, String>;
                         if (keyForm.currentState!.validate()) {}
+                        print(controllerDate.text);
+                        DateTime dateOfBirth =
+                            DateFormat("dd/MM/yyyy").parse(controllerDate.text);
+                        print(dateOfBirth);
                         ApiSignUp().regisAccount(
-                            dataSignUp1["firstName"]!,
-                            dataSignUp1["lastName"]!,
-                            dataSignUp1["email"]!,
-                            dataSignUp1["password"]!,
-                            controllerNickname.text,
-                            DateFormat("dd/MM/yyyy").parse(controllerDate.text),
-                            controllerGender.text,
-                            context);
+                          dataSignUp1["firstName"]!,
+                          dataSignUp1["lastName"]!,
+                          dataSignUp1["email"]!,
+                          dataSignUp1["password"]!,
+                          controllerNickname.text,
+                          dateOfBirth,
+                          selectedValue,
+                          context,
+                        );
 
                         if (keyForm.currentState!.validate()) {
+                          // context.read<Controller>().startAudioPlayer();
                           Navigator.pushNamed(
                             context,
                             RoutesScreen.routesHome,

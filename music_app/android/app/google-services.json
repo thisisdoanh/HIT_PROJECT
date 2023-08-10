@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "869583152045",
+    "project_id": "loginmymusic-75e0d",
+    "storage_bucket": "loginmymusic-75e0d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:869583152045:android:31fb7e0535a19cea983724",
+        "android_client_info": {
+          "package_name": "com.example.music_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "869583152045-be4vvu725fdqjkdl2kllaj9lbqie021c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCD-xJpxwDKOuVFt-XIq7hM3A6AvgSXyJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "869583152045-3i7hhvaeuap0m0esi06ps7iuc3iocada.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

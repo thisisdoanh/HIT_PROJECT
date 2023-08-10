@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:music_app/base_widget/appbar.dart';
+import 'package:music_app/screens/playing/test.dart';
 
 class AppBarPlaying extends StatelessWidget implements PreferredSizeWidget {
   const AppBarPlaying({super.key});
@@ -12,7 +13,7 @@ class AppBarPlaying extends StatelessWidget implements PreferredSizeWidget {
     return BaseAppbar(
       title: 'Play',
       leading: Icons.arrow_back_sharp,
-      functionLeading: () => Navigator.of(context).pop(),
+      functionLeading: () => Navigator.pop(context),
     );
   }
 }

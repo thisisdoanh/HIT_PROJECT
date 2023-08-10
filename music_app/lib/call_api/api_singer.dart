@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:music_app/base_api_client/api_exceptions.dart';
 import 'package:music_app/base_api_client/base_api_client.dart';
 import 'package:music_app/const/url_api.dart';

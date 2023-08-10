@@ -44,7 +44,7 @@ class SeekBarState extends State<SeekBar> {
             thumbShape: HiddenThumbComponentShape(),
             inactiveTrackColor: Colors.orange[900]?.withOpacity(0.2),
             activeTrackColor:
-                const Color.fromARGB(255, 61, 23, 2)?.withOpacity(0.2),
+                const Color.fromARGB(255, 61, 23, 2).withOpacity(0.2),
           ),
           child: ExcludeSemantics(
             child: Slider(
@@ -73,7 +73,7 @@ class SeekBarState extends State<SeekBar> {
           data: _sliderThemeData.copyWith(
             activeTrackColor: Colors.orange[900],
             inactiveTrackColor:
-                const Color.fromARGB(255, 61, 23, 2)?.withOpacity(0.2),
+                const Color.fromARGB(255, 61, 23, 2).withOpacity(0.2),
             thumbColor: Colors.orange[900],
             // inactiveTrackColor: Color.fromARGB(0, 202, 57, 57),
           ),

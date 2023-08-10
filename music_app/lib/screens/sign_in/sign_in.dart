@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously, must_be_immutable
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:music_app/base_widget/button.dart';
@@ -10,12 +12,12 @@ import 'package:music_app/const/component.dart';
 import 'package:music_app/const/dimen.dart';
 import 'package:music_app/const/routes_screen.dart';
 import 'package:music_app/const/string.dart';
-
-// import 'package:music_app/models/user.dart';
-
+import 'package:music_app/controller.dart';
 import 'package:music_app/data_api/data_api.dart';
 import 'package:music_app/screens/playing/component/api_playing.dart';
 import 'package:music_app/screens/sign_in/component/api_login.dart';
+import 'package:music_app/screens/sign_in/component/google_sign_in_provider.dart';
+import 'package:provider/provider.dart';
 
 class SignInScreen extends StatelessWidget {
   SignInScreen({super.key});
@@ -75,7 +77,9 @@ class SignInScreen extends StatelessWidget {
                 BaseTextFormField(
                   text: StringConst.textUsername,
                   width: MediaQuery.of(context).size.width * 0.95,
-                  validator: (value) {},
+                  validator: (value) {
+                    return null;
+                  },
                   controller: controllerUsername,
                   textInputType: TextInputType.text,
                   isHide: false,
@@ -86,10 +90,12 @@ class SignInScreen extends StatelessWidget {
                 BaseTextFormField(
                   text: StringConst.textPass,
                   width: MediaQuery.of(context).size.width * 0.95,
-                  validator: (value) {},
+                  validator: (value) {
+                    return null;
+                  },
                   controller: controllerPassword,
                   textInputType: TextInputType.text,
-                  isHide: false,
+                  isHide: true,
                 ),
                 const SizedBox(
                   height: Dimen.sizedBoxSmall,
@@ -100,7 +106,12 @@ class SignInScreen extends StatelessWidget {
                     StringConst.textForgotPassword,
                     style: Component.textStyleText,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      RoutesScreen.routesForgotPass,
+                    );
+                  },
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -122,6 +133,10 @@ class SignInScreen extends StatelessWidget {
 
                         if (keyForm.currentState!.validate() &&
                             check != false) {
+                          // SharedPreferences preferences =
+                          // await SharedPreferences.getInstance();
+                          // preferences.setString('accessToken', DataApi.accessToken);
+                          // context.read<Controller>().startAudioPlayer();
                           Navigator.pushNamed(context, RoutesScreen.routesHome);
                         }
                       },
@@ -137,7 +152,12 @@ class SignInScreen extends StatelessWidget {
                           assetName: StringConst.assetIconGmail,
                           height: Dimen.heightIconSignUp,
                           width: Dimen.widthIconSignUp,
-                          function: () {},
+                          function: () {
+                            final provider = Provider.of<GoogleSignInProvider>(
+                                context,
+                                listen: false);
+                            provider.googleLogin();
+                          },
                         ),
                         BaseIcon(
                           assetName: StringConst.assetIconFacebook,
@@ -152,6 +172,25 @@ class SignInScreen extends StatelessWidget {
                           function: () {},
                         ),
                       ],
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      StringConst.textGoToSignUp,
+                      style: Component.textStyleText,
+                    ),
+                    CupertinoButton(
+                      padding: const EdgeInsets.all(Dimen.padding0),
+                      child: const Text(
+                        StringConst.signup,
+                      ),
+                      onPressed: () {
+                        Navigator.pushNamed(
+                            context, RoutesScreen.routesSignUp1);
+                      },
                     ),
                   ],
                 ),

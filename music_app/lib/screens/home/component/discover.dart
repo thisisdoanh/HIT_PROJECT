@@ -7,14 +7,14 @@ class Discover extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
-        const SizedBox(
+        SizedBox(
           height: 32,
         ),
         Row(
           children: [
-            const SizedBox(
+            SizedBox(
               width: 20,
             ),
             Text(
@@ -23,7 +23,7 @@ class Discover extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(
+        SizedBox(
           height: 30,
         ),
         InkWell(
@@ -55,18 +55,18 @@ class Discover extends StatelessWidget {
               ),
               Column(
                 children: [
-                  const SizedBox(
+                  SizedBox(
                     height: 31,
                   ),
                   Row(
                     children: [
-                      const SizedBox(
+                      SizedBox(
                         width: 45,
                       ),
-                      Container(
+                      SizedBox(
                         height: 60,
                         width: 170,
-                        child: const Text(
+                        child: Text(
                           'Find The Music You want',
                           style: Component.textStyleHomeTitle,
                           maxLines: 2,

@@ -20,6 +20,7 @@ class StringConst {
       'Download songs and listen offline anywhere and anytime';
   static const textSignUp = 'Music experience with the best app';
   static const textGoToSignIn = 'Hoặc đăng nhập tại đây ';
+  static const textGoToSignUp = 'Hoặc đăng ký tại đây ';
   static const signIn = 'Đăng nhập';
   static const textHello = 'Xin chào! Vui lòng đăng kí để tiếp tục';
   static const textHelloSignIn = 'Xin chào! Vui lòng đăng nhập để tiếp tục';
@@ -58,6 +59,6 @@ class StringConst {
     'Chưa nhập ngày sinh',
     'Ngày không được vượt quá ngày hiện tại',
   ];
-  static const String textSearch = '...';
+  static const String textSearch = 'Tìm kiếm 1 bài hát, ca sĩ hoặc album';
   static const String textModeLightDark = "Chế độ hiển thị";
 }

@@ -11,16 +11,16 @@ class Album {
   String image;
   List<Song> songs;
   // ignore: non_constant_identifier_names
-  int release_year;
-  List<Singer> singer;
+  String releaseYear;
+  List<Singer> singers;
 
   Album({
     required this.title,
     required this.image,
     required this.songs,
     // ignore: non_constant_identifier_names
-    required this.release_year,
-    required this.singer,
+    required this.releaseYear,
+    required this.singers,
   });
 
   factory Album.fromJson(Map<String, dynamic> json) => _$AlbumFromJson(json);

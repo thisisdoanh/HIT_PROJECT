@@ -1,23 +1,28 @@
-import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
+// ignore_for_file: avoid_print, await_only_futures
+
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:music_app/base_widget/function_button.dart';
+import 'package:music_app/base_widget/image.dart';
 import 'package:music_app/base_widget/info_song.dart';
 import 'package:music_app/base_widget/seekbar.dart';
 import 'package:music_app/const/component.dart';
-import 'package:music_app/const/dimen.dart';
+import 'package:music_app/controller.dart';
+import 'package:music_app/models/playlist.dart';
 import 'package:music_app/models/song.dart';
-import 'package:music_app/screens/playing/component/api_playing.dart';
 import 'package:music_app/screens/playing/component/appbar_playing.dart';
+import 'package:music_app/test.dart';
+import 'package:provider/provider.dart';
 import 'package:rxdart/rxdart.dart';
 
 class PlayMusicScreen extends StatefulWidget {
-  const PlayMusicScreen({super.key, this.song});
-
-  final Song? song;
+  const PlayMusicScreen({
+    super.key,
+  });
 
   @override
   State<PlayMusicScreen> createState() => _PlayMusicScreenState();
@@ -26,6 +31,8 @@ class PlayMusicScreen extends StatefulWidget {
 class _PlayMusicScreenState extends State<PlayMusicScreen> {
   static int _nextMediaId = 0;
   late AudioPlayer audioPlayer;
+
+  Song? song;
 
   Stream<PositionData> get _positionDataStream =>
       Rx.combineLatest3<Duration, Duration, Duration?, PositionData>(
@@ -41,101 +48,165 @@ class _PlayMusicScreenState extends State<PlayMusicScreen> {
 
   final playlist = ConcatenatingAudioSource(
     children: [
-      AudioSource.uri(
-        Uri.parse(
-            "https://res.cloudinary.com/dzlxu2dlv/video/upload/v1690228330/Music-Player-App/Audio/wg8q0hgfilva4z2ddwgm.mp3"),
-        tag: MediaItem(
-          id: '${_nextMediaId++}',
-          artist: "Sơn Tùng MTP",
-          title: "Nơi này có anh",
-          artUri: Uri.parse(
-              "https://res.cloudinary.com/dzlxu2dlv/image/upload/v1690211874/Music-Player-App/Image/mowtyybask7uomwrpdct.jpg"),
-        ),
-      ),
-      AudioSource.uri(
-        Uri.parse(
-            "https://res.cloudinary.com/dzlxu2dlv/video/upload/v1690296463/Music-Player-App/Audio/s9stlaiqelyyldpzebwc.mp3"),
-        tag: MediaItem(
-          id: '${_nextMediaId++}',
-          artist: "Hoà Minzy",
-          title: "Không Thể Cùng Nhau Suốt Kiếp",
-          artUri: Uri.parse(
-              "https://res.cloudinary.com/dzlxu2dlv/image/upload/v1690212267/Music-Player-App/Image/fnx7bbvlawadfcdazz9k.jpg"),
-        ),
-      ),
-      AudioSource.uri(
-        Uri.parse(
-            "https://res.cloudinary.com/dzlxu2dlv/video/upload/v1690306767/Music-Player-App/Audio/pjibqgsdjyxg4v7amtix.mp3"),
-        tag: MediaItem(
-          id: '${_nextMediaId++}',
-          artist: "Alan Walker",
-          title: "On My Way",
-          artUri: Uri.parse(
-              "https://res.cloudinary.com/dzlxu2dlv/image/upload/v1690213261/Music-Player-App/Image/swdam75ew7fbye5huwvs.jpg"),
-        ),
-      ),
+      // AudioSource.uri(
+      //   Uri.parse(
+      //       "https://res.cloudinary.com/dzlxu2dlv/video/upload/v1690228330/Music-Player-App/Audio/wg8q0hgfilva4z2ddwgm.mp3"),
+      //   tag: MediaItem(
+      //     id: '${_nextMediaId++}',
+      //     displaySubtitle: "Hệ thống chưa có lời bài hát",
+      //     title: "Nơi này có anh",
+      //     artist: "Sơn Tùng MTP",
+      //     artUri: Uri.parse(
+      //         "https://res.cloudinary.com/dzlxu2dlv/image/upload/v1690211874/Music-Player-App/Image/mowtyybask7uomwrpdct.jpg"),
+      //   ),
+      // ),
+      // AudioSource.uri(
+      //   Uri.parse(
+      //       "https://res.cloudinary.com/dzlxu2dlv/video/upload/v1690296792/Music-Player-App/Audio/dwyfzf1xqvyereyrd9jv.mp3"),
+      //   tag: MediaItem(
+      //     id: '${_nextMediaId++}',
+      //     displaySubtitle: "Hệ thống chưa có lời bài hát",
+      //     title: "Ánh Nắng Của Anh",
+      //     artist: "Đức Phúc",
+      //     artUri: Uri.parse(
+      //         "https://res.cloudinary.com/dzlxu2dlv/image/upload/v1690211374/Music-Player-App/Image/rofk28spmvx4pwl0yn7h.jpg"),
+      //   ),
+      // ),
+      // AudioSource.uri(
+      //   Uri.parse(
+      //       "https://res.cloudinary.com/dzlxu2dlv/video/upload/v1690296041/Music-Player-App/Audio/x2j6ts6akdvrwibqpwaf.mp3"),
+      //   tag: MediaItem(
+      //     id: '${_nextMediaId++}',
+      //     displaySubtitle: "Hệ thống chưa có lời bài hát",
+      //     title: "Rời Bỏ",
+      //     artist: "Hòa Minzy",
+      //     artUri: Uri.parse(
+      //         "https://res.cloudinary.com/dzlxu2dlv/image/upload/v1690212267/Music-Player-App/Image/fnx7bbvlawadfcdazz9k.jpg"),
+      //   ),
+      // ),
+      // AudioSource.uri(
+      //   Uri.parse(
+      //       "https://res.cloudinary.com/dzlxu2dlv/video/upload/v1690298124/Music-Player-App/Audio/jbl07lhdzb5rqwizk14i.mp3"),
+      //   tag: MediaItem(
+      //     id: '${_nextMediaId++}',
+      //     displaySubtitle: "Hệ thống chưa có lời bài hát",
+      //     title: "Cause I Love You",
+      //     artist: "Noo Phước Thịnh",
+      //     artUri: Uri.parse(
+      //         "https://res.cloudinary.com/dzlxu2dlv/image/upload/v1690211722/Music-Player-App/Image/lgzvmzpg1gwdomcqt8qm.jpg"),
+      //   ),
+      // ),
+      // AudioSource.uri(
+      //   Uri.parse(
+      //       "https://res.cloudinary.com/dzlxu2dlv/video/upload/v1690299324/Music-Player-App/Audio/jteuop1nmylbdxrtzg7y.mp3"),
+      //   tag: MediaItem(
+      //     id: '${_nextMediaId++}',
+      //     displaySubtitle: "Hệ thống chưa có lời bài hát",
+      //     title: "Người Theo Đuổi Ánh Sáng",
+      //     artist: "Uông Tô Lang",
+      //     artUri: Uri.parse(
+      //         "https://res.cloudinary.com/dzlxu2dlv/image/upload/v1690212477/Music-Player-App/Image/jbu7br800kxsfptknelc.jpg"),
+      //   ),
+      // ),
     ],
   );
 
   @override
   void initState() {
-    super.initState();
-
-    audioPlayer = AudioPlayer();
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   audioPlayer = Provider.of<Controller>(context, listen: false).audioPlayer;
+    //   print("vào 1");
+    //   // song = ModalRoute.of(context)?.settings.arguments as Song?;
+    // });
+    // audioPlayer = AudioPlayer();
+    // print(audioPlayer);
+    AudioManager audioManager = AudioManager();
+    audioPlayer = audioManager.audioPlayer;
 
     _init();
 
-    if (widget.song != null) {
-      String singer = widget.song!.singers
-          .map((singer) => singer.name.toString())
-          .join("+");
-      playlist.add(
-        AudioSource.uri(
-          Uri.parse(widget.song!.filePath),
-          tag: MediaItem(
-            id: '${_nextMediaId++}',
-            displaySubtitle: widget.song?.lyrics,
-            title: widget.song!.title,
-            artist: singer,
-            artUri: Uri.parse(widget.song!.image),
-          ),
-        ),
-      );
-    }
+    super.initState();
   }
 
-  Future<void> _init() async {
+  Future<dynamic> _init() async {
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   // await Future.delayed(Duration(milliseconds: 10));
+    //   audioPlayer =
+    //       Provider.of<Controller>(context, listen: false).audioPlayer!;
+    //   print(audioPlayer);
+    //   // await controller.i; // Khởi tạo audioPlayer trong controller
+
+    //   // audioPlayer = controller.audioPlayer!;
+    // });
+    // await Fu
+    // await Future.delayed(
+    //   Duration(milliseconds: 10),
+    // );
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      song = ModalRoute.of(context)?.settings.arguments as Song?;
+    });
+    // await Future.delayed(Duration(seconds: 2));
+    // print("vào 2");
+
+    // final playlistSong = songManager.getSongs();
+    SongManager songManager = SongManager();
+    ConcatenatingAudioSource playlistSong = songManager.playlist;
+
+    await Future.delayed(Duration.zero, () async {
+      print(playlistSong.runtimeType);
+
+      print("object");
+      // print("vào 3");
+      if (song != null || playlistSong != null) {
+        songManager.addSong(song!);
+        playlistSong = songManager.playlist;
+
+        print(playlistSong.length);
+        print("object1");
+        audioPlayer.playbackEventStream.listen(
+          (event) {
+            print("Vào envent");
+            if (event.processingState == ProcessingState.completed) {
+              print("Vào Processing");
+              Random rd = Random();
+              audioPlayer.seek(Duration.zero,
+                  index: rd.nextInt(playlistSong.length - 1));
+              audioPlayer.play();
+            }
+          },
+          onError: (Object e, StackTrace stackTrace) {
+            print('A stream error occurred: $e');
+          },
+        );
+
+        try {
+          await audioPlayer.setAudioSource(playlistSong);
+          audioPlayer.seek(Duration.zero, index: playlistSong.length - 1);
+          audioPlayer.play();
+        } catch (e, stackTrace) {
+          // Catch load errors: 404, invalid url ...
+          print("Error loading playlist: $e");
+          print(stackTrace);
+        }
+      }
+    });
     // setState(() {});
-
-    audioPlayer.playbackEventStream.listen(
-      (event) {},
-      onError: (Object e, StackTrace stackTrace) {
-        print('A stream error occurred: $e');
-      },
-    );
-
-    try {
-      await audioPlayer.setAudioSource(playlist);
-    } catch (e, stackTrace) {
-      // Catch load errors: 404, invalid url ...
-      print("Error loading playlist: $e");
-      print(stackTrace);
-    }
   }
 
   @override
   void dispose() {
     super.dispose();
-    audioPlayer.dispose();
+    // audioPlayer.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    // final Song? song = ModalRoute.of(context)?.settings.arguments as Song?;
     return Scaffold(
-      appBar: AppBarPlaying(),
+      appBar: const AppBarPlaying(),
       body: LayoutBuilder(builder: (context, constraints) {
         return SingleChildScrollView(
-          padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+          padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
           child: ConstrainedBox(
             constraints: BoxConstraints(
               minHeight: constraints.maxHeight - 10,
@@ -154,7 +225,7 @@ class _PlayMusicScreenState extends State<PlayMusicScreen> {
                       return SongInfo(
                         imageUrl: mediaData.artUri.toString(),
                         tittle: mediaData.title,
-                        artist: mediaData.artist.toString() ?? " ",
+                        artist: mediaData.artist.toString(),
                         lyrics: '',
                       );
                     },
@@ -163,8 +234,8 @@ class _PlayMusicScreenState extends State<PlayMusicScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       CupertinoButton(
-                        padding: EdgeInsets.all(0),
-                        child: Icon(
+                        padding: const EdgeInsets.all(0),
+                        child: const Icon(
                           Icons.download_rounded,
                           color: Colors.white,
                         ),
@@ -197,7 +268,7 @@ class _PlayMusicScreenState extends State<PlayMusicScreen> {
                           final index = repeatMode.indexOf(loopMode);
 
                           return CupertinoButton(
-                            padding: EdgeInsets.all(0),
+                            padding: const EdgeInsets.all(0),
                             child: icons[index],
                             onPressed: () {
                               audioPlayer.setLoopMode(repeatMode[
@@ -208,8 +279,9 @@ class _PlayMusicScreenState extends State<PlayMusicScreen> {
                         },
                       ),
                       CupertinoButton(
-                        padding: EdgeInsets.all(0),
-                        child: Icon(Icons.menu_rounded, color: Colors.white),
+                        padding: const EdgeInsets.all(0),
+                        child:
+                            const Icon(Icons.menu_rounded, color: Colors.white),
                         onPressed: () {},
                       ),
                       StreamBuilder<bool>(
@@ -286,7 +358,42 @@ class _PlayMusicScreenState extends State<PlayMusicScreen> {
                         ),
                       ),
                     ),
-                    onPressed: () {
+                    onPressed: () async {
+                      AudioSource audioSource = playlist.sequence.last;
+                      OverlayEntry overlayEntry;
+                      overlayEntry = OverlayEntry(
+                        builder: (context) => Positioned(
+                          top: MediaQuery.of(context).size.height * 0.9,
+                          child: Material(
+                            child: Container(
+                              height: MediaQuery.of(context).size.height * 0.1,
+                              width: MediaQuery.of(context).size.width,
+                              color: Colors.amber,
+                              child: Column(
+                                children: [
+                                  // CupertinoButton(
+                                  //   child: Icon(Icons.delete),
+                                  //   onPressed: () {},
+                                  // ),
+
+                                  FloatinngWidget(
+                                    audioPlayer: audioPlayer,
+                                  ),
+
+                                  // Text('Hello'),
+                                  // Text('data'),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+
+                      Overlay.of(context).insert(overlayEntry);
+                      await Future.delayed(Duration(
+                        seconds: 5,
+                      ));
+                      // overlayEntry.remove();
                       showModalBottomSheet(
                         // isScrollControlled: true,
                         context: context,
@@ -294,10 +401,10 @@ class _PlayMusicScreenState extends State<PlayMusicScreen> {
                           return SizedBox(
                             height: MediaQuery.of(context).size.height * 0.4,
                             child: SingleChildScrollView(
-                              padding: EdgeInsets.all(16),
+                              padding: const EdgeInsets.all(16),
                               child: Center(
                                 child: Text(
-                                  widget.song?.lyrics ??
+                                  song?.lyrics ??
                                       'Hệ thống chưa có lời bài hát!!!',
                                   style: Component.textStyleText,
                                 ),
