@@ -5,6 +5,7 @@ import 'package:music_app/call_api/api_album.dart';
 import 'package:music_app/call_api/api_singer.dart';
 import 'package:music_app/const/color.dart';
 import 'package:music_app/const/component.dart';
+import 'package:music_app/const/routes_screen.dart';
 import 'package:music_app/controller.dart';
 import 'package:music_app/models/album.dart';
 import 'package:provider/provider.dart';
@@ -38,16 +39,6 @@ class _PopularMusicState extends State<PopularMusic> {
   }
 
   Future<void> fetch() async {
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
-    //   context.read<Controller>().startAudioPlayer();
-    //   // song = ModalRoute.of(context)?.settings.arguments as Song?;
-    // });
-    // Future.delayed(
-    //   Duration.zero,
-    //   () async {
-
-    //   },
-    // );
     songs = await ApiSong().getSongs();
     singers = await ApiSinger().getSingers();
     albums = await ApiAlbum().getAlbums();
@@ -161,7 +152,6 @@ class _PopularMusicState extends State<PopularMusic> {
                           : (pressButton == 2
                               ? singers.length
                               : albums.length))),
-
             ],
           ),
         ),
@@ -176,7 +166,8 @@ class _PopularMusicState extends State<PopularMusic> {
           // await Future.delayed(
           //   Duration(seconds: 2),
           // );
-          Navigator.pushNamed(context, '/test', arguments: song);
+          Navigator.pushNamed(context, RoutesScreen.routesPlaying,
+              arguments: song);
         },
         child: SizedBox(
           height: 178,

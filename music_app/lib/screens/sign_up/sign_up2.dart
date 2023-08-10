@@ -165,7 +165,7 @@ class _SignUp2ScreenState extends State<SignUp2Screen> {
                         DateTime dateOfBirth =
                             DateFormat("dd/MM/yyyy").parse(controllerDate.text);
                         print(dateOfBirth);
-                        ApiSignUp().regisAccount(
+                        bool check = await ApiSignUp().regisAccount(
                           dataSignUp1["firstName"]!,
                           dataSignUp1["lastName"]!,
                           dataSignUp1["email"]!,
@@ -176,7 +176,7 @@ class _SignUp2ScreenState extends State<SignUp2Screen> {
                           context,
                         );
 
-                        if (keyForm.currentState!.validate()) {
+                        if (keyForm.currentState!.validate() && check == true) {
                           // context.read<Controller>().startAudioPlayer();
                           Navigator.pushNamed(
                             context,

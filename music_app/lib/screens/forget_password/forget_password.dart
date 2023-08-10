@@ -12,14 +12,11 @@ import 'package:music_app/const/string.dart';
 import 'package:music_app/screens/forget_password/component/api_forget.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {
-  const ForgetPasswordScreen({super.key});
-  // final TextEditingController controllerUserName = TextEditingController();
-  // final TextEditingController controllerOTP = TextEditingController();
+  ForgetPasswordScreen({super.key});
+  final TextEditingController controllerUserName = TextEditingController();
+  final TextEditingController controllerOTP = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    final TextEditingController controllerUserName = TextEditingController();
-
-    final TextEditingController controllerOTP = TextEditingController();
     return Scaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -112,6 +109,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                                         arguments: controllerUserName.text,
                                       );
                                     }
+                                    controllerOTP.clear();
                                   },
                                   height: Dimen.heightButtonLarge,
                                   width: Dimen.widthButtonSmall,
