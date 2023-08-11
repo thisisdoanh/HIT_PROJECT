@@ -7,7 +7,10 @@ import 'package:music_app/const/color.dart';
 import 'package:music_app/const/component.dart';
 import 'package:music_app/const/routes_screen.dart';
 import 'package:music_app/controller.dart';
+import 'package:music_app/main.dart';
 import 'package:music_app/models/album.dart';
+import 'package:music_app/screens/playing/playing.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
 import '../../../models/singer.dart';
 import '../../../models/song.dart';
@@ -42,7 +45,12 @@ class _PopularMusicState extends State<PopularMusic> {
     songs = await ApiSong().getSongs();
     singers = await ApiSinger().getSingers();
     albums = await ApiAlbum().getAlbums();
-    setState(() {});
+    await Future.delayed(
+      Duration.zero,
+      () {
+        setState(() {});
+      },
+    );
   }
 
   @override
@@ -60,7 +68,7 @@ class _PopularMusicState extends State<PopularMusic> {
             BaseButton1(
               text: 'Song',
               function: () {
-                print("object");
+                // print("object");
                 pressButton = 1;
                 colorButton = [
                   ColorConst.colorButton,
@@ -133,6 +141,7 @@ class _PopularMusicState extends State<PopularMusic> {
                       shrinkWrap: true,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (BuildContext context, int index) {
+                        print(songs[index]);
                         // return listSong(songs[index]);
                         return pressButton == 1
                             ? listSong(songs[index])
@@ -166,8 +175,17 @@ class _PopularMusicState extends State<PopularMusic> {
           // await Future.delayed(
           //   Duration(seconds: 2),
           // );
-          Navigator.pushNamed(context, RoutesScreen.routesPlaying,
-              arguments: song);
+          // Navigator.pushNamed(context, RoutesScreen.routesPlaying,
+          //     arguments: song);
+
+          PersistentNavBarNavigator.pushNewScreenWithRouteSettings(
+            context,
+            settings: RouteSettings(
+                name: RoutesScreen.routesPlaying, arguments: song),
+            screen: PlayMusicScreen(),
+            withNavBar: true,
+            pageTransitionAnimation: PageTransitionAnimation.cupertino,
+          );
         },
         child: SizedBox(
           height: 178,

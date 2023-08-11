@@ -11,4 +11,6 @@ class UrlApi {
   static const resetPassword = '/auth/reset-password-otp';
   static const tokenAccess = '';
   static const favoriteSongs = '/users/favorite-songs';
+  static const infoUser = '/users/profile';
+  static const findSong = '/songs/?populate=singers&title=';
 }

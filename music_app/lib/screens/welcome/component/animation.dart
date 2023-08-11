@@ -47,8 +47,18 @@ class _AnimationWelcomeState extends State<AnimationWelcome>
     SharedPreferences preferences = await SharedPreferences.getInstance();
     bool isFirstOpen = preferences.getBool('isFirstOpen') ?? true;
 
-    isFirstOpen ? Navigator.pushReplacementNamed(context, RoutesScreen.routesOnboarding1) : Navigator.pushReplacementNamed(context, RoutesScreen.routesSignIn); 
-    
+    isFirstOpen
+        ? Navigator.pushReplacementNamed(
+            context, RoutesScreen.routesOnboarding1)
+        : {
+            // Navigator.pop(context),
+            // Navigator.pushNamed(context, RoutesScreen.routesSignIn),
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              RoutesScreen.routesSignIn,
+              (route) => false,
+            ),
+          };
   }
 
   @override

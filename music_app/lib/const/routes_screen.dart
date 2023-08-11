@@ -12,4 +12,5 @@ class RoutesScreen {
   static const String routesResetPassword = '/resetPassword';
   static const String routesAlbum = '/album';
   static const String routesPlaying = '/playing';
+  static const String routesManager = '/manager';
 }
