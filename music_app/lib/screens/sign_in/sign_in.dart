@@ -188,8 +188,16 @@ class SignInScreen extends StatelessWidget {
                         StringConst.signup,
                       ),
                       onPressed: () {
-                        Navigator.pushNamed(
-                            context, RoutesScreen.routesSignUp1);
+                        // Navigator.pushNamed(
+                        //     context, RoutesScreen.routesManager);
+                        // Navigator.pop(context);
+                        // Navigator.pushNamed(
+                        //     context, RoutesScreen.routesHome);
+                        Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          RoutesScreen.routesHome,
+                          (route) => false,
+                        );
                       },
                     ),
                   ],

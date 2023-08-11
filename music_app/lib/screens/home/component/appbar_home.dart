@@ -12,11 +12,11 @@ class AppBarHome extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return BaseAppbar(
       title: 'Home',
-      actions: IconConst.iconProfile,
-      functionActions: () => Navigator.pushNamed(
-        context,
-        RoutesScreen.routesProfile,
-      ),
+      // actions: IconConst.iconProfile,
+      // functionActions: () => Navigator.pushNamed(
+      //   context,
+      //   RoutesScreen.routesProfile,
+      // ),
     );
   }
 }

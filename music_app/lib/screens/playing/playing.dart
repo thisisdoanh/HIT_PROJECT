@@ -165,12 +165,13 @@ class _PlayMusicScreenState extends State<PlayMusicScreen> {
         print("object1");
         audioPlayer.playbackEventStream.listen(
           (event) {
-            print("Vào envent");
+            // print("Vào envent");
+            print(event.processingState);
             if (event.processingState == ProcessingState.completed) {
               print("Vào Processing");
               Random rd = Random();
               audioPlayer.seek(Duration.zero,
-                  index: rd.nextInt(playlistSong.length - 1));
+                  index: rd.nextInt(playlist.length - 1));
               audioPlayer.play();
             }
           },
@@ -376,9 +377,9 @@ class _PlayMusicScreenState extends State<PlayMusicScreen> {
                                   //   onPressed: () {},
                                   // ),
 
-                                  FloatinngWidget(
-                                    audioPlayer: audioPlayer,
-                                  ),
+                                  // FloatinngWidget(
+                                  //   audioPlayer: audioPlayer,
+                                  // ),
 
                                   // Text('Hello'),
                                   // Text('data'),
@@ -389,10 +390,10 @@ class _PlayMusicScreenState extends State<PlayMusicScreen> {
                         ),
                       );
 
-                      Overlay.of(context).insert(overlayEntry);
-                      await Future.delayed(Duration(
-                        seconds: 5,
-                      ));
+                      // Overlay.of(context).insert(overlayEntry);
+                      // await Future.delayed(Duration(
+                      //   seconds: 5,
+                      // ));
                       // overlayEntry.remove();
                       showModalBottomSheet(
                         // isScrollControlled: true,

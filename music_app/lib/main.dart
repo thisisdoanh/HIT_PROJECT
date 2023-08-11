@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:music_app/const/routes_screen.dart';
+import 'package:music_app/screens/bottom_navigation_bar_manager.dart';
 import 'package:music_app/screens/forget_password/forget_password.dart';
 import 'package:music_app/screens/forget_password/reset_password.dart';
 import 'package:music_app/screens/album/album.dart';
@@ -10,7 +11,7 @@ import 'package:music_app/screens/on_boarding/on_boarding2.dart';
 import 'package:music_app/screens/on_boarding/on_boarding3.dart';
 import 'package:music_app/screens/playing/playing.dart';
 import 'package:music_app/screens/playing/test.dart';
-import 'package:music_app/screens/setting/setting.dart';
+import 'package:music_app/screens/profile/profile.dart';
 import 'package:music_app/screens/sign_in/component/google_sign_in_provider.dart';
 import 'package:music_app/screens/sign_in/sign_in.dart';
 import 'package:music_app/screens/sign_up/sign_up1.dart';
@@ -89,9 +90,11 @@ class _MainAppState extends State<MainApp> {
             case RoutesScreen.routesSignIn:
               return Component().navigate(SignInScreen());
             case RoutesScreen.routesProfile:
-              return MaterialPageRoute(
-                builder: (context) => const Profile(),
-              );
+              return Component().navigate(SignInScreen());
+            // case RoutesScreen.routesProfile:
+            //   return MaterialPageRoute(
+            //     builder: (context) => const Profile(),
+            //   );
             case RoutesScreen.routesAlbum:
               return Component().navigate(const AlbumScreen());
             case RoutesScreen.routesPlaying:
@@ -102,6 +105,8 @@ class _MainAppState extends State<MainApp> {
             case RoutesScreen.routesResetPassword:
               return Component()
                   .navigate(ResetPasswordScreen(), settings.arguments);
+            case RoutesScreen.routesManager:
+              return Component().navigate(BottomNavigationBarManager());
             // case '/test':
             //   return Component().navigate(Test());
             default:

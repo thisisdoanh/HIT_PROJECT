@@ -22,5 +22,5 @@ class Dimen {
   static const double heightIconSignUp = 32;
   static const double widthIconAction = 15;
   static const double heightIconAction = 9;
-  static const double sizeImageUser = 85;
+  static const double sizeImageUser = 174;
 }

@@ -42,7 +42,11 @@ class OnBoarding3Screen extends StatelessWidget {
                 SharedPreferences preferences =
                     await SharedPreferences.getInstance();
                 preferences.setBool('isFirstOpen', false);
-                Navigator.pushNamed(context, RoutesScreen.routesSignUp1);
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  RoutesScreen.routesSignUp1,
+                  (route) => false,
+                );
               },
               height: Dimen.heightButtonLarge,
               width: MediaQuery.of(context).size.width * 0.95,

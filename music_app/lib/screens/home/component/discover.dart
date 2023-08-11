@@ -10,7 +10,7 @@ class Discover extends StatelessWidget {
     return const Column(
       children: [
         SizedBox(
-          height: 32,
+          height: 20,
         ),
         Row(
           children: [
@@ -24,7 +24,7 @@ class Discover extends StatelessWidget {
           ],
         ),
         SizedBox(
-          height: 30,
+          height: 20,
         ),
         InkWell(
           child: Stack(

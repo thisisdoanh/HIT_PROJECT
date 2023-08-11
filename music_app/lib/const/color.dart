@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ColorConst {
-  static const Color colorButton = Color.fromARGB(255, 199, 8, 107);
+  static const Color colorButton = Color.fromARGB(255, 220, 62, 143);
   static const Color colorButton1 = Color.fromARGB(32, 12, 64, 0);
   static const Color colorTextButton = Color.fromARGB(255, 255, 255, 255);
   static Color primaryColorTextFormField =
