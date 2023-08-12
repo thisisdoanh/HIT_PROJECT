@@ -1,43 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:music_app/base_widget/seekbar.dart';
-import 'package:rxdart/rxdart.dart';
 
-class FloatinngWidget extends StatefulWidget {
-  const FloatinngWidget({Key? key, required this.audioPlayer})
-      : super(key: key);
+class FloatingWidget extends StatefulWidget {
   final AudioPlayer audioPlayer;
 
+  FloatingWidget({required this.audioPlayer});
+
   @override
-  State<FloatinngWidget> createState() => _FloatinngWidgetState();
+  _FloatinngWidgetState createState() => _FloatinngWidgetState();
 }
 
-class _FloatinngWidgetState extends State<FloatinngWidget> {
+class _FloatinngWidgetState extends State<FloatingWidget> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<Duration>(
       stream: widget.audioPlayer.positionStream,
       builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          final position = snapshot.data!;
-          final totalDuration = widget.audioPlayer.duration ?? Duration.zero;
-          final progress = position.inMilliseconds.toDouble();
-          final total = totalDuration.inMilliseconds.toDouble();
+        final position = snapshot.data;
+        final totalDuration = widget.audioPlayer.duration ?? Duration.zero;
+        final progress = position?.inMilliseconds.toDouble() ?? 0.0;
+        final total = totalDuration.inMilliseconds.toDouble();
 
-          return LinearProgressIndicator(
-            value: progress / total ?? 0,
-            minHeight: 5.0,
-            backgroundColor: Colors.grey,
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
-          );
-        } else {
-          return LinearProgressIndicator(
-            value: 0.0,
-            minHeight: 5.0,
-            backgroundColor: Colors.grey,
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
-          );
-        }
+        return LinearProgressIndicator(
+          value: total != 0 ? progress / total : 0,
+          minHeight: 5.0,
+          backgroundColor: Colors.grey,
+          valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+        );
       },
     );
   }

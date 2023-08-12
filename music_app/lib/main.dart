@@ -44,6 +44,7 @@ Future<void> main() async {
         Provider<AudioManager>(
           create: (_) => AudioManager(),
         ),
+        ChangeNotifierProvider(create: (_) => ControllerProvider()),
       ],
       child: MainApp(
         isFirstOpen: isFirstOpen,

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:music_app/base_widget/text_form_field_surfix_icon.dart';
 import 'package:music_app/const/color.dart';
+import 'package:music_app/const/routes_screen.dart';
 import 'package:music_app/const/string.dart';
+import 'package:music_app/models/song.dart';
 import 'package:music_app/screens/home/component/api_find_song.dart';
+import 'package:music_app/screens/search_result/search_result.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import '../const/component.dart';
 import '../const/dimen.dart';
@@ -35,7 +39,7 @@ class BaseSearchBar extends StatelessWidget {
           ),
           readOnly: false,
           onFieldSubmitted: (value) {
-            _submitForm();
+            _submitForm(context);
           },
         ),
       ),
@@ -57,9 +61,18 @@ class BaseSearchBar extends StatelessWidget {
     // );
   }
 
-  void _submitForm() {
+  void _submitForm(context) async {
     if (_formKey.currentState!.validate()) {
-      ApiFindSong().findSong(controller.text);
+      List<Song> listSongs = await ApiFindSong().findSong(controller.text);
+      PersistentNavBarNavigator.pushNewScreenWithRouteSettings(
+        context,
+        settings: RouteSettings(name: RoutesScreen.routesSearchResult),
+        screen: SearchResultScreen(
+          listSongs: listSongs,
+        ),
+        withNavBar: true,
+        pageTransitionAnimation: PageTransitionAnimation.cupertino,
+      );
     }
   }
 }

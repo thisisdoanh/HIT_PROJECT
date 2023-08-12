@@ -182,9 +182,12 @@ class _SignUp2ScreenState extends State<SignUp2Screen> {
                           //   context,
                           //   RoutesScreen.routesManager,
                           // );
-                          Navigator.pop(context);
-                          Navigator.pushNamed(
-                              context, RoutesScreen.routesManager);
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            RoutesScreen.routesManager,
+                            (route) => false,
+                          );
+
                           // Navigator.pushNamedAndRemoveUntil(
                           //   context,
                           //   RoutesScreen.routesManager,

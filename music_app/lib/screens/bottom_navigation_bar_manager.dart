@@ -4,6 +4,7 @@ import 'package:music_app/screens/favorite/favorite.dart';
 import 'package:music_app/screens/home/home.dart';
 import 'package:music_app/screens/playing/playing.dart';
 import 'package:music_app/screens/profile/profile.dart';
+import 'package:music_app/screens/setting/setting.dart';
 import 'package:music_app/screens/sign_in/sign_in.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
@@ -13,11 +14,11 @@ class BottomNavigationBarManager extends StatelessWidget {
       PersistentTabController(initialIndex: 0);
 
   List<Widget> _buildScreens() {
-    return [
+    return const [
       HomeScreen(),
       Profile(),
       FavoriteScreen(),
-      SignInScreen(),
+      SettingScreen(),
     ];
   }
 
