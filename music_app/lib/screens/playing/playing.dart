@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print, await_only_futures
+// ignore_for_file: avoid_print, await_only_futures, unnecessary_null_comparison
 
 import 'dart:math';
 
@@ -7,16 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:music_app/base_widget/function_button.dart';
-import 'package:music_app/base_widget/image.dart';
 import 'package:music_app/base_widget/info_song.dart';
 import 'package:music_app/base_widget/seekbar.dart';
 import 'package:music_app/const/component.dart';
 import 'package:music_app/controller.dart';
-import 'package:music_app/models/playlist.dart';
 import 'package:music_app/models/song.dart';
 import 'package:music_app/screens/playing/component/appbar_playing.dart';
-import 'package:music_app/test.dart';
-import 'package:provider/provider.dart';
 import 'package:rxdart/rxdart.dart';
 
 class PlayMusicScreen extends StatefulWidget {
@@ -30,7 +26,6 @@ class PlayMusicScreen extends StatefulWidget {
 
 class _PlayMusicScreenState extends State<PlayMusicScreen> {
   final GlobalKey<ScaffoldState> scaffoldState = GlobalKey<ScaffoldState>();
-  static int _nextMediaId = 0;
   late AudioPlayer audioPlayer;
 
   Song? song;

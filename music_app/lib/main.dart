@@ -11,15 +11,11 @@ import 'package:music_app/screens/on_boarding/on_boarding1.dart';
 import 'package:music_app/screens/on_boarding/on_boarding2.dart';
 import 'package:music_app/screens/on_boarding/on_boarding3.dart';
 import 'package:music_app/screens/playing/playing.dart';
-import 'package:music_app/screens/playing/test.dart';
-import 'package:music_app/screens/profile/profile.dart';
-import 'package:music_app/screens/sign_in/component/google_sign_in_provider.dart';
 import 'package:music_app/screens/sign_in/sign_in.dart';
 import 'package:music_app/screens/sign_up/sign_up1.dart';
 import 'package:music_app/screens/sign_up/sign_up2.dart';
 import 'package:music_app/screens/welcome/welcome_screen.dart';
 import 'package:music_app/const/component.dart';
-import 'package:music_app/test.dart';
 import 'package:provider/provider.dart';
 import 'package:music_app/controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -111,9 +107,9 @@ class _MainAppState extends State<MainApp> {
             case RoutesScreen.routesManager:
               return Component().navigate(BottomNavigationBarManager());
             case RoutesScreen.routesFavorite:
-              return Component().navigate(FavoriteScreen());
-            case '/test':
-              return Component().navigate(Test());
+              return Component().navigate(const FavoriteScreen());
+            // case '/test':
+            //   return Component().navigate(Test());
             default:
               return null;
           }

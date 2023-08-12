@@ -4,8 +4,6 @@ import 'package:music_app/base_widget/button.dart';
 import 'package:music_app/base_widget/image.dart';
 import 'package:music_app/const/component.dart';
 import 'package:music_app/const/dimen.dart';
-import 'package:music_app/const/routes_screen.dart';
-import 'package:music_app/const/string.dart';
 import 'package:music_app/data_api/data_api.dart';
 import 'package:music_app/screens/profile/component/api_info.dart';
 import 'package:music_app/screens/profile/component/appbar_setting.dart';

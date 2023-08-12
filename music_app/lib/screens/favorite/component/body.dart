@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:music_app/screens/favorite/component/api_favorite.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
-
 import '../../../base_widget/button_nocolor.dart';
 import '../../../base_widget/image.dart';
-import '../../../call_api/api_album.dart';
-import '../../../call_api/api_singer.dart';
 import '../../../const/color.dart';
 import '../../../const/component.dart';
 import '../../../const/routes_screen.dart';
-import '../../../models/album.dart';
-import '../../../models/singer.dart';
 import '../../../models/song.dart';
 import '../../playing/playing.dart';
 
@@ -28,9 +23,9 @@ class _BodyFavoriteState extends State<BodyFavorite> {
     ColorConst.colorButton1,
   ];
   static List<Song> songs = [];
-  static List<Singer> singers = [];
-  static List<Album> albums = [];
-  static int pressButton = 1;
+  // static List<Singer> singers = [];
+  // static List<Album> albums = [];
+  // static int pressButton = 1;
 
   @override
   void initState() {
@@ -40,8 +35,8 @@ class _BodyFavoriteState extends State<BodyFavorite> {
 
   Future<void> fetch() async {
     songs = await ApiFavorite().getFavoriteSong(context);
-    singers = await ApiSinger().getSingers();
-    albums = await ApiAlbum().getAlbums();
+    // singers = await ApiSinger().getSingers();
+    // albums = await ApiAlbum().getAlbums();
     await Future.delayed(
       Duration.zero,
       () {
@@ -66,7 +61,7 @@ class _BodyFavoriteState extends State<BodyFavorite> {
               text: 'Song',
               function: () {
                 // print("object");
-                pressButton = 1;
+                // pressButton = 1;
                 colorButton = [
                   ColorConst.colorButton,
                   ColorConst.colorButton1,
@@ -84,43 +79,43 @@ class _BodyFavoriteState extends State<BodyFavorite> {
             const SizedBox(
               width: 10,
             ),
-            BaseButton1(
-              text: 'Singer',
-              function: () {
-                pressButton = 2;
-                colorButton = [
-                  ColorConst.colorButton1,
-                  ColorConst.colorButton,
-                  ColorConst.colorButton1,
-                ];
-                setState(() {});
-              },
-              height: 50,
-              width: 83,
-              textStyle: Component.textStyleText,
-              borderRadius: 20,
-              color: colorButton[1],
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            BaseButton1(
-              text: 'Album',
-              function: () {
-                pressButton = 3;
-                colorButton = [
-                  ColorConst.colorButton1,
-                  ColorConst.colorButton1,
-                  ColorConst.colorButton,
-                ];
-                setState(() {});
-              },
-              height: 50,
-              width: 83,
-              textStyle: Component.textStyleText,
-              borderRadius: 20,
-              color: colorButton[2],
-            ),
+            // BaseButton1(
+            //   text: 'Singer',
+            //   function: () {
+            //     pressButton = 2;
+            //     colorButton = [
+            //       ColorConst.colorButton1,
+            //       ColorConst.colorButton,
+            //       ColorConst.colorButton1,
+            //     ];
+            //     setState(() {});
+            //   },
+            //   height: 50,
+            //   width: 83,
+            //   textStyle: Component.textStyleText,
+            //   borderRadius: 20,
+            //   color: colorButton[1],
+            // ),
+            // const SizedBox(
+            //   width: 10,
+            // ),
+            // BaseButton1(
+            //   text: 'Album',
+            //   function: () {
+            //     pressButton = 3;
+            //     colorButton = [
+            //       ColorConst.colorButton1,
+            //       ColorConst.colorButton1,
+            //       ColorConst.colorButton,
+            //     ];
+            //     setState(() {});
+            //   },
+            //   height: 50,
+            //   width: 83,
+            //   textStyle: Component.textStyleText,
+            //   borderRadius: 20,
+            //   color: colorButton[2],
+            // ),
           ],
         ),
         const SizedBox(
@@ -175,7 +170,7 @@ class _BodyFavoriteState extends State<BodyFavorite> {
           context,
           settings:
               RouteSettings(name: RoutesScreen.routesPlaying, arguments: song),
-          screen: PlayMusicScreen(),
+          screen: const PlayMusicScreen(),
           withNavBar: true,
           pageTransitionAnimation: PageTransitionAnimation.cupertino,
         );

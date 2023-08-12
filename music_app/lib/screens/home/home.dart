@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:music_app/base_widget/search.dart';
 import 'package:music_app/const/dimen.dart';
-import 'package:music_app/screens/home/component/api_find_song.dart';
 import 'package:music_app/screens/home/component/discover.dart';
 import 'package:music_app/screens/home/component/popular_music.dart';
-import 'package:music_app/test.dart';
-
 import 'component/appbar_home.dart';
 
 class HomeScreen extends StatefulWidget {

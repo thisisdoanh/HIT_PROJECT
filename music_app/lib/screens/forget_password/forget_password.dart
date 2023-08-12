@@ -1,6 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:music_app/base_widget/button.dart';
 import 'package:music_app/base_widget/image.dart';
@@ -48,7 +47,9 @@ class ForgetPasswordScreen extends StatelessWidget {
             BaseTextFormField(
               text: 'Nhập email',
               width: MediaQuery.of(context).size.width * 0.95,
-              validator: (value) {},
+              validator: (value) {
+                return null;
+              },
               controller: controllerUserName,
               textInputType: TextInputType.text,
               isHide: false,
@@ -84,7 +85,9 @@ class ForgetPasswordScreen extends StatelessWidget {
                               BaseTextFormField(
                                 text: 'Nhập OTP',
                                 width: MediaQuery.of(context).size.width * 0.9,
-                                validator: (value) {},
+                                validator: (value) {
+                                  return null;
+                                },
                                 controller: controllerOTP,
                                 textInputType: TextInputType.number,
                                 isHide: false,

@@ -2,10 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:music_app/screens/favorite/favorite.dart';
 import 'package:music_app/screens/home/home.dart';
-import 'package:music_app/screens/playing/playing.dart';
 import 'package:music_app/screens/profile/profile.dart';
 import 'package:music_app/screens/setting/setting.dart';
-import 'package:music_app/screens/sign_in/sign_in.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class BottomNavigationBarManager extends StatelessWidget {
@@ -25,25 +23,25 @@ class BottomNavigationBarManager extends StatelessWidget {
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.home),
+        icon: const Icon(Icons.home),
         title: ("Home"),
         activeColorPrimary: Colors.orange[700]!,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.person),
+        icon: const Icon(Icons.person),
         title: ("Profile"),
         activeColorPrimary: Colors.orange[700]!,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.favorite),
+        icon: const Icon(Icons.favorite),
         title: ("Liked"),
         activeColorPrimary: Colors.orange[700]!,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.settings),
+        icon: const Icon(Icons.settings),
         title: ("Settings"),
         activeColorPrimary: Colors.orange[700]!,
         inactiveColorPrimary: CupertinoColors.systemGrey,

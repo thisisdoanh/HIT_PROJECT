@@ -19,7 +19,6 @@ class ApiFindSong {
       songs = songs.take(10).toList();
       return songs;
     } catch (e) {
-      print(e.toString());
       return null;
     }
   }

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -13,9 +15,7 @@ import 'package:music_app/const/component.dart';
 import 'package:music_app/const/dimen.dart';
 import 'package:music_app/const/routes_screen.dart';
 import 'package:music_app/const/string.dart';
-import 'package:music_app/controller.dart';
 import 'package:music_app/screens/sign_up/component/api_signup.dart';
-import 'package:provider/provider.dart';
 
 class SignUp2Screen extends StatefulWidget {
   const SignUp2Screen({super.key});
@@ -161,10 +161,8 @@ class _SignUp2ScreenState extends State<SignUp2Screen> {
                             ModalRoute.of(context)!.settings.arguments
                                 as Map<String, String>;
                         if (keyForm.currentState!.validate()) {}
-                        print(controllerDate.text);
                         DateTime dateOfBirth =
                             DateFormat("dd/MM/yyyy").parse(controllerDate.text);
-                        print(dateOfBirth);
                         bool check = await ApiSignUp().regisAccount(
                           dataSignUp1["firstName"]!,
                           dataSignUp1["lastName"]!,

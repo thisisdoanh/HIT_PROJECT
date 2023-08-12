@@ -53,7 +53,9 @@ class ResetPasswordScreen extends StatelessWidget {
             BaseTextFormField(
               text: StringConst.textPass,
               width: MediaQuery.of(context).size.width * 0.95,
-              validator: (value) {},
+              validator: (value) {
+                return null;
+              },
               controller: controllerPass,
               textInputType: TextInputType.text,
               isHide: false,
@@ -64,7 +66,9 @@ class ResetPasswordScreen extends StatelessWidget {
             BaseTextFormField(
               text: StringConst.textPass,
               width: MediaQuery.of(context).size.width * 0.95,
-              validator: (value) {},
+              validator: (value) {
+                return null;
+              },
               controller: controllerConfirmPass,
               textInputType: TextInputType.text,
               isHide: false,

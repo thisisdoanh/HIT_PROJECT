@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:music_app/base_widget/text_form_field_surfix_icon.dart';
 import 'package:music_app/const/color.dart';
 import 'package:music_app/const/routes_screen.dart';
 import 'package:music_app/const/string.dart';
@@ -66,7 +65,7 @@ class BaseSearchBar extends StatelessWidget {
       List<Song> listSongs = await ApiFindSong().findSong(controller.text);
       PersistentNavBarNavigator.pushNewScreenWithRouteSettings(
         context,
-        settings: RouteSettings(name: RoutesScreen.routesSearchResult),
+        settings: const RouteSettings(name: RoutesScreen.routesSearchResult),
         screen: SearchResultScreen(
           listSongs: listSongs,
         ),
