@@ -13,6 +13,9 @@ class AudioManager {
   AudioManager._internal();
 
   AudioPlayer audioPlayer = AudioPlayer();
+  void reset() {
+    audioPlayer = AudioPlayer();
+  }
 }
 
 class SongManager {
@@ -48,6 +51,11 @@ class SongManager {
 
   AudioSource getSongs() {
     return playlist;
+  }
+
+  void reset() {
+    _nextMediaId = 0;
+    playlist.clear();
   }
 }
 

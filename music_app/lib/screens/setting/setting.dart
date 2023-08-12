@@ -3,9 +3,11 @@ import 'package:music_app/base_widget/button.dart';
 import 'package:music_app/base_widget/image.dart';
 import 'package:music_app/const/color.dart';
 import 'package:music_app/const/dimen.dart';
+import 'package:music_app/controller.dart';
 import 'package:music_app/data_api/data_api.dart';
 
 import '../../const/component.dart';
+import '../../const/routes_screen.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
@@ -14,7 +16,7 @@ class SettingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
+        const SizedBox(
           height: 100,
         ),
         Container(
@@ -28,14 +30,14 @@ class SettingScreen extends StatelessWidget {
             borderRadius: Dimen.borderRadiusImage - 4,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: Dimen.sizedBoxMedium,
         ),
         Text(
           "${DataApi.user!.firstName} ${DataApi.user!.lastName}",
           style: Component.textStyleTextTittle,
         ),
-        SizedBox(
+        const SizedBox(
           height: Dimen.sizedBoxSmall,
         ),
         Text(
@@ -46,12 +48,27 @@ class SettingScreen extends StatelessWidget {
           height: Dimen.sizedBoxSmall,
         ),
         BaseButton(
-            text: StringConst,
-            function: function,
-            height: height,
-            width: width,
-            textStyle: textStyle,
-            borderRadius: borderRadius)
+          text: 'Log Out',
+          function: () {
+            AudioManager().reset();
+            SongManager().reset();
+            DataApi().reset();
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              RoutesScreen.routesSignIn,
+              (route) => false,
+            );
+          },
+          height: 50,
+          width: 93,
+          textStyle: const TextStyle(
+            color: ColorConst.colorText,
+            fontFamily: 'inter',
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+          ),
+          borderRadius: 20,
+        )
       ],
     );
   }
