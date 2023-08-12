@@ -44,18 +44,3 @@ class SongProgressBar extends StatefulWidget {
     required this.onProgressChanged,
     required this.audioPlayer,
   });
-
-  @override
-  _SongProgressBarState createState() => _SongProgressBarState();
-}
-
-class _SongProgressBarState extends State<SongProgressBar> {
-  @override
-  Widget build(BuildContext context) {
-    return LinearProgressIndicator(
-      value: widget.progress,
-      minHeight: 10,
-      valueColor: AlwaysStoppedAnimation<Color>(Colors.white10),
-    );
-  }
-}

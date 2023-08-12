@@ -14,4 +14,5 @@ class RoutesScreen {
   static const String routesPlaying = '/playing';
   static const String routesManager = '/manager';
   static const String routesSearchResult = '/result';
+  static const String routesFavorite = '/favorite';
 }
