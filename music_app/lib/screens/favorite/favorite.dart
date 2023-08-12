@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:music_app/base_widget/search.dart';
-import 'package:music_app/screens/favorite/component/api_favorite.dart';
-import 'package:music_app/screens/favorite/component/appbar_favorite.dart';
+import 'package:music_app/screens/favorite/component/body.dart';
 
-class FavoriteScreen extends StatelessWidget {
+import 'component/appbar_favorite.dart';
+
+class FavoriteScreen extends StatefulWidget {
   const FavoriteScreen({super.key});
 
   @override
+  State<FavoriteScreen> createState() => _FavoriteScreenState();
+}
+
+class _FavoriteScreenState extends State<FavoriteScreen> {
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       appBar: AppbarFavorite(),
       body: Column(
-        children: [],
+        children: [
+          BodyFavorite(),
+        ],
       ),
     );
   }

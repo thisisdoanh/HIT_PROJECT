@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:just_audio/just_audio.dart';
 
 class FloatingWidget extends StatefulWidget {
   final AudioPlayer audioPlayer;
+=======
+import 'package:music_app/screens/favorite/component/api_favorite.dart';
+
+import 'models/song.dart';
+
+class Test extends StatefulWidget {
+  const Test({super.key});
+>>>>>>> 7c0a3036d8e265e9a9f5e30384eec81ed19af0f3
 
   FloatingWidget({required this.audioPlayer});
 
   @override
+<<<<<<< HEAD
   _FloatinngWidgetState createState() => _FloatinngWidgetState();
 }
 
@@ -29,33 +39,18 @@ class _FloatinngWidgetState extends State<FloatingWidget> {
         );
       },
     );
+=======
+  State<Test> createState() => _TestState();
+}
+
+class _TestState extends State<Test> {
+  static List<Song> songs = [];
+  Future<void> fetch() async {
+    songs = await ApiFavorite().getFavoriteSong(context);
   }
-}
-
-class SongProgressBar extends StatefulWidget {
-  final Duration duration;
-  final double progress;
-  final ValueChanged<double> onProgressChanged;
-  final AudioPlayer audioPlayer;
-
-  SongProgressBar({
-    required this.duration,
-    required this.progress,
-    required this.onProgressChanged,
-    required this.audioPlayer,
-  });
-
-  @override
-  _SongProgressBarState createState() => _SongProgressBarState();
-}
-
-class _SongProgressBarState extends State<SongProgressBar> {
   @override
   Widget build(BuildContext context) {
-    return LinearProgressIndicator(
-      value: widget.progress,
-      minHeight: 10,
-      valueColor: AlwaysStoppedAnimation<Color>(Colors.white10),
-    );
+    return const Placeholder();
+>>>>>>> 7c0a3036d8e265e9a9f5e30384eec81ed19af0f3
   }
 }

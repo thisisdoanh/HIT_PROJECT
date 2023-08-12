@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:music_app/const/routes_screen.dart';
 import 'package:music_app/screens/bottom_navigation_bar_manager.dart';
+import 'package:music_app/screens/favorite/favorite.dart';
 import 'package:music_app/screens/forget_password/forget_password.dart';
 import 'package:music_app/screens/forget_password/reset_password.dart';
 import 'package:music_app/screens/album/album.dart';
@@ -18,6 +19,7 @@ import 'package:music_app/screens/sign_up/sign_up1.dart';
 import 'package:music_app/screens/sign_up/sign_up2.dart';
 import 'package:music_app/screens/welcome/welcome_screen.dart';
 import 'package:music_app/const/component.dart';
+import 'package:music_app/test.dart';
 import 'package:provider/provider.dart';
 import 'package:music_app/controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -69,7 +71,7 @@ class _MainAppState extends State<MainApp> {
       child: MaterialApp(
         theme: ThemeData.dark(),
         debugShowCheckedModeBanner: false,
-        initialRoute: RoutesScreen.routesWelcome,
+        initialRoute: RoutesScreen.routesFavorite,
         // initialRoute: '/test',
         onGenerateRoute: (settings) {
           switch (settings.name) {
@@ -108,8 +110,10 @@ class _MainAppState extends State<MainApp> {
                   .navigate(ResetPasswordScreen(), settings.arguments);
             case RoutesScreen.routesManager:
               return Component().navigate(BottomNavigationBarManager());
-            // case '/test':
-            //   return Component().navigate(Test());
+            case RoutesScreen.routesFavorite:
+              return Component().navigate(FavoriteScreen());
+            case '/test':
+              return Component().navigate(Test());
             default:
               return null;
           }
