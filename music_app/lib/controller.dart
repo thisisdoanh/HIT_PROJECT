@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:music_app/models/song.dart';
@@ -23,14 +24,15 @@ class SongManager {
 
   SongManager._internal();
 
-  final ConcatenatingAudioSource playlist = ConcatenatingAudioSource(children: []);
+  final ConcatenatingAudioSource playlist =
+      ConcatenatingAudioSource(children: []);
 
   int _nextMediaId = 0;
 
   void addSong(Song song) {
     String singer =
         song.singers.map((singer) => singer.name.toString()).join("+");
-        playlist.add(
+    playlist.add(
       AudioSource.uri(
         Uri.parse(song.filePath),
         tag: MediaItem(
@@ -47,6 +49,12 @@ class SongManager {
   AudioSource getSongs() {
     return playlist;
   }
+}
 
-  
+class ControllerProvider with ChangeNotifier {
+  bool isFavorited = false;
+  void changeIsFavorited() {
+    isFavorited = !isFavorited;
+    notifyListeners();
+  }
 }

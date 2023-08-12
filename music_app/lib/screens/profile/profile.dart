@@ -56,6 +56,7 @@ class _ProfileState extends State<Profile> {
       appBar: const AppBarProfile(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Column(
             children: [

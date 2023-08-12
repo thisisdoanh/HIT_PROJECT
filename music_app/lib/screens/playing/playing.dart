@@ -29,6 +29,7 @@ class PlayMusicScreen extends StatefulWidget {
 }
 
 class _PlayMusicScreenState extends State<PlayMusicScreen> {
+  final GlobalKey<ScaffoldState> scaffoldState = GlobalKey<ScaffoldState>();
   static int _nextMediaId = 0;
   late AudioPlayer audioPlayer;
 
@@ -202,15 +203,18 @@ class _PlayMusicScreenState extends State<PlayMusicScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // final Song? song = ModalRoute.of(context)?.settings.arguments as Song?;
+    final Song songPushNamed = ModalRoute.of(context)?.settings.arguments as Song;
     return Scaffold(
-      appBar: const AppBarPlaying(),
+      key: scaffoldState,
+      appBar: AppBarPlaying(
+        song: songPushNamed,
+      ),
       body: LayoutBuilder(builder: (context, constraints) {
         return SingleChildScrollView(
           padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
           child: ConstrainedBox(
             constraints: BoxConstraints(
-              minHeight: constraints.maxHeight - 10,
+              minHeight: constraints.maxHeight - 20,
             ),
             child: IntrinsicHeight(
               child: Column(
@@ -227,7 +231,7 @@ class _PlayMusicScreenState extends State<PlayMusicScreen> {
                         imageUrl: mediaData.artUri.toString(),
                         tittle: mediaData.title,
                         artist: mediaData.artist.toString(),
-                        lyrics: '',
+                        lyrics: mediaData.displaySubtitle.toString(),
                       );
                     },
                   ),
@@ -360,46 +364,48 @@ class _PlayMusicScreenState extends State<PlayMusicScreen> {
                       ),
                     ),
                     onPressed: () async {
-                      AudioSource audioSource = playlist.sequence.last;
-                      OverlayEntry overlayEntry;
-                      overlayEntry = OverlayEntry(
-                        builder: (context) => Positioned(
-                          top: MediaQuery.of(context).size.height * 0.9,
-                          child: Material(
-                            child: Container(
-                              height: MediaQuery.of(context).size.height * 0.1,
-                              width: MediaQuery.of(context).size.width,
-                              color: Colors.amber,
-                              child: Column(
-                                children: [
-                                  // CupertinoButton(
-                                  //   child: Icon(Icons.delete),
-                                  //   onPressed: () {},
-                                  // ),
+                      // AudioSource audioSource = playlist.sequence.last;
+                      // OverlayEntry overlayEntry;
+                      // overlayEntry = OverlayEntry(
+                      //   builder: (context) => Positioned(
+                      //     top: MediaQuery.of(context).size.height * 0.9,
+                      //     child: Material(
+                      //       child: Container(
+                      //         height: MediaQuery.of(context).size.height * 0.1,
+                      //         width: MediaQuery.of(context).size.width,
+                      //         color: Colors.amber,
+                      //         child: Column(
+                      //           children: [
+                      //             // CupertinoButton(
+                      //             //   child: Icon(Icons.delete),
+                      //             //   onPressed: () {},
+                      //             // ),
 
-                                  // FloatinngWidget(
-                                  //   audioPlayer: audioPlayer,
-                                  // ),
+                      //             // FloatinngWidget(
+                      //             //   audioPlayer: audioPlayer,
+                      //             // ),
 
-                                  // Text('Hello'),
-                                  // Text('data'),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      );
+                      //             // Text('Hello'),
+                      //             // Text('data'),
+                      //           ],
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ),
+                      // );
 
                       // Overlay.of(context).insert(overlayEntry);
                       // await Future.delayed(Duration(
                       //   seconds: 5,
                       // ));
                       // overlayEntry.remove();
-                      showModalBottomSheet(
-                        // isScrollControlled: true,
-                        context: context,
-                        builder: (context) {
-                          return SizedBox(
+                      scaffoldState.currentState?.showBottomSheet(
+                        (context) => GestureDetector(
+                          behavior: HitTestBehavior.opaque,
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: SizedBox(
                             height: MediaQuery.of(context).size.height * 0.4,
                             child: SingleChildScrollView(
                               padding: const EdgeInsets.all(16),
@@ -411,8 +417,8 @@ class _PlayMusicScreenState extends State<PlayMusicScreen> {
                                 ),
                               ),
                             ),
-                          );
-                        },
+                          ),
+                        ),
                       );
                     },
                   ),

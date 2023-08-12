@@ -123,13 +123,14 @@ class SignInScreen extends StatelessWidget {
                         var response = await ApiLogin().getAccount(
                           controllerUsername.text,
                           controllerPassword.text,
+                          context,
                         );
 
                         response != null
                             ? {DataApi.user = response, check = true}
                             : check = false;
                         check ??= false;
-                        DataApi.song = await ApiPlaying().getSong();
+                        // DataApi.song = await ApiPlaying().getSong();
 
                         if (keyForm.currentState!.validate() &&
                             check != false) {
@@ -137,7 +138,11 @@ class SignInScreen extends StatelessWidget {
                           // await SharedPreferences.getInstance();
                           // preferences.setString('accessToken', DataApi.accessToken);
                           // context.read<Controller>().startAudioPlayer();
-                          Navigator.pushNamed(context, RoutesScreen.routesHome);
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            RoutesScreen.routesManager,
+                            (route) => false,
+                          );
                         }
                       },
                       height: Dimen.heightButtonLarge,
