@@ -6,12 +6,9 @@ import 'package:music_app/call_api/api_singer.dart';
 import 'package:music_app/const/color.dart';
 import 'package:music_app/const/component.dart';
 import 'package:music_app/const/routes_screen.dart';
-import 'package:music_app/controller.dart';
-import 'package:music_app/main.dart';
 import 'package:music_app/models/album.dart';
 import 'package:music_app/screens/playing/playing.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
-import 'package:provider/provider.dart';
 import '../../../models/singer.dart';
 import '../../../models/song.dart';
 import 'package:music_app/call_api/api_song.dart';
@@ -141,7 +138,6 @@ class _PopularMusicState extends State<PopularMusic> {
                       shrinkWrap: true,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (BuildContext context, int index) {
-                        print(songs[index]);
                         // return listSong(songs[index]);
                         return pressButton == 1
                             ? listSong(songs[index])
@@ -182,7 +178,7 @@ class _PopularMusicState extends State<PopularMusic> {
             context,
             settings: RouteSettings(
                 name: RoutesScreen.routesPlaying, arguments: song),
-            screen: PlayMusicScreen(),
+            screen: const PlayMusicScreen(),
             withNavBar: true,
             pageTransitionAnimation: PageTransitionAnimation.cupertino,
           );

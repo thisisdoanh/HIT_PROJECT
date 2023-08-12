@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:music_app/base_widget/appbar.dart';
-import 'package:music_app/const/icon.dart';
-import '../../../const/routes_screen.dart';
+
 
 class AppBarHome extends StatelessWidget implements PreferredSizeWidget {
   const AppBarHome({super.key});
@@ -10,7 +9,7 @@ class AppBarHome extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseAppbar(
+    return const BaseAppbar(
       title: 'Home',
       // actions: IconConst.iconProfile,
       // functionActions: () => Navigator.pushNamed(

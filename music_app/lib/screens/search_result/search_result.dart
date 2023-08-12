@@ -1,8 +1,5 @@
 // ignore_for_file: unrelated_type_equality_checks
 
-import 'dart:ffi';
-
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:music_app/base_widget/image.dart';
@@ -66,7 +63,7 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Kết quả tìm kiếm'),
+        title: const Text('Kết quả tìm kiếm'),
       ),
       body: ListView.builder(
         itemCount: widget.listSongs.length,
@@ -76,12 +73,12 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
           return Column(
             children: [
               CupertinoButton(
-                padding: EdgeInsets.all(0),
+                padding: const EdgeInsets.all(0),
                 onPressed: () {
                   Navigator.pop(context);
                   PersistentNavBarNavigator.pushNewScreenWithRouteSettings(
                     context,
-                    screen: PlayMusicScreen(),
+                    screen: const PlayMusicScreen(),
                     settings: RouteSettings(
                         name: RoutesScreen.routesPlaying, arguments: song),
                   );
@@ -120,7 +117,7 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
                   ),
                 ),
               ),
-              Divider(
+              const Divider(
                 thickness: 2,
               ),
             ],

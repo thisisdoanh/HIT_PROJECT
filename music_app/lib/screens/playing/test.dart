@@ -11,26 +11,30 @@ class MyWidget extends StatelessWidget {
 }
 
 class TestPlayer extends StatelessWidget {
+  const TestPlayer({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('My Music App'),
-        ),
-        body: Column(
-          children: [
-            // Các thành phần UI khác trong body
-            Expanded(
-              child: Container(),
-            ),
-            MusicPlayerBar(),
-          ],
-        ),
-      );
+      appBar: AppBar(
+        title: const Text('My Music App'),
+      ),
+      body: Column(
+        children: [
+          // Các thành phần UI khác trong body
+          Expanded(
+            child: Container(),
+          ),
+          const MusicPlayerBar(),
+        ],
+      ),
+    );
   }
 }
 
 class MusicPlayerBar extends StatelessWidget {
+  const MusicPlayerBar({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Consumer<MusicPlayerState>(
@@ -40,7 +44,9 @@ class MusicPlayerBar extends StatelessWidget {
           child: Row(
             children: [
               IconButton(
-                icon: Icon(musicPlayerState.isPlaying ? Icons.pause : Icons.play_arrow),
+                icon: Icon(musicPlayerState.isPlaying
+                    ? Icons.pause
+                    : Icons.play_arrow),
                 onPressed: () {
                   if (musicPlayerState.isPlaying) {
                     musicPlayerState.pause();

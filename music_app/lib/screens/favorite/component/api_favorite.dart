@@ -101,7 +101,7 @@ class ApiFavorite {
   Future<dynamic> addSongToFavorite(BuildContext context, String id) async {
     try {
       Map response = await BaseApiClient()
-          .post(UrlApi.baseUrl, UrlApi.favoriteSongs + "/${id}", {});
+          .post(UrlApi.baseUrl, "${UrlApi.favoriteSongs}/$id", {});
       if (response["message"] == "Song added to favorites successfully!") {
         showAlertDialog(
           context: context,
@@ -209,7 +209,7 @@ class ApiFavorite {
       BuildContext context, String id) async {
     try {
       Map response = await BaseApiClient()
-          .delete(UrlApi.baseUrl, UrlApi.favoriteSongs + "/${id}", {});
+          .delete(UrlApi.baseUrl, "${UrlApi.favoriteSongs}/$id", {});
       if (response["message"] == "Song removed from favorites successfully!") {
         showAlertDialog(
           context: context,
