@@ -13,4 +13,5 @@ class RoutesScreen {
   static const String routesAlbum = '/album';
   static const String routesPlaying = '/playing';
   static const String routesManager = '/manager';
+  static const String routesFavorite = '/favorite';
 }
