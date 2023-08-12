@@ -45,7 +45,13 @@ class SettingScreen extends StatelessWidget {
         const SizedBox(
           height: Dimen.sizedBoxSmall,
         ),
-        BaseButton(text: StringC, function: function, height: height, width: width, textStyle: textStyle, borderRadius: borderRadius)
+        BaseButton(
+            text: StringConst,
+            function: function,
+            height: height,
+            width: width,
+            textStyle: textStyle,
+            borderRadius: borderRadius)
       ],
     );
   }
