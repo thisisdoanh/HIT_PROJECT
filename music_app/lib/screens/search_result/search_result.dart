@@ -9,6 +9,7 @@ import 'package:music_app/models/song.dart';
 import 'package:music_app/screens/favorite/component/api_favorite.dart';
 import 'package:music_app/screens/playing/playing.dart';
 import 'package:music_app/screens/profile/component/api_info.dart';
+import 'package:music_app/screens/search_result/appbar_search.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import '../../const/color.dart';
@@ -62,9 +63,7 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Kết quả tìm kiếm'),
-      ),
+      appBar: const AppBarSearch(),
       body: ListView.builder(
         itemCount: widget.listSongs.length,
         itemBuilder: (context, index) {

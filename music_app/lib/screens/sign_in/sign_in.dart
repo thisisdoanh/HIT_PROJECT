@@ -198,7 +198,7 @@ class SignInScreen extends StatelessWidget {
                         //     context, RoutesScreen.routesHome);
                         Navigator.pushNamedAndRemoveUntil(
                           context,
-                          RoutesScreen.routesHome,
+                          RoutesScreen.routesSignUp1,
                           (route) => false,
                         );
                       },

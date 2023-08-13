@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:music_app/base_widget/image.dart';
+import 'package:music_app/controller.dart';
 import 'package:music_app/screens/sign_in/component/google_sign_in_provider.dart';
 
 class Logined extends StatelessWidget {
@@ -8,6 +9,7 @@ class Logined extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AudioManager().reset();
     final user = FirebaseAuth.instance.currentUser;
     return Scaffold(
       body: Column(

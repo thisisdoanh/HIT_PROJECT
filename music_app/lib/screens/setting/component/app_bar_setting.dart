@@ -9,10 +9,10 @@ class AppBarSetting extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseAppbar(
+    return const BaseAppbar(
       title: 'Setting',
-      leading: Icons.arrow_back_sharp,
-      functionLeading: () => Navigator.of(context).pop(),
+      // leading: Icons.arrow_back_sharp,
+      // functionLeading: () => Navigator.of(context).pop(),
     );
   }
 }

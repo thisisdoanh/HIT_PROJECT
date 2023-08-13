@@ -36,7 +36,7 @@ class _AnimationWelcomeState extends State<AnimationWelcome>
 
     _controller.forward();
 
-    // waitSplashScreen();
+    waitSplashScreen();
   }
 
   void waitSplashScreen() async {
