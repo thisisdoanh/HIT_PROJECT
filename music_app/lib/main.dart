@@ -67,7 +67,7 @@ class _MainAppState extends State<MainApp> {
       child: MaterialApp(
         theme: ThemeData.dark(),
         debugShowCheckedModeBanner: false,
-        initialRoute: RoutesScreen.routesFavorite,
+        initialRoute: RoutesScreen.routesWelcome,
         // initialRoute: '/test',
         onGenerateRoute: (settings) {
           switch (settings.name) {

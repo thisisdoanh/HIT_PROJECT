@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:music_app/const/dimen.dart';
 import 'package:music_app/screens/favorite/component/api_favorite.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import '../../../base_widget/button_nocolor.dart';
@@ -122,7 +123,7 @@ class _BodyFavoriteState extends State<BodyFavorite> {
           height: 32,
         ),
         SizedBox(
-          height: 178,
+          height: MediaQuery.of(context).size.height * 0.6,
           child: Row(
             children: [
               const SizedBox(
@@ -175,33 +176,42 @@ class _BodyFavoriteState extends State<BodyFavorite> {
           pageTransitionAnimation: PageTransitionAnimation.cupertino,
         );
       },
-      child: Row(
+      child: Column(
         children: [
-          BaseImageNetwork(
-            height: 60,
-            width: 60,
-            linkImage: song.image,
-            borderRadius: 10,
-          ),
-          const SizedBox(
-            width: 20,
-          ),
-          Column(
+          Row(
             children: [
-              Text(
-                song.title,
-                style: const TextStyle(
-                  color: ColorConst.colorText,
-                  fontFamily: 'inter',
-                  fontWeight: FontWeight.w700,
-                  fontSize: 14,
-                ),
+              BaseImageNetwork(
+                height: 40,
+                width: 40,
+                linkImage: song.image,
+                borderRadius: 10,
               ),
-              // Text(
-              //   album.songs[index].singers[0].name,
-              // ),
+              const SizedBox(
+                width: 20,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    song.title,
+                    style: const TextStyle(
+                      color: ColorConst.colorText,
+                      fontFamily: 'inter',
+                      fontWeight: FontWeight.w700,
+                      fontSize: 14,
+                    ),
+                  ),
+                  Text(song.singers.map((e) => e.name.toString()).join("+")),
+                ],
+              ),
             ],
           ),
+          const SizedBox(
+            height: Dimen.sizedBoxSmall,
+          ),
+          const Divider(
+            thickness: 2,
+          )
         ],
       ),
     );

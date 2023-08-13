@@ -25,25 +25,25 @@ class BottomNavigationBarManager extends StatelessWidget {
       PersistentBottomNavBarItem(
         icon: const Icon(Icons.home),
         title: ("Home"),
-        activeColorPrimary: Colors.orange[700]!,
+        activeColorPrimary: Colors.orange[900]!,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(Icons.person),
         title: ("Profile"),
-        activeColorPrimary: Colors.orange[700]!,
+        activeColorPrimary: Colors.orange[900]!,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(Icons.favorite),
         title: ("Liked"),
-        activeColorPrimary: Colors.orange[700]!,
+        activeColorPrimary: Colors.orange[900]!,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(Icons.settings),
         title: ("Settings"),
-        activeColorPrimary: Colors.orange[700]!,
+        activeColorPrimary: Colors.orange[900]!,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
     ];
